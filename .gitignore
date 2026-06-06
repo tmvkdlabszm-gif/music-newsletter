@@ -1,0 +1,6 @@
+# 로컬 운영 파일 (웹에 올릴 필요 없음)
+*.log
+__pycache__/
+state.json
+history.json
+*.plist
