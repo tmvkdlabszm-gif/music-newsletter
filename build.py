@@ -13,7 +13,7 @@ history.json에 누적해 3개 뷰(최근/전체/뜨는중)를 추가 비용 없
 
 토큰: ~/.config/music-newsletter/.env 의 APIFY_TOKEN (또는 환경변수).
 """
-import json, os, sys, time, html, datetime, urllib.request, urllib.parse, urllib.error
+import json, os, sys, time, html, datetime, subprocess, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -258,6 +258,29 @@ def render(views, total_videos):
 </script></body></html>"""
 
 
+# ---------- git push (GitHub Pages 자동 배포) ----------
+def git_push():
+    def g(*args):
+        return subprocess.run(["/usr/bin/git", "-C", str(HERE), *args],
+                              capture_output=True, text=True)
+    if g("rev-parse", "--git-dir").returncode != 0:
+        return  # git 저장소 아님 → 조용히 생략
+    try:
+        g("add", "-A")
+        c = g("-c", "user.email=tmvkdlabszm@gmail.com", "-c", "user.name=tmvkdlabszm-gif",
+              "commit", "-m", f"newsletter {TODAY.isoformat()}")
+        if c.returncode != 0:
+            log("git: 변경 없음 → 푸시 생략")
+            return
+        p = g("push", "origin", "main")
+        if p.returncode == 0:
+            log("git: 푸시 완료 → GitHub Pages 갱신됨")
+        else:
+            log(f"git push 실패: {(p.stderr or p.stdout).strip()[:200]}")
+    except Exception as e:
+        log(f"git_push 예외: {e}")
+
+
 # ---------- main ----------
 def main():
     cfg = load_json(KEYWORDS, {})
@@ -305,6 +328,7 @@ def main():
     (ARCHIVE / f"{TODAY.isoformat()}.html").write_text(page, encoding="utf-8")
     log(f"렌더 완료: 최근 {len(views['recent'])} · 전체 {len(views['all_time'])} · "
         f"뜨는중 {len(views['trending'])} (이번 실행 수집 {fetched}개)")
+    git_push()
 
 
 if __name__ == "__main__":
