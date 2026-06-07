@@ -186,8 +186,43 @@ def fetch(token, platform, kw, n):
     return out
 
 
-# ---------- Claude 3줄 요약 (raw HTTP, stdlib만) ----------
+# ---------- 3줄 요약: Claude(우선) → 데이터 기반(폴백) ----------
+import re as _re, collections as _collections
+
+_STOP = set(("the a an of to in for and or is on with your you my this that it i we "
+             "music song songs new how what why best top mix feat official video "
+             "이 그 저 및 the- ft vs").split())
+
+
+def _summarize_heuristic(label, items):
+    if not items:
+        return None
+    n = len(items)
+    scores = [it.get("score") or 0 for it in items]
+    top = max(items, key=lambda r: r.get("score") or 0)
+    slabel = PLATFORMS.get(items[0].get("platform", ""), {}).get("score", "인기")
+    words = []
+    for it in items:
+        for w in _re.findall(r"[A-Za-z가-힣]{3,}", (it.get("title") or "").lower()):
+            if w not in _STOP:
+                words.append(w)
+    common = [w for w, _ in _collections.Counter(words).most_common(4)]
+    l1 = f"가장 화제: '{(top.get('title') or '')[:48]}' — {top.get('channel','')} ({slabel} {fmt(top.get('score'))})"
+    l2 = f"오늘 {n}건 수집 · 평균 {slabel} {fmt(sum(scores)//n if n else 0)} · 최고 {fmt(max(scores) if scores else 0)}"
+    l3 = ("자주 등장: " + ", ".join(common)) if common else "다양한 주제가 고르게 분포"
+    return [l1, l2, l3]
+
+
 def summarize(label, items):
+    if not items:
+        return None
+    lines = _summarize_claude(label, items)   # 크레딧 있으면 Claude 분석
+    if lines:
+        return lines
+    return _summarize_heuristic(label, items)  # 없으면 데이터 기반 폴백
+
+
+def _summarize_claude(label, items):
     key = get_anthropic_key()
     if not key or not items:
         return None
