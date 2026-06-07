@@ -23,7 +23,9 @@ STATE = HERE / "state.json"
 INDEX = HERE / "index.html"
 ARCHIVE = HERE / "archive"
 LOG = HERE / "build.log"
+SUMMARIES = HERE / "summaries.json"
 ENV = Path.home() / ".config" / "music-newsletter" / ".env"
+ANTHROPIC_MODEL = "claude-opus-4-8"
 
 TODAY = datetime.date.today()
 DRY = "--dry" in sys.argv
@@ -58,15 +60,23 @@ def save_json(path, data):
     Path(path).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def get_token():
-    tok = os.environ.get("APIFY_TOKEN")
-    if tok:
-        return tok.strip()
+def _env_value(name):
+    v = os.environ.get(name)
+    if v:
+        return v.strip()
     if ENV.exists():
         for ln in ENV.read_text(encoding="utf-8").splitlines():
-            if ln.strip().startswith("APIFY_TOKEN"):
+            if ln.strip().startswith(name):
                 return ln.split("=", 1)[1].strip().strip('"').strip("'")
     return None
+
+
+def get_token():
+    return _env_value("APIFY_TOKEN")
+
+
+def get_anthropic_key():
+    return _env_value("ANTHROPIC_API_KEY")
 
 
 def first(d, *keys, default=None):
@@ -176,6 +186,38 @@ def fetch(token, platform, kw, n):
     return out
 
 
+# ---------- Claude 3줄 요약 (raw HTTP, stdlib만) ----------
+def summarize(label, items):
+    key = get_anthropic_key()
+    if not key or not items:
+        return None
+    listing = "\n".join(
+        f"- {(it.get('title') or '')[:90]} | {it.get('channel','')} | 인기 {it.get('score',0):,}"
+        for it in sorted(items, key=lambda r: r.get('score') or 0, reverse=True)[:25])
+    system = ("너는 음악 트렌드 분석가다. 아래 '오늘 수집된 게시물' 목록을 보고 그날의 흐름을 "
+              "한국어로 정확히 3줄로 요약한다. 각 줄은 간결한 한 문장(불릿·번호·서론 없이 3줄만). "
+              "데이터에 근거하고 과장하지 않는다. 다른 어떤 설명·추론도 출력하지 말고 3줄만 답한다.")
+    body = json.dumps({
+        "model": ANTHROPIC_MODEL,
+        "max_tokens": 400,
+        "system": system,
+        "messages": [{"role": "user", "content": f"[{label}] 오늘 수집:\n{listing}"}],
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        "https://api.anthropic.com/v1/messages", data=body, method="POST",
+        headers={"content-type": "application/json", "x-api-key": key,
+                 "anthropic-version": "2023-06-01"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+        text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
+        lines = [ln.strip(" -•\t") for ln in text.splitlines() if ln.strip()]
+        return lines[:3] or None
+    except Exception as e:
+        log(f"요약 실패 {label}: {e}")
+        return None
+
+
 # ---------- history / ranking ----------
 def update_history(history, items):
     today = TODAY.isoformat()
@@ -247,12 +289,21 @@ def card_html(r, kind, rank):
     </a>"""
 
 
-def render(ranks, spent, budget):
+def render(ranks, summaries, spent, budget):
     btns, blocks = "", ""
     for i, (pid, p) in enumerate(PLATFORMS.items()):
         act = " active" if i == 0 else ""
         btns += f'<button class="tabbtn{act}" data-pf="{pid}">{p["emoji"]} {p["label"]}</button>'
-        sections = ""
+        sm = (summaries or {}).get(pid)
+        if sm and sm.get("lines"):
+            lis = "".join(f"<li>{html.escape(x)}</li>" for x in sm["lines"])
+            date_note = f' · {html.escape(sm.get("date",""))}' if sm.get("date") else ""
+            summary = (f'<div class="summary"><div class="shead">📝 오늘의 3줄 요약{date_note}</div>'
+                       f'<ul>{lis}</ul></div>')
+        else:
+            summary = ('<div class="summary muted">📝 3줄 요약은 다음 수집 때 생성됩니다 '
+                       '(Claude 분석)</div>')
+        sections = summary
         idx = 0
         for vkey, vlabel in VIEWS:
             rows = ranks[pid][vkey]
@@ -324,6 +375,15 @@ def render(ranks, spent, budget):
   .tabbtn.active {{ background:var(--accent-weak); color:var(--accent); border-color:rgba(224,164,88,.4); }}
   .platform {{ display:none; max-width:1180px; margin:0 auto; padding:8px 20px 64px; }}
   .platform.active {{ display:block; }}
+  .summary {{ margin:18px 0 4px; padding:16px 18px; border-radius:16px;
+    background:var(--accent-weak); border:1px solid rgba(224,164,88,.28);
+    border-left:3px solid var(--accent); }}
+  .summary.muted {{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--line);
+    color:var(--muted); font-size:13.5px; }}
+  .shead {{ font-size:13px; font-weight:600; color:var(--accent); margin-bottom:8px;
+    letter-spacing:.01em; }}
+  .summary ul {{ margin:0; padding-left:18px; }}
+  .summary li {{ font-size:14px; line-height:1.6; margin:3px 0; }}
   .vhead {{ font-size:15px; font-weight:600; color:var(--text); margin:28px 2px 14px;
     padding-bottom:8px; border-bottom:1px solid var(--line); }}
   .row {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }}
@@ -432,6 +492,7 @@ def main():
 
     history = load_json(HISTORY, {})
     state = load_json(STATE, {})
+    summaries = load_json(SUMMARIES, {})
     month = TODAY.strftime("%Y-%m")
     if state.get("month") != month:
         state = {"month": month, "spent": 0.0}
@@ -467,8 +528,20 @@ def main():
             save_json(HISTORY, history)
             save_json(STATE, state)
 
+            # 그날 수집분으로 플랫폼별 3줄 요약 생성 (Claude)
+            today = TODAY.isoformat()
+            if get_anthropic_key():
+                for pid in PLATFORMS:
+                    todays = [r for r in history.values()
+                              if r.get("platform") == pid and r.get("last_seen") == today]
+                    lines = summarize(PLATFORMS[pid]["label"], todays)
+                    if lines:
+                        summaries[pid] = {"date": today, "lines": lines}
+                        log(f"요약 생성: {pid} ({len(lines)}줄)")
+                save_json(SUMMARIES, summaries)
+
     ranks = {pid: rank_platform(history, pid, recent_days) for pid in PLATFORMS}
-    page = render(ranks, state.get("spent", 0.0), budget)
+    page = render(ranks, summaries, state.get("spent", 0.0), budget)
     INDEX.write_text(page, encoding="utf-8")
     ARCHIVE.mkdir(exist_ok=True)
     (ARCHIVE / f"{TODAY.isoformat()}.html").write_text(page, encoding="utf-8")
