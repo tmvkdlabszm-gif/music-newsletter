@@ -191,7 +191,9 @@ import re as _re, collections as _collections
 
 _STOP = set(("the a an of to in for and or is on with your you my this that it i we "
              "music song songs new how what why best top mix feat official video "
-             "이 그 저 및 the- ft vs").split())
+             "about who when from are was has have not but all out get got make made "
+             "una que por der die und las los con para más muy son una uno like just "
+             "이 그 저 및 ft vs").split())
 
 
 def _summarize_heuristic(label, items):
