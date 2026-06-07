@@ -125,7 +125,7 @@ def norm_instagram(it):
         "url": first(it, "url", default="#"),
         "thumbnail": first(it, "displayUrl", "thumbnailUrl") or "",
         "published": to_date(first(it, "timestamp")),
-        "score": int(first(it, "likesCount", default=0) or 0),
+        "score": int(first(it, "likesCount", "videoViewCount", "videoPlayCount", default=0) or 0),
         "second": int(first(it, "commentsCount", default=0) or 0),
     }
 
@@ -150,7 +150,8 @@ def payload_for(platform, kw, n):
     if platform == "tiktok":
         return {"searchQueries": [kw], "searchSection": "/video", "resultsPerPage": n}
     if platform == "instagram":
-        return {"search": kw, "searchType": "hashtag", "searchLimit": 1,
+        tag = kw.lstrip("#").replace(" ", "")
+        return {"directUrls": [f"https://www.instagram.com/explore/tags/{tag}/"],
                 "resultsType": "posts", "resultsLimit": n}
     if platform == "reddit":
         return {"searchTerms": [kw], "searchPosts": True, "searchSort": "top",
