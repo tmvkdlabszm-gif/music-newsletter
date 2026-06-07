@@ -1,18 +1,16 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="매일 자동 정리되는 음악 키워드 인기 영상 — 최근·전체·뜨는 중 Top 5">
+<meta name="description" content="매일 자동 정리되는 음악 인기 게시물 — TikTok·Instagram·Reddit">
 <meta property="og:title" content="데일리 뮤직 뉴스레터">
-<meta property="og:description" content="키워드별 YouTube 인기 영상을 매일 한 페이지로">
 <title>데일리 뮤직 뉴스레터 · 2026-06-07</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   :root {
-    color-scheme: dark;
+    color-scheme:dark;
     --bg:#09090b; --surface:#141417; --line:rgba(255,255,255,.07);
-    --text:#ededf0; --muted:#9a9aa6;
-    --accent:#e0a458; --accent-weak:rgba(224,164,88,.14);
+    --text:#ededf0; --muted:#9a9aa6; --accent:#e0a458; --accent-weak:rgba(224,164,88,.14);
     --spring:cubic-bezier(.16,1,.3,1);
   }
   * { box-sizing:border-box; }
@@ -43,18 +41,18 @@
   .tabs { display:flex; gap:8px; max-width:1180px; margin:0 auto; padding:12px 20px;
     overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
   .tabs::-webkit-scrollbar { display:none; }
-  .tabbtn { flex:0 0 auto; background:transparent; color:var(--muted);
-    border:1px solid var(--line); border-radius:999px; padding:9px 16px; font:inherit;
-    font-size:14px; font-weight:500; cursor:pointer; transition:all .3s var(--spring); }
+  .tabbtn { flex:0 0 auto; background:transparent; color:var(--muted); border:1px solid var(--line);
+    border-radius:999px; padding:9px 16px; font:inherit; font-size:14px; font-weight:500;
+    cursor:pointer; transition:all .3s var(--spring); }
   .tabbtn:hover { color:var(--text); border-color:rgba(255,255,255,.18); }
-  .tabbtn.active { background:var(--accent-weak); color:var(--accent);
-    border-color:rgba(224,164,88,.4); }
-  main { display:block; }
-  .panel { display:none; }
-  .panel.active { display:grid; max-width:1180px; margin:0 auto;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; padding:28px 20px 64px; }
+  .tabbtn.active { background:var(--accent-weak); color:var(--accent); border-color:rgba(224,164,88,.4); }
+  .platform { display:none; max-width:1180px; margin:0 auto; padding:8px 20px 64px; }
+  .platform.active { display:block; }
+  .vhead { font-size:15px; font-weight:600; color:var(--text); margin:28px 2px 14px;
+    padding-bottom:8px; border-bottom:1px solid var(--line); }
+  .row { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
-  .panel.active .card { animation:fadeUp .5s var(--spring) both; animation-delay:calc(var(--i) * 60ms); }
+  .platform.active .card { animation:fadeUp .5s var(--spring) both; animation-delay:calc(var(--i) * 45ms); }
   .card { position:relative; display:block; background:var(--surface); border:1px solid var(--line);
     border-radius:18px; overflow:hidden; text-decoration:none; color:inherit;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 12px 30px -16px rgba(0,0,0,.8);
@@ -62,39 +60,39 @@
   .card:hover { transform:translateY(-5px); border-color:rgba(224,164,88,.45);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 22px 44px -18px rgba(224,164,88,.28); }
   .card:active { transform:translateY(-2px) scale(.99); }
-  .thumb { position:relative; aspect-ratio:16/9; background:#0c0c0f; overflow:hidden; }
-  .thumb img { width:100%; height:100%; object-fit:cover; display:block;
+  .thumb { position:relative; aspect-ratio:16/9; background:#0c0c0f; overflow:hidden;
+    display:grid; place-items:center; }
+  .thumb img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block;
     transition:transform .5s var(--spring); }
   .card:hover .thumb img { transform:scale(1.05); }
-  .thumb::after { content:""; position:absolute; inset:0;
+  .ph { position:absolute; font-size:34px; opacity:.4; z-index:0; }
+  .thumb.broken img { display:none; }
+  .thumb::after { content:""; position:absolute; inset:0; z-index:1;
     background:linear-gradient(to top, rgba(0,0,0,.55), transparent 45%); }
-  .noimg { width:100%; height:100%; display:grid; place-items:center; font-size:34px; opacity:.5; }
-  .rank { position:absolute; top:8px; left:10px; z-index:2; font-size:22px; font-weight:700;
-    line-height:1; color:#fff; font-variant-numeric:tabular-nums;
-    text-shadow:0 2px 8px rgba(0,0,0,.7); }
-  .play { position:absolute; inset:0; margin:auto; width:48px; height:48px; z-index:2;
-    display:grid; place-items:center; border-radius:999px; color:#0a0a0a;
-    background:rgba(255,255,255,.92); opacity:0; transform:scale(.8);
-    transition:all .35s var(--spring); }
+  .rank { position:absolute; top:8px; left:10px; z-index:3; font-size:22px; font-weight:700;
+    line-height:1; color:#fff; font-variant-numeric:tabular-nums; text-shadow:0 2px 8px rgba(0,0,0,.7); }
+  .play { position:absolute; inset:0; margin:auto; width:48px; height:48px; z-index:3; display:grid;
+    place-items:center; border-radius:999px; color:#0a0a0a; background:rgba(255,255,255,.92);
+    opacity:0; transform:scale(.8); transition:all .35s var(--spring); }
   .card:hover .play { opacity:1; transform:scale(1); }
-  .tag { position:absolute; left:10px; bottom:10px; z-index:2; font-size:11px; font-weight:500;
-    padding:4px 9px; border-radius:999px; color:#f2f2f4;
-    background:rgba(20,20,23,.7); border:1px solid rgba(255,255,255,.12);
-    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .tag { position:absolute; left:10px; bottom:10px; z-index:3; font-size:11px; font-weight:500;
+    padding:4px 9px; border-radius:999px; color:#f2f2f4; background:rgba(20,20,23,.7);
+    border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(6px); }
   .body { padding:13px 14px 16px; }
   .title { font-size:15px; font-weight:600; line-height:1.4; text-wrap:balance;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   .channel { color:var(--muted); font-size:12.5px; margin-top:6px; }
   .meta { font-size:12.5px; margin-top:8px; color:var(--muted); font-variant-numeric:tabular-nums; }
   .meta b { color:var(--accent); font-weight:600; }
-  .empty { color:var(--muted); font-size:14px; grid-column:1/-1; padding:32px 0; text-align:center; }
+  .empty { color:var(--muted); font-size:14px; padding:10px 2px 4px; }
   footer { color:#62626d; font-size:12.5px; padding:0 0 40px; }
-  @media (max-width: 600px) {
+  @media (max-width:600px) {
     body { overflow-x:hidden; }
     header { padding:28px 0 12px; }
-    .panel.active { grid-template-columns:1fr; gap:12px; padding:18px 16px 44px; }
+    .platform { padding:6px 16px 44px; }
     .wrap { padding:0 16px; }
     .tabs { padding:11px 16px; gap:7px; }
+    .row { grid-template-columns:1fr; gap:12px; }
     .card { display:flex; flex-direction:row; align-items:stretch; }
     .thumb { width:44%; max-width:170px; flex:0 0 auto; }
     .body { flex:1; min-width:0; padding:11px 13px; align-self:center; }
@@ -102,158 +100,339 @@
     .play { width:38px; height:38px; }
     .rank { font-size:18px; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior:auto; }
-    .panel.active .card { animation:none; }
+  @media (prefers-reduced-motion:reduce) {
+    html { scroll-behavior:auto; } .platform.active .card { animation:none; }
     * { transition:none !important; }
   }
 </style></head><body>
 <header><div class="wrap">
   <h1>🎵 데일리 뮤직 뉴스레터</h1>
-  <div class="sub">2026-06-07 · 키워드 인기 영상 · 이번 달 누적 80개 수집</div>
+  <div class="sub">2026-06-07 · TikTok · Instagram · Reddit · 이번 달 $0.14 / $4.50</div>
 </div></header>
-<nav class="navbar"><div class="tabs"><button class="tabbtn active" data-tab="recent">🆕 최근 인기</button><button class="tabbtn" data-tab="all_time">🔥 전체 인기</button><button class="tabbtn" data-tab="trending">📈 뜨는 중</button></div></nav>
-<main><section class="panel active" id="panel-recent"><a class="card" style="--i:1" href="https://www.youtube.com/watch?v=vrY1THC_NQE&amp;list=RDvrY1THC_NQE&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/vrY1THC_NQE/maxresdefault.jpg" loading="lazy" alt="IShowSpeed - World Cup (Champions) [Official Music Video] 썸네일">
+<nav class="navbar"><div class="tabs"><button class="tabbtn active" data-pf="tiktok">🎵 TikTok</button><button class="tabbtn" data-pf="instagram">📸 Instagram</button><button class="tabbtn" data-pf="reddit">👽 Reddit</button></div></nav>
+<main><section class="platform active" id="pf-tiktok"><h2 class="vhead">🆕 최근 인기</h2><div class="row"><a class="card" style="--i:1" href="https://www.tiktok.com/@80s.music06/video/7646042258579508493" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oog1vKmH7AswAIRHwEiGDMpBGfJxNxhiBCA0cI~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=Ljj%2Bxqq9pdzFh1f%2Bzqa7%2F8qsai8%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="Smalltown Boy — Bronski Beat
+#BronskiBeat #SmalltownBoy #80sMusic #SynthPop #NewWave" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
         <span class="rank">1</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">🎵 TikTok</span>
       </div>
-      <div class="body"><div class="title">IShowSpeed - World Cup (Champions) [Official Music Video]</div>
-        <div class="channel">IShowSpeed</div><div class="meta">2026-06-01 · 조회 27,739,042</div></div>
-    </a>
-<a class="card" style="--i:2" href="https://www.youtube.com/watch?v=82-jTNka3uc&amp;list=RD82-jTNka3uc&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/82-jTNka3uc/maxresdefault.jpg" loading="lazy" alt="Ariana Grande - hate that i made you love me (official music video) 썸네일">
+      <div class="body"><div class="title">Smalltown Boy — Bronski Beat
+#BronskiBeat #SmalltownBoy #80sMusic #SynthPop #NewWave</div>
+        <div class="channel">80’s music</div><div class="meta">2026-05-31 · 재생 925,000</div></div>
+    </a><a class="card" style="--i:2" href="https://www.tiktok.com/@shonci/video/7647636489064582420" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/osOIQiPiaA5Yg4KEHzblAvEAABA5ihvp3cAiB~tplv-tiktokx-dmt-logom:tos-alisg-i-0068/ogz5kAKB1B3835hiiAAO2AEcCAahfEMwmIIOAx.image?dr=9634&amp;x-expires=1780995600&amp;x-signature=SNID0PgmHOPrXZD4Gvy4GENXAi0%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="collab w/ @shiv LARP type beat #housemusic #jazz #flstudio 
+
+FL Studio is a music production software (DAW) where producers build beats from scratch using drums, melodies, samples, plugins, and effects. It’s basically the full studio on your laptop. You can record, arrange, mix, and master everything in one place." onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
         <span class="rank">2</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">🎵 TikTok</span>
       </div>
-      <div class="body"><div class="title">Ariana Grande - hate that i made you love me (official music video)</div>
-        <div class="channel">Ariana Grande</div><div class="meta">2026-06-01 · 조회 12,768,172</div></div>
-    </a>
-<a class="card" style="--i:3" href="https://www.youtube.com/watch?v=AK5UwbqZ13c&amp;list=RDAK5UwbqZ13c&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/AK5UwbqZ13c/maxresdefault.jpg" loading="lazy" alt="TU NA AAYI: Sahil Joshi | Snehil Jain | New Hindi Song 2026 | Sad Songs Hindi, Travel Song, Sad Song 썸네일">
+      <div class="body"><div class="title">collab w/ @shiv LARP type beat #housemusic #jazz #flstudio 
+
+FL Studio is a music production software (DAW) where producers build beats from scratch using drums, melodies, samples, plugins, and effects. It’s basically the full studio on your laptop. You can record, arrange, mix, and master everything in one place.</div>
+        <div class="channel">shonci</div><div class="meta">2026-06-04 · 재생 141,100</div></div>
+    </a><a class="card" style="--i:3" href="https://www.tiktok.com/@kwv.official/video/7647854463608294677" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/o0gJ5CcDqBoeuJpFEjTqFAIWEBqifILghRIz87~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=tKe5D1IRLG1an5a%2FpUKnbRJ1GQc%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="Tokyo Midnight
+​#BronskiBeat​#80sVibes
+​#SynthPop@Ken&#x27;s World Vibes @Ken&#x27;s World Vibes @Ken&#x27;s World Vibes " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
         <span class="rank">3</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">🎵 TikTok</span>
       </div>
-      <div class="body"><div class="title">TU NA AAYI: Sahil Joshi | Snehil Jain | New Hindi Song 2026 | Sad Songs Hindi, Travel Song, Sad Song</div>
-        <div class="channel">Sahil joshi Vlogs</div><div class="meta">2026-06-05 · 조회 1,862,442</div></div>
-    </a>
-<a class="card" style="--i:4" href="https://www.youtube.com/watch?v=K7SBWkpDI9Y&amp;list=RDK7SBWkpDI9Y&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/K7SBWkpDI9Y/maxresdefault.jpg" loading="lazy" alt="DEEP &amp; ELEGANT | Pure Deep House Mix &#x27; by Gentleman [Vol.4] 썸네일">
+      <div class="body"><div class="title">Tokyo Midnight
+​#BronskiBeat​#80sVibes
+​#SynthPop@Ken&#x27;s World Vibes @Ken&#x27;s World Vibes @Ken&#x27;s World Vibes </div>
+        <div class="channel">Ken&#x27;s World Vibes</div><div class="meta">2026-06-05 · 재생 38,700</div></div>
+    </a><a class="card" style="--i:4" href="https://www.tiktok.com/@zacharias413/video/7648543422655073550" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oI9XQSyUKDAfKJKBsRF3DRqDZE1g2BhJQQf0KE~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=WBpILQ2WHVpaLX%2F3DqqmnLIxKbU%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="Smalltown Boy — Bronski Beat #BronskiBeat #SmalltownBoy #80sMusic #SynthPop #NewWave" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
         <span class="rank">4</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🧭 장르 탐색</span>
+        <span class="tag">🎵 TikTok</span>
       </div>
-      <div class="body"><div class="title">DEEP &amp; ELEGANT | Pure Deep House Mix &#x27; by Gentleman [Vol.4]</div>
-        <div class="channel">Deep &amp; Elegant</div><div class="meta">2026-06-03 · 조회 36,264</div></div>
-    </a>
-<a class="card" style="--i:5" href="https://www.youtube.com/watch?v=13V5l8-BZSA&amp;list=RD13V5l8-BZSA&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/13V5l8-BZSA/maxresdefault.jpg" loading="lazy" alt="Music Mix 2026 #67 Party Club Dance 2026 | Best Remixes Of Popular Songs 2025 MEGAMIX (DJ Silviu M) 썸네일">
+      <div class="body"><div class="title">Smalltown Boy — Bronski Beat #BronskiBeat #SmalltownBoy #80sMusic #SynthPop #NewWave</div>
+        <div class="channel">user87113042610735</div><div class="meta">2026-06-07 · 재생 529</div></div>
+    </a><a class="card" style="--i:5" href="https://www.tiktok.com/@aresmusic01/video/7648542518979611926" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-no1a-p-0037-no/o8PRMeElcAqGGJCIBfNIA7GQFWlLERDfolfmmg~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=yt6CNVHPAXE%2FqI8q4%2BGYZQrOamg%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="🌌🎧 “Enjoy the Silence” – Depeche Mode: cuando el silencio dice más que mil palabras 🖤✨
+
+En 1990, lanzó una de las canciones más icónicas del synth-pop: “Enjoy the Silence”, parte del legendario álbum . Lo que la hace especial no es solo su sonido… es su mensaje profundo sobre el poder del silencio. 🌙
+
+La canción plantea una idea simple pero poderosa:
+👉 las palabras pueden romper lo que el silencio protege
+
+Habla de cómo, en una relación, a veces decir demasiado puede dañar lo que se siente. El silencio, en cambio, puede ser más sincero, más íntimo… más real. 🖤
+
+🎶 Musicalmente, es una mezcla perfecta entre melancolía y ritmo. Los sintetizadores crean una atmósfera hipnótica, mientras la voz de transmite calma, deseo y cierta tristeza contenida. Es una canción que puedes bailar… pero también sentir profundamente. 💫
+
+✨ Datos que la hacen legendaria:
+
+Originalmente iba a ser una balada lenta 😮
+
+Terminó convertida en un hit electrónico global 🌍
+
+Ganó el Brit Award a Mejor Sencillo 🏆
+
+Es una de las canciones más reconocidas de los 90
+
+Su videoclip con el “rey caminando” es icónico 👑
+
+“Enjoy the Silence” no es solo una canción…
+es ese momento en el que no hace falta hablar para sentirlo todo. 🌌💭
+
+🌌🎧 “Enjoy the Silence” – Depeche Mode: when silence says more than words 🖤✨
+
+In 1990, released “Enjoy the Silence”, one of the most iconic synth-pop songs ever, from the album . 🌙
+
+The message is simple yet powerful:
+👉 words can break what silence protects
+
+It’s about how, in relationships, saying too much can ruin something pure. Silence can feel more honest, more intimate… more real. 🖤
+
+🎶 Musically, it blends melancholic tones with an addictive electronic rhythm. delivers a calm yet emotional performance that pulls you in. 💫
+
+✨ Fun facts:
+
+Originally written as a slow ballad 😮
+
+Turned into a global electronic hit 🌍
+
+Won a Brit Award 🏆
+
+One of the most recognizable songs of the 90s
+
+Iconic music video featuring a wandering king 👑
+
+🎵 Song: “Enjoy the Silence” – Depeche Mode
+
+#EnjoyTheSilence #DepecheMode #Violator #SynthPop #aresmusic1 " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
         <span class="rank">5</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">🎵 TikTok</span>
       </div>
-      <div class="body"><div class="title">Music Mix 2026 #67 Party Club Dance 2026 | Best Remixes Of Popular Songs 2025 MEGAMIX (DJ Silviu M)</div>
-        <div class="channel">Dj Silviu M Official</div><div class="meta">2026-06-06 · 조회 5,143</div></div>
-    </a></section><section class="panel" id="panel-all_time"><a class="card" style="--i:1" href="https://www.youtube.com/watch?v=fcnDmrtj6Sk&amp;list=RDfcnDmrtj6Sk&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fcnDmrtj6Sk/maxresdefault.jpg" loading="lazy" alt="Shakira, Burna Boy - Dai Dai (Official Video) 썸네일">
+      <div class="body"><div class="title">🌌🎧 “Enjoy the Silence” – Depeche Mode: cuando el silencio dice más que mil palabras 🖤✨
+
+En 1990, lanzó una de las canciones más icónicas del synth-pop: “Enjoy the Silence”, parte del legendario álbum . Lo que la hace especial no es solo su sonido… es su mensaje profundo sobre el poder del silencio. 🌙
+
+La canción plantea una idea simple pero poderosa:
+👉 las palabras pueden romper lo que el silencio protege
+
+Habla de cómo, en una relación, a veces decir demasiado puede dañar lo que se siente. El silencio, en cambio, puede ser más sincero, más íntimo… más real. 🖤
+
+🎶 Musicalmente, es una mezcla perfecta entre melancolía y ritmo. Los sintetizadores crean una atmósfera hipnótica, mientras la voz de transmite calma, deseo y cierta tristeza contenida. Es una canción que puedes bailar… pero también sentir profundamente. 💫
+
+✨ Datos que la hacen legendaria:
+
+Originalmente iba a ser una balada lenta 😮
+
+Terminó convertida en un hit electrónico global 🌍
+
+Ganó el Brit Award a Mejor Sencillo 🏆
+
+Es una de las canciones más reconocidas de los 90
+
+Su videoclip con el “rey caminando” es icónico 👑
+
+“Enjoy the Silence” no es solo una canción…
+es ese momento en el que no hace falta hablar para sentirlo todo. 🌌💭
+
+🌌🎧 “Enjoy the Silence” – Depeche Mode: when silence says more than words 🖤✨
+
+In 1990, released “Enjoy the Silence”, one of the most iconic synth-pop songs ever, from the album . 🌙
+
+The message is simple yet powerful:
+👉 words can break what silence protects
+
+It’s about how, in relationships, saying too much can ruin something pure. Silence can feel more honest, more intimate… more real. 🖤
+
+🎶 Musically, it blends melancholic tones with an addictive electronic rhythm. delivers a calm yet emotional performance that pulls you in. 💫
+
+✨ Fun facts:
+
+Originally written as a slow ballad 😮
+
+Turned into a global electronic hit 🌍
+
+Won a Brit Award 🏆
+
+One of the most recognizable songs of the 90s
+
+Iconic music video featuring a wandering king 👑
+
+🎵 Song: “Enjoy the Silence” – Depeche Mode
+
+#EnjoyTheSilence #DepecheMode #Violator #SynthPop #aresmusic1 </div>
+        <div class="channel">AresMusic</div><div class="meta">2026-06-07 · 재생 242</div></div>
+    </a></div><h2 class="vhead">🔥 전체 인기</h2><div class="row"><a class="card" style="--i:6" href="https://www.tiktok.com/@80s.music06/video/7646042258579508493" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oog1vKmH7AswAIRHwEiGDMpBGfJxNxhiBCA0cI~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=Ljj%2Bxqq9pdzFh1f%2Bzqa7%2F8qsai8%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="Smalltown Boy — Bronski Beat
+#BronskiBeat #SmalltownBoy #80sMusic #SynthPop #NewWave" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+        <span class="rank">6</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🎵 TikTok</span>
+      </div>
+      <div class="body"><div class="title">Smalltown Boy — Bronski Beat
+#BronskiBeat #SmalltownBoy #80sMusic #SynthPop #NewWave</div>
+        <div class="channel">80’s music</div><div class="meta">재생 925,000 · 💬 63,100</div></div>
+    </a><a class="card" style="--i:7" href="https://www.tiktok.com/@djlittyritty/video/7626298803930402070" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-no1a-p-0037-no/ooqDRAAh0DCHxAcWB1iiwaBJB6AKvOAIEXfuSw~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=Z9bBCjn1Q%2B7NLbn730OvxRNCGEY%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="I&#x27;m both shocked and impressed by this discovery #musicproducer #producerlife #musicproduction #ableton #producer #fyp #dj #memes #producertok #hiphop" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+        <span class="rank">7</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🎵 TikTok</span>
+      </div>
+      <div class="body"><div class="title">I&#x27;m both shocked and impressed by this discovery #musicproducer #producerlife #musicproduction #ableton #producer #fyp #dj #memes #producertok #hiphop</div>
+        <div class="channel">Litty Ritty</div><div class="meta">재생 792,700 · 💬 84,100</div></div>
+    </a><a class="card" style="--i:8" href="https://www.tiktok.com/@vstpluginstore/video/7644973447197625607" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/oMgwCwgGfAIZfbA5BDRqbbBQzEBcFExp7GRQKy~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=xfkAYnN9Rqhs9%2BsSoIvoCNfbxzc%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="#MusicProducer
+#Beatmaker
+#MusicBeats
+#zaytoven 
+#BeatMaking
+MusicProduction
+HipHopBeats
+SoundDesign
+StudioLife
+BeatProducer " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+        <span class="rank">8</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🎵 TikTok</span>
+      </div>
+      <div class="body"><div class="title">#MusicProducer
+#Beatmaker
+#MusicBeats
+#zaytoven 
+#BeatMaking
+MusicProduction
+HipHopBeats
+SoundDesign
+StudioLife
+BeatProducer </div>
+        <div class="channel">vstpluginstore</div><div class="meta">재생 528,500 · 💬 22,600</div></div>
+    </a><a class="card" style="--i:9" href="https://www.tiktok.com/@alyrics.vinil/video/7618370971116014868" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/ooiDyEnP8Aji5BYBV4TCAAQxAaJIAnbOEs2wq~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=s%2BqkldoyUA%2Bn4cIO%2FLhL%2Fsuhy%2BE%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="&quot;whispering your name&quot; un synthwave, temon que no puede faltar en tu playlist.🎸🎶🎶
+#synthwave 
+#pop 
+#newwave 
+#synthpop 
+#2026 " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+        <span class="rank">9</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🎵 TikTok</span>
+      </div>
+      <div class="body"><div class="title">&quot;whispering your name&quot; un synthwave, temon que no puede faltar en tu playlist.🎸🎶🎶
+#synthwave 
+#pop 
+#newwave 
+#synthpop 
+#2026 </div>
+        <div class="channel">𝙈𝙐𝙎𝙄𝘾𝘼 🆇 𝘾𝘼𝘽𝙇𝙀🎸</div><div class="meta">재생 284,500 · 💬 13,600</div></div>
+    </a><a class="card" style="--i:10" href="https://www.tiktok.com/@shonci/video/7647636489064582420" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/osOIQiPiaA5Yg4KEHzblAvEAABA5ihvp3cAiB~tplv-tiktokx-dmt-logom:tos-alisg-i-0068/ogz5kAKB1B3835hiiAAO2AEcCAahfEMwmIIOAx.image?dr=9634&amp;x-expires=1780995600&amp;x-signature=SNID0PgmHOPrXZD4Gvy4GENXAi0%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="collab w/ @shiv LARP type beat #housemusic #jazz #flstudio 
+
+FL Studio is a music production software (DAW) where producers build beats from scratch using drums, melodies, samples, plugins, and effects. It’s basically the full studio on your laptop. You can record, arrange, mix, and master everything in one place." onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+        <span class="rank">10</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🎵 TikTok</span>
+      </div>
+      <div class="body"><div class="title">collab w/ @shiv LARP type beat #housemusic #jazz #flstudio 
+
+FL Studio is a music production software (DAW) where producers build beats from scratch using drums, melodies, samples, plugins, and effects. It’s basically the full studio on your laptop. You can record, arrange, mix, and master everything in one place.</div>
+        <div class="channel">shonci</div><div class="meta">재생 141,100 · 💬 21,000</div></div>
+    </a></div><h2 class="vhead">📈 뜨는 중</h2><div class="row"><p class="empty">내일부터 데이터가 쌓입니다 (전일 대비 계산)</p></div></section><section class="platform" id="pf-instagram"><h2 class="vhead">🆕 최근 인기</h2><div class="row"><p class="empty">아직 항목이 없습니다</p></div><h2 class="vhead">🔥 전체 인기</h2><div class="row"><a class="card" style="--i:1" href="https://www.instagram.com/explore/tags/choptrack" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">📸</span>
         <span class="rank">1</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">📸 Instagram</span>
       </div>
-      <div class="body"><div class="title">Shakira, Burna Boy - Dai Dai (Official Video)</div>
-        <div class="channel">Shakira</div><div class="meta">조회 90,047,825 · 👍 2,500,000</div></div>
-    </a>
-<a class="card" style="--i:2" href="https://www.youtube.com/watch?v=n61ULEU7CO0&amp;list=RDn61ULEU7CO0&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/n61ULEU7CO0/maxresdefault.jpg" loading="lazy" alt="Best of lofi hip hop 2021 ✨ [beats to relax/study to] 썸네일">
+      <div class="body"><div class="title">(캡션 없음)</div>
+        <div class="channel"></div><div class="meta">좋아요 0 · 💬 0</div></div>
+    </a><a class="card" style="--i:2" href="https://www.instagram.com/explore/tags/codenebula" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">📸</span>
         <span class="rank">2</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🧭 장르 탐색</span>
+        <span class="tag">📸 Instagram</span>
       </div>
-      <div class="body"><div class="title">Best of lofi hip hop 2021 ✨ [beats to relax/study to]</div>
-        <div class="channel">Lofi Girl</div><div class="meta">조회 55,192,764 · 👍 489,000</div></div>
-    </a>
-<a class="card" style="--i:3" href="https://www.youtube.com/watch?v=fTKqtvXjkvo&amp;list=RDfTKqtvXjkvo&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fTKqtvXjkvo/maxresdefault.jpg" loading="lazy" alt="Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧 썸네일">
-        <span class="rank">3</span>
-        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
-      </div>
-      <div class="body"><div class="title">Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧</div>
-        <div class="channel">Revive Music</div><div class="meta">조회 42,648,745 · 👍 98,000</div></div>
-    </a>
-<a class="card" style="--i:4" href="https://www.youtube.com/watch?v=vrY1THC_NQE&amp;list=RDvrY1THC_NQE&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/vrY1THC_NQE/maxresdefault.jpg" loading="lazy" alt="IShowSpeed - World Cup (Champions) [Official Music Video] 썸네일">
-        <span class="rank">4</span>
-        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
-      </div>
-      <div class="body"><div class="title">IShowSpeed - World Cup (Champions) [Official Music Video]</div>
-        <div class="channel">IShowSpeed</div><div class="meta">조회 27,739,042 · 👍 2,300,000</div></div>
-    </a>
-<a class="card" style="--i:5" href="https://www.youtube.com/watch?v=mcg4z1gGbEw&amp;list=RDmcg4z1gGbEw&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/mcg4z1gGbEw/maxresdefault.jpg" loading="lazy" alt="T.I. - LET &#x27;EM KNOW (Official Video) 썸네일">
-        <span class="rank">5</span>
-        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
-      </div>
-      <div class="body"><div class="title">T.I. - LET &#x27;EM KNOW (Official Video)</div>
-        <div class="channel">T.I.</div><div class="meta">조회 20,387,653 · 👍 323,000</div></div>
-    </a></section><section class="panel" id="panel-trending"><a class="card" style="--i:1" href="https://www.youtube.com/watch?v=fcnDmrtj6Sk&amp;list=RDfcnDmrtj6Sk&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fcnDmrtj6Sk/maxresdefault.jpg" loading="lazy" alt="Shakira, Burna Boy - Dai Dai (Official Video) 썸네일">
+      <div class="body"><div class="title">(캡션 없음)</div>
+        <div class="channel"></div><div class="meta">좋아요 0 · 💬 0</div></div>
+    </a></div><h2 class="vhead">📈 뜨는 중</h2><div class="row"><p class="empty">내일부터 데이터가 쌓입니다 (전일 대비 계산)</p></div></section><section class="platform" id="pf-reddit"><h2 class="vhead">🆕 최근 인기</h2><div class="row"><a class="card" style="--i:1" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
         <span class="rank">1</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">👽 Reddit</span>
       </div>
-      <div class="body"><div class="title">Shakira, Burna Boy - Dai Dai (Official Video)</div>
-        <div class="channel">Shakira</div><div class="meta"><b>+4,620,691</b> 조회수 · 누적 90,047,825</div></div>
-    </a>
-<a class="card" style="--i:2" href="https://www.youtube.com/watch?v=82-jTNka3uc&amp;list=RD82-jTNka3uc&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/82-jTNka3uc/maxresdefault.jpg" loading="lazy" alt="Ariana Grande - hate that i made you love me (official music video) 썸네일">
+      <div class="body"><div class="title">I consumed no content for a month. Here&#x27;s what happened</div>
+        <div class="channel">r/digitalminimalism</div><div class="meta">2026-06-02 · 업보트 3,351</div></div>
+    </a><a class="card" style="--i:2" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
         <span class="rank">2</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">👽 Reddit</span>
       </div>
-      <div class="body"><div class="title">Ariana Grande - hate that i made you love me (official music video)</div>
-        <div class="channel">Ariana Grande</div><div class="meta"><b>+859,460</b> 조회수 · 누적 12,768,172</div></div>
-    </a>
-<a class="card" style="--i:3" href="https://www.youtube.com/watch?v=fTKqtvXjkvo&amp;list=RDfTKqtvXjkvo&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fTKqtvXjkvo/maxresdefault.jpg" loading="lazy" alt="Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧 썸네일">
+      <div class="body"><div class="title">Backrooms (2026) is directed by a 20-year old, which didn&#x27;t send you spiraling because you processed those feelings when that girl from your college improv troupe won an Emmy. You&#x27;re 90% sure quitting comedy to focus on finals was the right move, and now you only wake up crying 2-3 times per week.</div>
+        <div class="channel">r/shittymoviedetails</div><div class="meta">2026-06-02 · 업보트 3,134</div></div>
+    </a><a class="card" style="--i:3" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
         <span class="rank">3</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🌐 요즘 트렌드</span>
+        <span class="tag">👽 Reddit</span>
       </div>
-      <div class="body"><div class="title">Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧</div>
-        <div class="channel">Revive Music</div><div class="meta"><b>+104,944</b> 조회수 · 누적 42,648,745</div></div>
-    </a>
-<a class="card" style="--i:4" href="https://www.youtube.com/watch?v=N6DW31S_oyI&amp;list=RDN6DW31S_oyI&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/N6DW31S_oyI/maxresdefault.jpg" loading="lazy" alt="Mega Hits 2025 🌱 The Best Of Vocal Deep House Music Mix 2025 🌱 Summer Music Mix 2025 #4 썸네일">
+      <div class="body"><div class="title">The Princess Pea Bride 🫛</div>
+        <div class="channel">r/oldhagfashion</div><div class="meta">2026-06-01 · 업보트 2,834</div></div>
+    </a><a class="card" style="--i:4" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
         <span class="rank">4</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🧭 장르 탐색</span>
+        <span class="tag">👽 Reddit</span>
       </div>
-      <div class="body"><div class="title">Mega Hits 2025 🌱 The Best Of Vocal Deep House Music Mix 2025 🌱 Summer Music Mix 2025 #4</div>
-        <div class="channel">Helios Deep</div><div class="meta"><b>+40,116</b> 조회수 · 누적 16,174,985</div></div>
-    </a>
-<a class="card" style="--i:5" href="https://www.youtube.com/watch?v=ZCbMzDclnEM&amp;list=RDZCbMzDclnEM&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/ZCbMzDclnEM/maxresdefault.jpg" loading="lazy" alt="DEEP HOUSE MIX 2025 썸네일">
+      <div class="body"><div class="title">I just want to know if you guys feel something is completely off too</div>
+        <div class="channel">r/Adulting</div><div class="meta">2026-06-02 · 업보트 2,659</div></div>
+    </a></div><h2 class="vhead">🔥 전체 인기</h2><div class="row"><a class="card" style="--i:5" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
         <span class="rank">5</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🧭 장르 탐색</span>
+        <span class="tag">👽 Reddit</span>
       </div>
-      <div class="body"><div class="title">DEEP HOUSE MIX 2025</div>
-        <div class="channel">Music Brokers</div><div class="meta"><b>+12,250</b> 조회수 · 누적 10,661,294</div></div>
-    </a></section></main>
-<footer><div class="wrap">YouTube via Apify · 매일 아침 자동 생성 · 카드를 누르면 영상으로 이동</div></footer>
+      <div class="body"><div class="title">Some facts about Tessica Brown, the woman who went viral for spraying Gorilla Glue in her hair</div>
+        <div class="channel">r/idiocracy</div><div class="meta">업보트 6,325 · 💬 633</div></div>
+    </a><a class="card" style="--i:6" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
+        <span class="rank">6</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">👽 Reddit</span>
+      </div>
+      <div class="body"><div class="title">(New Update) My(f19) dad asked our godparents not to have the waiters sing Happy Birthday to my brother(m11) who likely has hyperacusis autism, but they did it anyway</div>
+        <div class="channel">r/BestofRedditorUpdates</div><div class="meta">업보트 4,963 · 💬 699</div></div>
+    </a><a class="card" style="--i:7" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
+        <span class="rank">7</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">👽 Reddit</span>
+      </div>
+      <div class="body"><div class="title">I consumed no content for a month. Here&#x27;s what happened</div>
+        <div class="channel">r/digitalminimalism</div><div class="meta">업보트 3,351 · 💬 143</div></div>
+    </a><a class="card" style="--i:8" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
+        <span class="rank">8</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">👽 Reddit</span>
+      </div>
+      <div class="body"><div class="title">Backrooms (2026) is directed by a 20-year old, which didn&#x27;t send you spiraling because you processed those feelings when that girl from your college improv troupe won an Emmy. You&#x27;re 90% sure quitting comedy to focus on finals was the right move, and now you only wake up crying 2-3 times per week.</div>
+        <div class="channel">r/shittymoviedetails</div><div class="meta">업보트 3,134 · 💬 150</div></div>
+    </a><a class="card" style="--i:9" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ph">👽</span>
+        <span class="rank">9</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">👽 Reddit</span>
+      </div>
+      <div class="body"><div class="title">OP who became vegan after years of marriage &amp; 3 kids now wants to divorce her &quot;corpse loving&quot; husband for refusing to go vegan, causing r/vegan to implode.</div>
+        <div class="channel">r/SubredditDrama</div><div class="meta">업보트 3,078 · 💬 589</div></div>
+    </a></div><h2 class="vhead">📈 뜨는 중</h2><div class="row"><p class="empty">내일부터 데이터가 쌓입니다 (전일 대비 계산)</p></div></section></main>
+<footer><div class="wrap">Apify 수집 · 매일 아침 자동 생성 · 카드를 누르면 원본으로 이동</div></footer>
 <script>
-  const panels = document.querySelectorAll('.panel');
+  const pfs = document.querySelectorAll('.platform');
   document.querySelectorAll('.tabbtn').forEach(b => b.addEventListener('click', () => {
-    const t = b.dataset.tab;
+    const t = b.dataset.pf;
     document.querySelectorAll('.tabbtn').forEach(x => x.classList.toggle('active', x === b));
-    panels.forEach(p => {
-      const on = p.id === 'panel-' + t;
+    pfs.forEach(p => {
+      const on = p.id === 'pf-' + t;
       p.classList.toggle('active', on);
       if (on) p.querySelectorAll('.card').forEach(c => {
         c.style.animation = 'none'; void c.offsetWidth; c.style.animation = '';

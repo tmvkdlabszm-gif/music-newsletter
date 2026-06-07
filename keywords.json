@@ -1,10 +1,9 @@
 {
-  "themes": {
-    "🎯 내 장르·작업": ["indie pop", "R&B production"],
-    "🧭 장르 탐색": ["lo-fi", "house music"],
-    "🌐 요즘 트렌드": ["new music 2026"]
+  "platforms": {
+    "tiktok":    { "keywords": ["music production", "synthpop"], "max_results": 8 },
+    "instagram": { "keywords": ["musicproducer", "synthpop"],    "max_results": 8 },
+    "reddit":    { "keywords": ["music production", "synthpop"],  "max_results": 8 }
   },
-  "max_results_per_keyword": 8,
   "recent_days": 7,
-  "monthly_video_budget": 1200
+  "monthly_budget_usd": 4.5
 }
