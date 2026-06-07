@@ -1,135 +1,263 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🎵 데일리 뮤직 뉴스레터 · 2026-06-07</title>
+<meta name="description" content="매일 자동 정리되는 음악 키워드 인기 영상 — 최근·전체·뜨는 중 Top 5">
+<meta property="og:title" content="데일리 뮤직 뉴스레터">
+<meta property="og:description" content="키워드별 YouTube 인기 영상을 매일 한 페이지로">
+<title>데일리 뮤직 뉴스레터 · 2026-06-07</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-  :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
-    background:#0f1115; color:#e7e9ee; }
-  header { padding:24px 20px 8px; }
-  h1 { font-size:20px; margin:0 0 2px; }
-  .sub { color:#8b90a0; font-size:13px; }
-  .tabs { display:flex; gap:8px; padding:12px 20px; position:sticky; top:0;
-    background:#0f1115; border-bottom:1px solid #1e2230; z-index:5; }
-  .tabbtn { background:#1a1e29; color:#c7ccda; border:1px solid #262b3a; border-radius:999px;
-    padding:8px 14px; font-size:14px; cursor:pointer; }
-  .tabbtn.active { background:#3a6df0; color:#fff; border-color:#3a6df0; }
-  .panel { display:none; padding:16px 20px 40px; }
-  .panel.active { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
-  .card { background:#151925; border:1px solid #222838; border-radius:14px; overflow:hidden;
-    text-decoration:none; color:inherit; transition:transform .08s, border-color .08s; }
-  .card:hover { transform:translateY(-2px); border-color:#3a6df0; }
-  .thumb { position:relative; aspect-ratio:16/9; background:#0b0d12; }
-  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
-  .tag { position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,.7);
-    padding:3px 8px; border-radius:8px; font-size:11px; }
-  .body { padding:10px 12px 14px; }
-  .title { font-size:14px; font-weight:600; line-height:1.35;
+  :root {
+    color-scheme: dark;
+    --bg:#09090b; --surface:#141417; --line:rgba(255,255,255,.07);
+    --text:#ededf0; --muted:#9a9aa6;
+    --accent:#e0a458; --accent-weak:rgba(224,164,88,.14);
+    --spring:cubic-bezier(.16,1,.3,1);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0; color:var(--text); min-height:100dvh;
+    font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+    word-break:keep-all; -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(1100px 600px at 12% -10%, rgba(224,164,88,.12), transparent 60%),
+      radial-gradient(900px 500px at 115% 0%, rgba(255,255,255,.04), transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
+  }
+  body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    opacity:.04; background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+  header, .navbar, main, footer { position:relative; z-index:1; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
+  header { padding:40px 0 18px; }
+  h1 { margin:0; font-size:clamp(26px,4vw,40px); font-weight:700; letter-spacing:-.02em;
+    line-height:1.15; text-wrap:balance;
+    background:linear-gradient(92deg,#fff 30%,var(--accent)); -webkit-background-clip:text;
+    background-clip:text; color:transparent; }
+  .sub { color:var(--muted); font-size:14px; margin-top:8px; font-variant-numeric:tabular-nums; }
+  .navbar { position:sticky; top:0; z-index:40; margin-top:14px;
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    background:rgba(9,9,11,.72); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .tabs { display:flex; gap:8px; max-width:1180px; margin:0 auto; padding:12px 20px;
+    overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tabbtn { flex:0 0 auto; background:transparent; color:var(--muted);
+    border:1px solid var(--line); border-radius:999px; padding:9px 16px; font:inherit;
+    font-size:14px; font-weight:500; cursor:pointer; transition:all .3s var(--spring); }
+  .tabbtn:hover { color:var(--text); border-color:rgba(255,255,255,.18); }
+  .tabbtn.active { background:var(--accent-weak); color:var(--accent);
+    border-color:rgba(224,164,88,.4); }
+  main { display:block; }
+  .panel { display:none; }
+  .panel.active { display:grid; max-width:1180px; margin:0 auto;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; padding:28px 20px 64px; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  .panel.active .card { animation:fadeUp .5s var(--spring) both; animation-delay:calc(var(--i) * 60ms); }
+  .card { position:relative; display:block; background:var(--surface); border:1px solid var(--line);
+    border-radius:18px; overflow:hidden; text-decoration:none; color:inherit;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 12px 30px -16px rgba(0,0,0,.8);
+    transition:transform .4s var(--spring), border-color .3s var(--spring), box-shadow .4s var(--spring); }
+  .card:hover { transform:translateY(-5px); border-color:rgba(224,164,88,.45);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 22px 44px -18px rgba(224,164,88,.28); }
+  .card:active { transform:translateY(-2px) scale(.99); }
+  .thumb { position:relative; aspect-ratio:16/9; background:#0c0c0f; overflow:hidden; }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform .5s var(--spring); }
+  .card:hover .thumb img { transform:scale(1.05); }
+  .thumb::after { content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.55), transparent 45%); }
+  .noimg { width:100%; height:100%; display:grid; place-items:center; font-size:34px; opacity:.5; }
+  .rank { position:absolute; top:8px; left:10px; z-index:2; font-size:22px; font-weight:700;
+    line-height:1; color:#fff; font-variant-numeric:tabular-nums;
+    text-shadow:0 2px 8px rgba(0,0,0,.7); }
+  .play { position:absolute; inset:0; margin:auto; width:48px; height:48px; z-index:2;
+    display:grid; place-items:center; border-radius:999px; color:#0a0a0a;
+    background:rgba(255,255,255,.92); opacity:0; transform:scale(.8);
+    transition:all .35s var(--spring); }
+  .card:hover .play { opacity:1; transform:scale(1); }
+  .tag { position:absolute; left:10px; bottom:10px; z-index:2; font-size:11px; font-weight:500;
+    padding:4px 9px; border-radius:999px; color:#f2f2f4;
+    background:rgba(20,20,23,.7); border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .body { padding:13px 14px 16px; }
+  .title { font-size:15px; font-weight:600; line-height:1.4; text-wrap:balance;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .channel { color:#9aa0b2; font-size:12px; margin-top:4px; }
-  .meta { font-size:12px; margin-top:6px; color:#7e8498; }
-  .empty { color:#7e8498; font-size:14px; grid-column:1/-1; }
-  footer { color:#5b6173; font-size:12px; padding:0 20px 28px; }
+  .channel { color:var(--muted); font-size:12.5px; margin-top:6px; }
+  .meta { font-size:12.5px; margin-top:8px; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .meta b { color:var(--accent); font-weight:600; }
+  .empty { color:var(--muted); font-size:14px; grid-column:1/-1; padding:32px 0; text-align:center; }
+  footer { color:#62626d; font-size:12.5px; padding:0 0 40px; }
   @media (max-width: 600px) {
     body { overflow-x:hidden; }
-    header { padding:18px 14px 6px; }
-    h1 { font-size:18px; }
-    .sub { font-size:12px; }
-    .tabs { padding:10px 12px; gap:6px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-    .tabbtn { flex:0 0 auto; padding:10px 16px; font-size:14px; }
-    .panel.active { grid-template-columns:1fr; gap:10px; padding:12px 12px 32px; }
+    header { padding:28px 0 12px; }
+    .panel.active { grid-template-columns:1fr; gap:12px; padding:18px 16px 44px; }
+    .wrap { padding:0 16px; }
+    .tabs { padding:11px 16px; gap:7px; }
     .card { display:flex; flex-direction:row; align-items:stretch; }
-    .thumb { width:42%; max-width:160px; flex:0 0 auto; }
-    .body { flex:1; min-width:0; padding:9px 11px; }
+    .thumb { width:44%; max-width:170px; flex:0 0 auto; }
+    .body { flex:1; min-width:0; padding:11px 13px; align-self:center; }
     .title { font-size:14px; -webkit-line-clamp:3; }
-    .channel { font-size:12px; }
-    .tag { font-size:10px; left:6px; bottom:6px; padding:2px 6px; }
+    .play { width:38px; height:38px; }
+    .rank { font-size:18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .panel.active .card { animation:none; }
+    * { transition:none !important; }
   }
 </style></head><body>
-<header>
+<header><div class="wrap">
   <h1>🎵 데일리 뮤직 뉴스레터</h1>
   <div class="sub">2026-06-07 · 키워드 인기 영상 · 이번 달 누적 80개 수집</div>
-</header>
-<nav class="tabs"><button class="tabbtn active" data-tab="recent">🆕 최근 인기</button><button class="tabbtn" data-tab="all_time">🔥 전체 인기</button><button class="tabbtn" data-tab="trending">📈 뜨는 중</button></nav>
-<section class="panel active" id="panel-recent"><a class="card" href="https://www.youtube.com/watch?v=vrY1THC_NQE&amp;list=RDvrY1THC_NQE&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/vrY1THC_NQE/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+</div></header>
+<nav class="navbar"><div class="tabs"><button class="tabbtn active" data-tab="recent">🆕 최근 인기</button><button class="tabbtn" data-tab="all_time">🔥 전체 인기</button><button class="tabbtn" data-tab="trending">📈 뜨는 중</button></div></nav>
+<main><section class="panel active" id="panel-recent"><a class="card" style="--i:1" href="https://www.youtube.com/watch?v=vrY1THC_NQE&amp;list=RDvrY1THC_NQE&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/vrY1THC_NQE/maxresdefault.jpg" loading="lazy" alt="IShowSpeed - World Cup (Champions) [Official Music Video] 썸네일">
+        <span class="rank">1</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">IShowSpeed - World Cup (Champions) [Official Music Video]</div>
         <div class="channel">IShowSpeed</div><div class="meta">2026-06-01 · 조회 27,739,042</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=82-jTNka3uc&amp;list=RD82-jTNka3uc&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/82-jTNka3uc/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:2" href="https://www.youtube.com/watch?v=82-jTNka3uc&amp;list=RD82-jTNka3uc&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/82-jTNka3uc/maxresdefault.jpg" loading="lazy" alt="Ariana Grande - hate that i made you love me (official music video) 썸네일">
+        <span class="rank">2</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">Ariana Grande - hate that i made you love me (official music video)</div>
         <div class="channel">Ariana Grande</div><div class="meta">2026-06-01 · 조회 12,768,172</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=AK5UwbqZ13c&amp;list=RDAK5UwbqZ13c&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/AK5UwbqZ13c/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:3" href="https://www.youtube.com/watch?v=AK5UwbqZ13c&amp;list=RDAK5UwbqZ13c&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/AK5UwbqZ13c/maxresdefault.jpg" loading="lazy" alt="TU NA AAYI: Sahil Joshi | Snehil Jain | New Hindi Song 2026 | Sad Songs Hindi, Travel Song, Sad Song 썸네일">
+        <span class="rank">3</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">TU NA AAYI: Sahil Joshi | Snehil Jain | New Hindi Song 2026 | Sad Songs Hindi, Travel Song, Sad Song</div>
         <div class="channel">Sahil joshi Vlogs</div><div class="meta">2026-06-05 · 조회 1,862,442</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=K7SBWkpDI9Y&amp;list=RDK7SBWkpDI9Y&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/K7SBWkpDI9Y/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🧭 장르 탐색</span></div>
+<a class="card" style="--i:4" href="https://www.youtube.com/watch?v=K7SBWkpDI9Y&amp;list=RDK7SBWkpDI9Y&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/K7SBWkpDI9Y/maxresdefault.jpg" loading="lazy" alt="DEEP &amp; ELEGANT | Pure Deep House Mix &#x27; by Gentleman [Vol.4] 썸네일">
+        <span class="rank">4</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🧭 장르 탐색</span>
+      </div>
       <div class="body"><div class="title">DEEP &amp; ELEGANT | Pure Deep House Mix &#x27; by Gentleman [Vol.4]</div>
         <div class="channel">Deep &amp; Elegant</div><div class="meta">2026-06-03 · 조회 36,264</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=13V5l8-BZSA&amp;list=RD13V5l8-BZSA&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/13V5l8-BZSA/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:5" href="https://www.youtube.com/watch?v=13V5l8-BZSA&amp;list=RD13V5l8-BZSA&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/13V5l8-BZSA/maxresdefault.jpg" loading="lazy" alt="Music Mix 2026 #67 Party Club Dance 2026 | Best Remixes Of Popular Songs 2025 MEGAMIX (DJ Silviu M) 썸네일">
+        <span class="rank">5</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">Music Mix 2026 #67 Party Club Dance 2026 | Best Remixes Of Popular Songs 2025 MEGAMIX (DJ Silviu M)</div>
         <div class="channel">Dj Silviu M Official</div><div class="meta">2026-06-06 · 조회 5,143</div></div>
-    </a></section><section class="panel" id="panel-all_time"><a class="card" href="https://www.youtube.com/watch?v=fcnDmrtj6Sk&amp;list=RDfcnDmrtj6Sk&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fcnDmrtj6Sk/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+    </a></section><section class="panel" id="panel-all_time"><a class="card" style="--i:1" href="https://www.youtube.com/watch?v=fcnDmrtj6Sk&amp;list=RDfcnDmrtj6Sk&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/fcnDmrtj6Sk/maxresdefault.jpg" loading="lazy" alt="Shakira, Burna Boy - Dai Dai (Official Video) 썸네일">
+        <span class="rank">1</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">Shakira, Burna Boy - Dai Dai (Official Video)</div>
         <div class="channel">Shakira</div><div class="meta">조회 90,047,825 · 👍 2,500,000</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=n61ULEU7CO0&amp;list=RDn61ULEU7CO0&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/n61ULEU7CO0/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🧭 장르 탐색</span></div>
+<a class="card" style="--i:2" href="https://www.youtube.com/watch?v=n61ULEU7CO0&amp;list=RDn61ULEU7CO0&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/n61ULEU7CO0/maxresdefault.jpg" loading="lazy" alt="Best of lofi hip hop 2021 ✨ [beats to relax/study to] 썸네일">
+        <span class="rank">2</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🧭 장르 탐색</span>
+      </div>
       <div class="body"><div class="title">Best of lofi hip hop 2021 ✨ [beats to relax/study to]</div>
         <div class="channel">Lofi Girl</div><div class="meta">조회 55,192,764 · 👍 489,000</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=fTKqtvXjkvo&amp;list=RDfTKqtvXjkvo&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fTKqtvXjkvo/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:3" href="https://www.youtube.com/watch?v=fTKqtvXjkvo&amp;list=RDfTKqtvXjkvo&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/fTKqtvXjkvo/maxresdefault.jpg" loading="lazy" alt="Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧 썸네일">
+        <span class="rank">3</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧</div>
         <div class="channel">Revive Music</div><div class="meta">조회 42,648,745 · 👍 98,000</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=vrY1THC_NQE&amp;list=RDvrY1THC_NQE&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/vrY1THC_NQE/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:4" href="https://www.youtube.com/watch?v=vrY1THC_NQE&amp;list=RDvrY1THC_NQE&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/vrY1THC_NQE/maxresdefault.jpg" loading="lazy" alt="IShowSpeed - World Cup (Champions) [Official Music Video] 썸네일">
+        <span class="rank">4</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">IShowSpeed - World Cup (Champions) [Official Music Video]</div>
         <div class="channel">IShowSpeed</div><div class="meta">조회 27,739,042 · 👍 2,300,000</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=mcg4z1gGbEw&amp;list=RDmcg4z1gGbEw&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/mcg4z1gGbEw/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:5" href="https://www.youtube.com/watch?v=mcg4z1gGbEw&amp;list=RDmcg4z1gGbEw&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/mcg4z1gGbEw/maxresdefault.jpg" loading="lazy" alt="T.I. - LET &#x27;EM KNOW (Official Video) 썸네일">
+        <span class="rank">5</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">T.I. - LET &#x27;EM KNOW (Official Video)</div>
         <div class="channel">T.I.</div><div class="meta">조회 20,387,653 · 👍 323,000</div></div>
-    </a></section><section class="panel" id="panel-trending"><a class="card" href="https://www.youtube.com/watch?v=fcnDmrtj6Sk&amp;list=RDfcnDmrtj6Sk&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fcnDmrtj6Sk/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+    </a></section><section class="panel" id="panel-trending"><a class="card" style="--i:1" href="https://www.youtube.com/watch?v=fcnDmrtj6Sk&amp;list=RDfcnDmrtj6Sk&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/fcnDmrtj6Sk/maxresdefault.jpg" loading="lazy" alt="Shakira, Burna Boy - Dai Dai (Official Video) 썸네일">
+        <span class="rank">1</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">Shakira, Burna Boy - Dai Dai (Official Video)</div>
-        <div class="channel">Shakira</div><div class="meta">📈 +4,620,691 · 조회 90,047,825</div></div>
+        <div class="channel">Shakira</div><div class="meta"><b>+4,620,691</b> 조회수 · 누적 90,047,825</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=82-jTNka3uc&amp;list=RD82-jTNka3uc&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/82-jTNka3uc/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:2" href="https://www.youtube.com/watch?v=82-jTNka3uc&amp;list=RD82-jTNka3uc&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/82-jTNka3uc/maxresdefault.jpg" loading="lazy" alt="Ariana Grande - hate that i made you love me (official music video) 썸네일">
+        <span class="rank">2</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">Ariana Grande - hate that i made you love me (official music video)</div>
-        <div class="channel">Ariana Grande</div><div class="meta">📈 +859,460 · 조회 12,768,172</div></div>
+        <div class="channel">Ariana Grande</div><div class="meta"><b>+859,460</b> 조회수 · 누적 12,768,172</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=fTKqtvXjkvo&amp;list=RDfTKqtvXjkvo&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/fTKqtvXjkvo/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🌐 요즘 트렌드</span></div>
+<a class="card" style="--i:3" href="https://www.youtube.com/watch?v=fTKqtvXjkvo&amp;list=RDfTKqtvXjkvo&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/fTKqtvXjkvo/maxresdefault.jpg" loading="lazy" alt="Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧 썸네일">
+        <span class="rank">3</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🌐 요즘 트렌드</span>
+      </div>
       <div class="body"><div class="title">Top Hits 2026 ~ Trending Songs 2026 ~ Top Songs 2026 Top Music 🎶🎧</div>
-        <div class="channel">Revive Music</div><div class="meta">📈 +104,944 · 조회 42,648,745</div></div>
+        <div class="channel">Revive Music</div><div class="meta"><b>+104,944</b> 조회수 · 누적 42,648,745</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=N6DW31S_oyI&amp;list=RDN6DW31S_oyI&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/N6DW31S_oyI/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🧭 장르 탐색</span></div>
+<a class="card" style="--i:4" href="https://www.youtube.com/watch?v=N6DW31S_oyI&amp;list=RDN6DW31S_oyI&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/N6DW31S_oyI/maxresdefault.jpg" loading="lazy" alt="Mega Hits 2025 🌱 The Best Of Vocal Deep House Music Mix 2025 🌱 Summer Music Mix 2025 #4 썸네일">
+        <span class="rank">4</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🧭 장르 탐색</span>
+      </div>
       <div class="body"><div class="title">Mega Hits 2025 🌱 The Best Of Vocal Deep House Music Mix 2025 🌱 Summer Music Mix 2025 #4</div>
-        <div class="channel">Helios Deep</div><div class="meta">📈 +40,116 · 조회 16,174,985</div></div>
+        <div class="channel">Helios Deep</div><div class="meta"><b>+40,116</b> 조회수 · 누적 16,174,985</div></div>
     </a>
-<a class="card" href="https://www.youtube.com/watch?v=ZCbMzDclnEM&amp;list=RDZCbMzDclnEM&amp;start_radio=1" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://i.ytimg.com/vi/ZCbMzDclnEM/maxresdefault.jpg" loading="lazy" alt=""><span class="tag">🧭 장르 탐색</span></div>
+<a class="card" style="--i:5" href="https://www.youtube.com/watch?v=ZCbMzDclnEM&amp;list=RDZCbMzDclnEM&amp;start_radio=1" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://i.ytimg.com/vi/ZCbMzDclnEM/maxresdefault.jpg" loading="lazy" alt="DEEP HOUSE MIX 2025 썸네일">
+        <span class="rank">5</span>
+        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="tag">🧭 장르 탐색</span>
+      </div>
       <div class="body"><div class="title">DEEP HOUSE MIX 2025</div>
-        <div class="channel">Music Brokers</div><div class="meta">📈 +12,250 · 조회 10,661,294</div></div>
-    </a></section>
-<footer>YouTube via Apify · 매일 자동 생성 · 카드를 누르면 영상으로 이동</footer>
+        <div class="channel">Music Brokers</div><div class="meta"><b>+12,250</b> 조회수 · 누적 10,661,294</div></div>
+    </a></section></main>
+<footer><div class="wrap">YouTube via Apify · 매일 아침 자동 생성 · 카드를 누르면 영상으로 이동</div></footer>
 <script>
+  const panels = document.querySelectorAll('.panel');
   document.querySelectorAll('.tabbtn').forEach(b => b.addEventListener('click', () => {
     const t = b.dataset.tab;
-    document.querySelectorAll('.tabbtn').forEach(x => x.classList.toggle('active', x===b));
-    document.querySelectorAll('.panel').forEach(p =>
-      p.classList.toggle('active', p.id === 'panel-'+t));
+    document.querySelectorAll('.tabbtn').forEach(x => x.classList.toggle('active', x === b));
+    panels.forEach(p => {
+      const on = p.id === 'panel-' + t;
+      p.classList.toggle('active', on);
+      if (on) p.querySelectorAll('.card').forEach(c => {
+        c.style.animation = 'none'; void c.offsetWidth; c.style.animation = '';
+      });
+    });
   }));
 </script></body></html>
