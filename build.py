@@ -215,30 +215,58 @@ def _summarize_heuristic(label, items):
     return [l1, l2, l3]
 
 
+_SUMMARY_SYSTEM = ("너는 음악 트렌드 분석가다. 아래 '오늘 수집된 게시물' 목록을 보고 그날의 흐름을 "
+                   "한국어로 정확히 3줄로 요약한다. 각 줄은 간결한 한 문장(불릿·번호·서론 없이 3줄만). "
+                   "데이터에 근거하고 과장하지 않는다. 다른 어떤 설명·추론도 출력하지 말고 3줄만 답한다.")
+CLAUDE_BIN = str(Path.home() / ".local" / "bin" / "claude")
+
+
+def _summary_listing(items):
+    return "\n".join(
+        f"- {(it.get('title') or '')[:90]} | {it.get('channel','')} | 인기 {it.get('score',0):,}"
+        for it in sorted(items, key=lambda r: r.get('score') or 0, reverse=True)[:25])
+
+
+def _clean_lines(text):
+    if not text or "Not logged in" in text or "/login" in text:
+        return None
+    lines = [ln.strip(" -•\t") for ln in text.splitlines() if ln.strip()]
+    return lines[:3] or None
+
+
 def summarize(label, items):
+    """우선순위: claude CLI(구독, $0) → API(크레딧) → 데이터 폴백."""
     if not items:
         return None
-    lines = _summarize_claude(label, items)   # 크레딧 있으면 Claude 분석
-    if lines:
-        return lines
-    return _summarize_heuristic(label, items)  # 없으면 데이터 기반 폴백
+    return (_summarize_claude_cli(label, items)
+            or _summarize_claude_api(label, items)
+            or _summarize_heuristic(label, items))
 
 
-def _summarize_claude(label, items):
+def _summarize_claude_cli(label, items):
+    if not items or not os.path.exists(CLAUDE_BIN):
+        return None
+    prompt = f"{_SUMMARY_SYSTEM}\n\n[{label}] 오늘 수집:\n{_summary_listing(items)}"
+    try:
+        r = subprocess.run([CLAUDE_BIN, "-p"], input=prompt, capture_output=True,
+                           text=True, timeout=150)
+        if r.returncode != 0:
+            return None
+        return _clean_lines(r.stdout.strip())
+    except Exception as e:
+        log(f"claude CLI 요약 실패 {label}: {e}")
+        return None
+
+
+def _summarize_claude_api(label, items):
     key = get_anthropic_key()
     if not key or not items:
         return None
-    listing = "\n".join(
-        f"- {(it.get('title') or '')[:90]} | {it.get('channel','')} | 인기 {it.get('score',0):,}"
-        for it in sorted(items, key=lambda r: r.get('score') or 0, reverse=True)[:25])
-    system = ("너는 음악 트렌드 분석가다. 아래 '오늘 수집된 게시물' 목록을 보고 그날의 흐름을 "
-              "한국어로 정확히 3줄로 요약한다. 각 줄은 간결한 한 문장(불릿·번호·서론 없이 3줄만). "
-              "데이터에 근거하고 과장하지 않는다. 다른 어떤 설명·추론도 출력하지 말고 3줄만 답한다.")
     body = json.dumps({
         "model": ANTHROPIC_MODEL,
         "max_tokens": 400,
-        "system": system,
-        "messages": [{"role": "user", "content": f"[{label}] 오늘 수집:\n{listing}"}],
+        "system": _SUMMARY_SYSTEM,
+        "messages": [{"role": "user", "content": f"[{label}] 오늘 수집:\n{_summary_listing(items)}"}],
     }).encode("utf-8")
     req = urllib.request.Request(
         "https://api.anthropic.com/v1/messages", data=body, method="POST",
@@ -248,10 +276,9 @@ def _summarize_claude(label, items):
         with urllib.request.urlopen(req, timeout=60) as resp:
             data = json.loads(resp.read().decode("utf-8"))
         text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
-        lines = [ln.strip(" -•\t") for ln in text.splitlines() if ln.strip()]
-        return lines[:3] or None
+        return _clean_lines(text)
     except Exception as e:
-        log(f"요약 실패 {label}: {e}")
+        log(f"API 요약 실패 {label}: {e}")
         return None
 
 
@@ -565,17 +592,16 @@ def main():
             save_json(HISTORY, history)
             save_json(STATE, state)
 
-            # 그날 수집분으로 플랫폼별 3줄 요약 생성 (Claude)
+            # 그날 수집분으로 플랫폼별 3줄 요약 생성 (claude CLI → API → 데이터 폴백)
             today = TODAY.isoformat()
-            if get_anthropic_key():
-                for pid in PLATFORMS:
-                    todays = [r for r in history.values()
-                              if r.get("platform") == pid and r.get("last_seen") == today]
-                    lines = summarize(PLATFORMS[pid]["label"], todays)
-                    if lines:
-                        summaries[pid] = {"date": today, "lines": lines}
-                        log(f"요약 생성: {pid} ({len(lines)}줄)")
-                save_json(SUMMARIES, summaries)
+            for pid in PLATFORMS:
+                todays = [r for r in history.values()
+                          if r.get("platform") == pid and r.get("last_seen") == today]
+                lines = summarize(PLATFORMS[pid]["label"], todays)
+                if lines:
+                    summaries[pid] = {"date": today, "lines": lines}
+                    log(f"요약 생성: {pid} ({len(lines)}줄)")
+            save_json(SUMMARIES, summaries)
 
     ranks = {pid: rank_platform(history, pid, recent_days) for pid in PLATFORMS}
     page = render(ranks, summaries, state.get("spent", 0.0), budget)
