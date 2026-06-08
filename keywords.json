@@ -1,8 +1,8 @@
 {
   "platforms": {
-    "tiktok":    { "keywords": ["music production", "synthpop"], "max_results": 8 },
-    "instagram": { "keywords": ["musicproducer", "synthpop"],    "max_results": 8 },
-    "reddit":    { "keywords": ["music production", "synthpop"],  "max_results": 8 }
+    "tiktok":    { "keywords": ["music", "new music"],   "max_results": 8 },
+    "instagram": { "keywords": ["music", "newmusic"],    "max_results": 8 },
+    "reddit":    { "keywords": ["music production", "synthpop"], "max_results": 8 }
   },
   "recent_days": 7,
   "monthly_budget_usd": 4.5

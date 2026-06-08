@@ -186,7 +186,7 @@ def fetch(token, platform, kw, n):
     return out
 
 
-# ---------- 3줄 요약: Claude(우선) → 데이터 기반(폴백) ----------
+# ---------- 요약: 3줄 트렌드 + 꼭 봐야 할 게시물 1개 (Claude 우선 → 폴백) ----------
 import re as _re, collections as _collections
 
 _STOP = set(("the a an of to in for and or is on with your you my this that it i we "
@@ -195,13 +195,58 @@ _STOP = set(("the a an of to in for and or is on with your you my this that it i
              "una que por der die und las los con para más muy son una uno like just "
              "이 그 저 및 ft vs").split())
 
+CLAUDE_BIN = str(Path.home() / ".local" / "bin" / "claude")
+
+_SUMMARY_SYSTEM = (
+    "너는 음악 트렌드 분석가다. 아래 번호가 매겨진 '오늘 수집된 게시물' 목록을 보고 한국어로 출력한다.\n"
+    "- 1~3번째 줄: 그날의 흐름을 요약한 간결한 세 문장. 각 줄에 한 문장씩, 반드시 줄바꿈으로 분리.\n"
+    "- 4번째 줄: 오늘 '꼭 봐야 할' 게시물 하나를 골라 정확히 다음 형식으로 출력 → PICK|<번호>|<왜 봐야 하는지 한 문장>\n"
+    "불릿·서론·다른 설명 없이 정확히 4줄만 출력한다.")
+
+
+def _ordered(items):
+    return sorted(items, key=lambda r: r.get("score") or 0, reverse=True)[:25]
+
+
+def _summary_listing(ordered):
+    return "\n".join(
+        f"{i}. {(it.get('title') or '')[:90]} | {it.get('channel','')} | 인기 {it.get('score',0):,}"
+        for i, it in enumerate(ordered, 1))
+
+
+def _parse_summary(text, ordered):
+    if not text or "Not logged in" in text or "/login" in text:
+        return None
+    lines, pick = [], None
+    for raw in text.splitlines():
+        s = raw.strip(" -•\t").strip()
+        if not s:
+            continue
+        if s.upper().startswith("PICK") and "|" in s:
+            parts = s.split("|")
+            m = _re.search(r"\d+", parts[1]) if len(parts) > 1 else None
+            reason = parts[2].strip() if len(parts) > 2 else ""
+            if m:
+                idx = int(m.group()) - 1
+                if 0 <= idx < len(ordered):
+                    it = ordered[idx]
+                    pick = {"title": (it.get("title") or "")[:80], "url": it.get("url", "#"),
+                            "channel": it.get("channel", ""), "reason": reason}
+        else:
+            lines.append(s)
+    lines = lines[:3]
+    if not lines:
+        return None
+    return {"lines": lines, "pick": pick}
+
 
 def _summarize_heuristic(label, items):
     if not items:
         return None
+    ordered = _ordered(items)
     n = len(items)
     scores = [it.get("score") or 0 for it in items]
-    top = max(items, key=lambda r: r.get("score") or 0)
+    top = ordered[0]
     slabel = PLATFORMS.get(items[0].get("platform", ""), {}).get("score", "인기")
     words = []
     for it in items:
@@ -209,34 +254,18 @@ def _summarize_heuristic(label, items):
             if w not in _STOP:
                 words.append(w)
     common = [w for w, _ in _collections.Counter(words).most_common(4)]
-    l1 = f"가장 화제: '{(top.get('title') or '')[:48]}' — {top.get('channel','')} ({slabel} {fmt(top.get('score'))})"
-    l2 = f"오늘 {n}건 수집 · 평균 {slabel} {fmt(sum(scores)//n if n else 0)} · 최고 {fmt(max(scores) if scores else 0)}"
-    l3 = ("자주 등장: " + ", ".join(common)) if common else "다양한 주제가 고르게 분포"
-    return [l1, l2, l3]
-
-
-_SUMMARY_SYSTEM = ("너는 음악 트렌드 분석가다. 아래 '오늘 수집된 게시물' 목록을 보고 그날의 흐름을 "
-                   "한국어로 요약한다. 정확히 3개의 문장을 쓰되, 각 문장을 반드시 줄바꿈(\\n)으로 "
-                   "분리해 세 줄로 출력한다. 절대 한 줄에 몰아 쓰지 마라. 불릿·번호·서론 없이 세 줄만, "
-                   "각 줄은 간결한 한 문장. 데이터에 근거하고 과장하지 않는다. 다른 설명·추론은 출력하지 마라.")
-CLAUDE_BIN = str(Path.home() / ".local" / "bin" / "claude")
-
-
-def _summary_listing(items):
-    return "\n".join(
-        f"- {(it.get('title') or '')[:90]} | {it.get('channel','')} | 인기 {it.get('score',0):,}"
-        for it in sorted(items, key=lambda r: r.get('score') or 0, reverse=True)[:25])
-
-
-def _clean_lines(text):
-    if not text or "Not logged in" in text or "/login" in text:
-        return None
-    lines = [ln.strip(" -•\t") for ln in text.splitlines() if ln.strip()]
-    return lines[:3] or None
+    lines = [
+        f"가장 화제: '{(top.get('title') or '')[:48]}' — {top.get('channel','')} ({slabel} {fmt(top.get('score'))})",
+        f"오늘 {n}건 수집 · 평균 {slabel} {fmt(sum(scores)//n if n else 0)} · 최고 {fmt(max(scores) if scores else 0)}",
+        ("자주 등장: " + ", ".join(common)) if common else "다양한 주제가 고르게 분포",
+    ]
+    pick = {"title": (top.get("title") or "")[:80], "url": top.get("url", "#"),
+            "channel": top.get("channel", ""), "reason": f"오늘 가장 높은 {slabel} {fmt(top.get('score'))}"}
+    return {"lines": lines, "pick": pick}
 
 
 def summarize(label, items):
-    """우선순위: claude CLI(구독, $0) → API(크레딧) → 데이터 폴백."""
+    """우선순위: claude CLI(구독, $0) → API(크레딧) → 데이터 폴백. 반환 {lines, pick}."""
     if not items:
         return None
     return (_summarize_claude_cli(label, items)
@@ -247,13 +276,14 @@ def summarize(label, items):
 def _summarize_claude_cli(label, items):
     if not items or not os.path.exists(CLAUDE_BIN):
         return None
-    prompt = f"{_SUMMARY_SYSTEM}\n\n[{label}] 오늘 수집:\n{_summary_listing(items)}"
+    ordered = _ordered(items)
+    prompt = f"{_SUMMARY_SYSTEM}\n\n[{label}] 오늘 수집:\n{_summary_listing(ordered)}"
     try:
         r = subprocess.run([CLAUDE_BIN, "-p"], input=prompt, capture_output=True,
                            text=True, timeout=150)
         if r.returncode != 0:
             return None
-        return _clean_lines(r.stdout.strip())
+        return _parse_summary(r.stdout.strip(), ordered)
     except Exception as e:
         log(f"claude CLI 요약 실패 {label}: {e}")
         return None
@@ -263,11 +293,12 @@ def _summarize_claude_api(label, items):
     key = get_anthropic_key()
     if not key or not items:
         return None
+    ordered = _ordered(items)
     body = json.dumps({
         "model": ANTHROPIC_MODEL,
-        "max_tokens": 400,
+        "max_tokens": 500,
         "system": _SUMMARY_SYSTEM,
-        "messages": [{"role": "user", "content": f"[{label}] 오늘 수집:\n{_summary_listing(items)}"}],
+        "messages": [{"role": "user", "content": f"[{label}] 오늘 수집:\n{_summary_listing(ordered)}"}],
     }).encode("utf-8")
     req = urllib.request.Request(
         "https://api.anthropic.com/v1/messages", data=body, method="POST",
@@ -277,7 +308,7 @@ def _summarize_claude_api(label, items):
         with urllib.request.urlopen(req, timeout=60) as resp:
             data = json.loads(resp.read().decode("utf-8"))
         text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
-        return _clean_lines(text)
+        return _parse_summary(text, ordered)
     except Exception as e:
         log(f"API 요약 실패 {label}: {e}")
         return None
@@ -363,8 +394,20 @@ def render(ranks, summaries, spent, budget):
         if sm and sm.get("lines"):
             lis = "".join(f"<li>{html.escape(x)}</li>" for x in sm["lines"])
             date_note = f' · {html.escape(sm.get("date",""))}' if sm.get("date") else ""
+            pk = sm.get("pick")
+            pick_html = ""
+            if pk and pk.get("title"):
+                purl = html.escape(pk.get("url", "#") or "#")
+                ptitle = html.escape(pk.get("title", ""))
+                pchan = html.escape(pk.get("channel", "") or "")
+                preason = html.escape(pk.get("reason", "") or "")
+                pick_html = (
+                    f'<a class="pick" href="{purl}" target="_blank" rel="noopener">'
+                    f'<span class="ptag">👀 꼭 봐야 할 게시물</span>'
+                    f'<span class="ptitle">{ptitle}</span>'
+                    f'<span class="pmeta">{pchan}{" · " + preason if preason else ""}</span></a>')
             summary = (f'<div class="summary"><div class="shead">📝 오늘의 3줄 요약{date_note}</div>'
-                       f'<ul>{lis}</ul></div>')
+                       f'<ul>{lis}</ul>{pick_html}</div>')
         else:
             summary = ('<div class="summary muted">📝 3줄 요약은 다음 수집 때 생성됩니다 '
                        '(Claude 분석)</div>')
@@ -449,6 +492,15 @@ def render(ranks, summaries, spent, budget):
     letter-spacing:.01em; }}
   .summary ul {{ margin:0; padding-left:18px; }}
   .summary li {{ font-size:14px; line-height:1.6; margin:3px 0; }}
+  .pick {{ display:block; margin-top:12px; padding:11px 13px; border-radius:12px;
+    background:rgba(0,0,0,.25); border:1px solid rgba(224,164,88,.3);
+    text-decoration:none; color:inherit; transition:all .25s var(--spring); }}
+  .pick:hover {{ border-color:var(--accent); background:rgba(0,0,0,.35); }}
+  .ptag {{ display:inline-block; font-size:11px; font-weight:600; color:var(--accent);
+    margin-bottom:4px; }}
+  .ptitle {{ display:block; font-size:14px; font-weight:600; line-height:1.4;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+  .pmeta {{ display:block; font-size:12px; color:var(--muted); margin-top:3px; line-height:1.4; }}
   .vhead {{ font-size:15px; font-weight:600; color:var(--text); margin:28px 2px 14px;
     padding-bottom:8px; border-bottom:1px solid var(--line); }}
   .row {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }}
@@ -598,10 +650,10 @@ def main():
             for pid in PLATFORMS:
                 todays = [r for r in history.values()
                           if r.get("platform") == pid and r.get("last_seen") == today]
-                lines = summarize(PLATFORMS[pid]["label"], todays)
-                if lines:
-                    summaries[pid] = {"date": today, "lines": lines}
-                    log(f"요약 생성: {pid} ({len(lines)}줄)")
+                res = summarize(PLATFORMS[pid]["label"], todays)
+                if res and res.get("lines"):
+                    summaries[pid] = {"date": today, **res}
+                    log(f"요약 생성: {pid} ({len(res['lines'])}줄, pick={'O' if res.get('pick') else 'X'})")
             save_json(SUMMARIES, summaries)
 
     ranks = {pid: rank_platform(history, pid, recent_days) for pid in PLATFORMS}
