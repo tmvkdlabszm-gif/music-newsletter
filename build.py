@@ -455,8 +455,14 @@ def side_log(pid, log_data, skip_date):
         if not sm or not sm.get("lines"):
             continue
         lis = "".join(f"<li>{html.escape(x)}</li>" for x in sm["lines"])
+        pk = sm.get("pick")
+        pick_html = ""
+        if pk and pk.get("title"):
+            purl = html.escape(pk.get("url") or "#") or "#"
+            pick_html = (f'<a class="sidepick" href="{purl}" target="_blank" rel="noopener">'
+                         f'👀 {html.escape(pk["title"])}</a>')
         days += (f'<div class="sideday"><div class="sidedate">{html.escape(date)}</div>'
-                 f'<ul>{lis}</ul></div>')
+                 f'<ul>{lis}</ul>{pick_html}</div>')
     if not days:
         return ""
     return (f'<aside class="sidelog"><div class="sidehead">📅 지난 요약</div>'
@@ -631,6 +637,9 @@ def render(ranks, summaries, spent, budget, log_data=None):
     font-variant-numeric:tabular-nums; }}
   .sidelog ul {{ margin:0; padding-left:15px; }}
   .sidelog li {{ font-size:11.5px; line-height:1.5; margin:2px 0; color:var(--muted); }}
+  .sidepick {{ display:block; margin-top:5px; font-size:11px; color:var(--muted);
+    text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+  .sidepick:hover {{ color:var(--accent); }}
   footer {{ color:#62626d; font-size:12.5px; padding:0 0 40px; }}
   @media (max-width:600px) {{
     body {{ overflow-x:hidden; }}
