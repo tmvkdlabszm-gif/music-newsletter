@@ -443,30 +443,24 @@ def build_log_from_archives():
     return log_data
 
 
-def render_log(log_data):
-    """날짜 내림차순 접이식 '지난 요약 로그' 섹션."""
+def side_log(pid, log_data, skip_date):
+    """오늘 요약 옆에 붙는, 해당 플랫폼의 지난 3줄 요약 패널 (오늘 제외, 날짜 내림차순)."""
     if not log_data:
         return ""
     days = ""
     for date in sorted(log_data, reverse=True):
-        cols = ""
-        for pid, p in PLATFORMS.items():
-            sm = log_data[date].get(pid)
-            if not sm or not sm.get("lines"):
-                continue
-            lis = "".join(f"<li>{html.escape(x)}</li>" for x in sm["lines"])
-            pk = sm.get("pick")
-            pick_html = ""
-            if pk and pk.get("title"):
-                purl = html.escape(pk.get("url") or "#") or "#"
-                pick_html = (f'<a class="logpick" href="{purl}" target="_blank" rel="noopener">'
-                             f'👀 {html.escape(pk["title"])}</a>')
-            cols += (f'<div class="logcol"><div class="logpf">{p["emoji"]} {html.escape(p["label"])}</div>'
-                     f'<ul>{lis}</ul>{pick_html}</div>')
-        if cols:
-            days += f'<div class="logday"><div class="logdate">{html.escape(date)}</div><div class="logcols">{cols}</div></div>'
-    return (f'<details class="logbox"><summary class="logsum">📅 지난 요약 로그 · 날짜별 3줄</summary>'
-            f'<div class="logdays">{days}</div></details>')
+        if date == skip_date:
+            continue
+        sm = log_data[date].get(pid)
+        if not sm or not sm.get("lines"):
+            continue
+        lis = "".join(f"<li>{html.escape(x)}</li>" for x in sm["lines"])
+        days += (f'<div class="sideday"><div class="sidedate">{html.escape(date)}</div>'
+                 f'<ul>{lis}</ul></div>')
+    if not days:
+        return ""
+    return (f'<aside class="sidelog"><div class="sidehead">📅 지난 요약</div>'
+            f'<div class="sidedays">{days}</div></aside>')
 
 
 def render(ranks, summaries, spent, budget, log_data=None):
@@ -495,7 +489,9 @@ def render(ranks, summaries, spent, budget, log_data=None):
         else:
             summary = ('<div class="summary muted">📝 3줄 요약은 다음 수집 때 생성됩니다 '
                        '(Claude 분석)</div>')
-        sections = summary
+        today_iso = TODAY.isoformat()
+        side = side_log(pid, log_data, today_iso)
+        sections = f'<div class="sumrow">{summary}{side}</div>' if side else summary
         idx = 0
         for vkey, vlabel in VIEWS:
             rows = ranks[pid][vkey]
@@ -622,32 +618,26 @@ def render(ranks, summaries, spent, budget, log_data=None):
   .meta {{ font-size:12.5px; margin-top:8px; color:var(--muted); font-variant-numeric:tabular-nums; }}
   .meta b {{ color:var(--accent); font-weight:600; }}
   .empty {{ color:var(--muted); font-size:14px; padding:10px 2px 4px; }}
-  .logbox {{ margin:8px 0 48px; border:1px solid var(--line); border-radius:16px;
-    background:var(--surface); overflow:hidden; }}
-  .logsum {{ cursor:pointer; list-style:none; padding:16px 18px; font-size:14px; font-weight:600;
-    color:var(--text); user-select:none; }}
-  .logsum::-webkit-details-marker {{ display:none; }}
-  .logsum::before {{ content:"▸"; color:var(--accent); margin-right:8px;
-    display:inline-block; transition:transform .25s var(--spring); }}
-  .logbox[open] .logsum::before {{ transform:rotate(90deg); }}
-  .logbox[open] .logsum {{ border-bottom:1px solid var(--line); }}
-  .logdays {{ padding:6px 18px 14px; }}
-  .logday {{ padding:16px 0; border-bottom:1px solid var(--line); }}
-  .logday:last-child {{ border-bottom:none; }}
-  .logdate {{ font-size:13px; font-weight:600; color:var(--accent); margin-bottom:10px;
+  .sumrow {{ display:flex; gap:16px; align-items:flex-start; margin:18px 0 4px; }}
+  .sumrow .summary {{ flex:1; min-width:0; margin:0; }}
+  .sidelog {{ flex:0 0 270px; align-self:stretch; padding:13px 14px; border-radius:16px;
+    background:var(--surface); border:1px solid var(--line);
+    max-height:360px; overflow-y:auto; scrollbar-width:thin; }}
+  .sidehead {{ font-size:12px; font-weight:600; color:var(--muted); margin-bottom:9px;
+    letter-spacing:.01em; }}
+  .sideday {{ padding:9px 0; border-top:1px solid var(--line); }}
+  .sideday:first-of-type {{ border-top:none; padding-top:0; }}
+  .sidedate {{ font-size:11.5px; font-weight:600; color:var(--accent); margin-bottom:4px;
     font-variant-numeric:tabular-nums; }}
-  .logcols {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }}
-  .logpf {{ font-size:12.5px; font-weight:600; color:var(--muted); margin-bottom:5px; }}
-  .logcol ul {{ margin:0; padding-left:17px; }}
-  .logcol li {{ font-size:13px; line-height:1.55; margin:2px 0; color:var(--text); }}
-  .logpick {{ display:block; margin-top:7px; font-size:12px; color:var(--muted);
-    text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
-  .logpick:hover {{ color:var(--accent); }}
+  .sidelog ul {{ margin:0; padding-left:15px; }}
+  .sidelog li {{ font-size:11.5px; line-height:1.5; margin:2px 0; color:var(--muted); }}
   footer {{ color:#62626d; font-size:12.5px; padding:0 0 40px; }}
   @media (max-width:600px) {{
     body {{ overflow-x:hidden; }}
     header {{ padding:28px 0 12px; }}
     .platform {{ padding:6px 16px 44px; }}
+    .sumrow {{ flex-direction:column; }}
+    .sidelog {{ flex-basis:auto; width:100%; max-height:260px; }}
     .wrap {{ padding:0 16px; }}
     .tabs {{ padding:11px 16px; gap:7px; }}
     .row {{ grid-template-columns:1fr; gap:12px; }}
@@ -669,7 +659,6 @@ def render(ranks, summaries, spent, budget, log_data=None):
 </div></header>
 <nav class="navbar"><div class="tabs">{btns}</div></nav>
 <main>{blocks}</main>
-<div class="wrap">{render_log(log_data)}</div>
 <footer><div class="wrap">Apify 수집 · 매일 아침 자동 생성 · 카드를 누르면 원본으로 이동</div></footer>
 <script>
   const pfs = document.querySelectorAll('.platform');
