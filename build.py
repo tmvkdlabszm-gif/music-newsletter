@@ -13,7 +13,7 @@
 
 토큰: ~/.config/music-newsletter/.env 의 APIFY_TOKEN (또는 환경변수).
 """
-import json, os, sys, time, html, datetime, subprocess, urllib.request, urllib.parse, urllib.error
+import json, os, sys, time, html, re, datetime, subprocess, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -24,6 +24,7 @@ INDEX = HERE / "index.html"
 ARCHIVE = HERE / "archive"
 LOG = HERE / "build.log"
 SUMMARIES = HERE / "summaries.json"
+SUMMARY_LOG = HERE / "summary_log.json"
 ENV = Path.home() / ".config" / "music-newsletter" / ".env"
 ANTHROPIC_MODEL = "claude-opus-4-8"
 
@@ -385,7 +386,90 @@ def card_html(r, kind, rank):
     </a>"""
 
 
-def render(ranks, summaries, spent, budget):
+# ---------- 지난 요약 로그: 날짜별 누적 + archive 복원 ----------
+def _pick_meta(pick):
+    """summaries.json의 구조화된 pick → 로그용 단일 meta 문자열."""
+    if not pick:
+        return None
+    parts = [x for x in (pick.get("channel"), pick.get("reason")) if x]
+    return {"url": pick.get("url", "") or "", "title": pick.get("title", "") or "",
+            "meta": " · ".join(parts)}
+
+
+def log_entry_from_summaries(summaries):
+    """오늘 summaries({pid:{date,lines,pick}}) → 로그 한 날치({pid:{lines,pick}})."""
+    entry = {}
+    for pid, sm in (summaries or {}).items():
+        if sm and sm.get("lines"):
+            entry[pid] = {"lines": sm["lines"], "pick": _pick_meta(sm.get("pick"))}
+    return entry
+
+
+def extract_summaries_from_html(text):
+    """archive HTML 한 장 → {pid:{lines,pick}}. 이 빌더가 만든 구조를 그대로 역파싱."""
+    entry = {}
+    for pid, body in re.findall(
+            r'<section class="platform[^"]*" id="pf-(\w+)">(.*?)</section>', text, re.S):
+        m = re.search(r'<div class="summary"[^>]*>(.*?)(?:<h2 class="vhead">)', body, re.S)
+        if not m:
+            continue
+        block = m.group(1)
+        lines = [html.unescape(x).strip() for x in re.findall(r'<li>(.*?)</li>', block, re.S)]
+        if not lines:
+            continue
+        pick = None
+        href = re.search(r'<a class="pick" href="([^"]*)"', block)
+        ptitle = re.search(r'<span class="ptitle">(.*?)</span>', block, re.S)
+        if ptitle:
+            pmeta = re.search(r'<span class="pmeta">(.*?)</span>', block, re.S)
+            pick = {"url": html.unescape(href.group(1)) if href else "",
+                    "title": html.unescape(ptitle.group(1)).strip(),
+                    "meta": html.unescape(pmeta.group(1)).strip() if pmeta else ""}
+        entry[pid] = {"lines": lines, "pick": pick}
+    return entry
+
+
+def build_log_from_archives():
+    """archive/*.html 전체를 역파싱해 summary_log.json을 재생성한다 (--backfill)."""
+    log_data = {}
+    for f in sorted(ARCHIVE.glob("*.html")):
+        date = f.stem  # YYYY-MM-DD
+        entry = extract_summaries_from_html(f.read_text(encoding="utf-8"))
+        if entry:
+            log_data[date] = entry
+            log(f"복원: {date} ({', '.join(entry)})")
+    save_json(SUMMARY_LOG, log_data)
+    log(f"summary_log.json 재생성 완료: {len(log_data)}일치")
+    return log_data
+
+
+def render_log(log_data):
+    """날짜 내림차순 접이식 '지난 요약 로그' 섹션."""
+    if not log_data:
+        return ""
+    days = ""
+    for date in sorted(log_data, reverse=True):
+        cols = ""
+        for pid, p in PLATFORMS.items():
+            sm = log_data[date].get(pid)
+            if not sm or not sm.get("lines"):
+                continue
+            lis = "".join(f"<li>{html.escape(x)}</li>" for x in sm["lines"])
+            pk = sm.get("pick")
+            pick_html = ""
+            if pk and pk.get("title"):
+                purl = html.escape(pk.get("url") or "#") or "#"
+                pick_html = (f'<a class="logpick" href="{purl}" target="_blank" rel="noopener">'
+                             f'👀 {html.escape(pk["title"])}</a>')
+            cols += (f'<div class="logcol"><div class="logpf">{p["emoji"]} {html.escape(p["label"])}</div>'
+                     f'<ul>{lis}</ul>{pick_html}</div>')
+        if cols:
+            days += f'<div class="logday"><div class="logdate">{html.escape(date)}</div><div class="logcols">{cols}</div></div>'
+    return (f'<details class="logbox"><summary class="logsum">📅 지난 요약 로그 · 날짜별 3줄</summary>'
+            f'<div class="logdays">{days}</div></details>')
+
+
+def render(ranks, summaries, spent, budget, log_data=None):
     btns, blocks = "", ""
     for i, (pid, p) in enumerate(PLATFORMS.items()):
         act = " active" if i == 0 else ""
@@ -538,6 +622,27 @@ def render(ranks, summaries, spent, budget):
   .meta {{ font-size:12.5px; margin-top:8px; color:var(--muted); font-variant-numeric:tabular-nums; }}
   .meta b {{ color:var(--accent); font-weight:600; }}
   .empty {{ color:var(--muted); font-size:14px; padding:10px 2px 4px; }}
+  .logbox {{ margin:8px 0 48px; border:1px solid var(--line); border-radius:16px;
+    background:var(--surface); overflow:hidden; }}
+  .logsum {{ cursor:pointer; list-style:none; padding:16px 18px; font-size:14px; font-weight:600;
+    color:var(--text); user-select:none; }}
+  .logsum::-webkit-details-marker {{ display:none; }}
+  .logsum::before {{ content:"▸"; color:var(--accent); margin-right:8px;
+    display:inline-block; transition:transform .25s var(--spring); }}
+  .logbox[open] .logsum::before {{ transform:rotate(90deg); }}
+  .logbox[open] .logsum {{ border-bottom:1px solid var(--line); }}
+  .logdays {{ padding:6px 18px 14px; }}
+  .logday {{ padding:16px 0; border-bottom:1px solid var(--line); }}
+  .logday:last-child {{ border-bottom:none; }}
+  .logdate {{ font-size:13px; font-weight:600; color:var(--accent); margin-bottom:10px;
+    font-variant-numeric:tabular-nums; }}
+  .logcols {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }}
+  .logpf {{ font-size:12.5px; font-weight:600; color:var(--muted); margin-bottom:5px; }}
+  .logcol ul {{ margin:0; padding-left:17px; }}
+  .logcol li {{ font-size:13px; line-height:1.55; margin:2px 0; color:var(--text); }}
+  .logpick {{ display:block; margin-top:7px; font-size:12px; color:var(--muted);
+    text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+  .logpick:hover {{ color:var(--accent); }}
   footer {{ color:#62626d; font-size:12.5px; padding:0 0 40px; }}
   @media (max-width:600px) {{
     body {{ overflow-x:hidden; }}
@@ -564,6 +669,7 @@ def render(ranks, summaries, spent, budget):
 </div></header>
 <nav class="navbar"><div class="tabs">{btns}</div></nav>
 <main>{blocks}</main>
+<div class="wrap">{render_log(log_data)}</div>
 <footer><div class="wrap">Apify 수집 · 매일 아침 자동 생성 · 카드를 누르면 원본으로 이동</div></footer>
 <script>
   const pfs = document.querySelectorAll('.platform');
@@ -607,9 +713,14 @@ def main():
     recent_days = int(cfg.get("recent_days", 7))
     budget = float(cfg.get("monthly_budget_usd", 4.5))
 
+    if "--backfill" in sys.argv:
+        build_log_from_archives()
+        return
+
     history = load_json(HISTORY, {})
     state = load_json(STATE, {})
     summaries = load_json(SUMMARIES, {})
+    log_data = load_json(SUMMARY_LOG, {})
     month = TODAY.strftime("%Y-%m")
     if state.get("month") != month:
         state = {"month": month, "spent": 0.0}
@@ -656,8 +767,14 @@ def main():
                     log(f"요약 생성: {pid} ({len(res['lines'])}줄, pick={'O' if res.get('pick') else 'X'})")
             save_json(SUMMARIES, summaries)
 
+            # 오늘치 3줄 요약을 날짜별 로그에 누적 (덮어쓰지 않고 날짜로 보존)
+            entry = log_entry_from_summaries(summaries)
+            if entry:
+                log_data[today] = entry
+                save_json(SUMMARY_LOG, log_data)
+
     ranks = {pid: rank_platform(history, pid, recent_days) for pid in PLATFORMS}
-    page = render(ranks, summaries, state.get("spent", 0.0), budget)
+    page = render(ranks, summaries, state.get("spent", 0.0), budget, log_data)
     INDEX.write_text(page, encoding="utf-8")
     ARCHIVE.mkdir(exist_ok=True)
     (ARCHIVE / f"{TODAY.isoformat()}.html").write_text(page, encoding="utf-8")
