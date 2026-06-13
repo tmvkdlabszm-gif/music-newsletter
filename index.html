@@ -5,161 +5,196 @@
 <title>데일리 뮤직 뉴스레터 · 2026-06-13</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme:dark;
-    --bg:#09090b; --surface:#141417; --line:rgba(255,255,255,.07);
-    --text:#ededf0; --muted:#9a9aa6; --accent:#e0a458; --accent-weak:rgba(224,164,88,.14);
-    --spring:cubic-bezier(.16,1,.3,1);
+    --bg:#100c24; --layer:#1b1640; --layer-2:#251f53;
+    --border:rgba(157,139,255,.10); --border-soft:rgba(157,139,255,.06); --r:14px;
+    --text:#ece9ff; --text-2:#a9a1d6; --text-helper:#7d75ad;
+    --pink:#ff5fa2; --cyan:#3fd9d0; --amber:#ffc24d; --link:#9d8bff;
+    --head:'Jua',Pretendard,sans-serif;
+    --ease:cubic-bezier(.2,0,.38,.9);
   }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body {
-    margin:0; color:var(--text); min-height:100dvh;
+    margin:0; background:var(--bg); color:var(--text); min-height:100dvh;
     font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
-    word-break:keep-all; -webkit-font-smoothing:antialiased;
-    background:
-      radial-gradient(1100px 600px at 12% -10%, rgba(224,164,88,.12), transparent 60%),
-      radial-gradient(900px 500px at 115% 0%, rgba(255,255,255,.04), transparent 55%),
-      var(--bg);
+    word-break:keep-all; -webkit-font-smoothing:antialiased; font-size:16px; line-height:1.6;
+    background-image:
+      radial-gradient(820px 520px at 6% -6%, rgba(255,95,162,.20), transparent 58%),
+      radial-gradient(760px 520px at 110% 2%, rgba(63,217,208,.16), transparent 56%),
+      radial-gradient(1100px 700px at 50% 24%, rgba(123,79,242,.16), transparent 62%),
+      linear-gradient(180deg, #1a1340 0%, #140e30 42%, #0c0820 100%);
     background-attachment:fixed;
   }
+  .skyline { position:fixed; left:0; right:0; bottom:0; height:300px; z-index:0;
+    pointer-events:none; opacity:.5; }
   body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-    opacity:.04; background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+    opacity:.05; background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
   header, .navbar, main, footer { position:relative; z-index:1; }
   .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
-  header { padding:40px 0 18px; }
-  h1 { margin:0; font-size:clamp(26px,4vw,40px); font-weight:700; letter-spacing:-.02em;
-    line-height:1.15; text-wrap:balance;
-    background:linear-gradient(92deg,#fff 30%,var(--accent)); -webkit-background-clip:text;
-    background-clip:text; color:transparent; }
-  .sub { color:var(--muted); font-size:14px; margin-top:8px; font-variant-numeric:tabular-nums; }
-  .navbar { position:sticky; top:0; z-index:40; margin-top:14px;
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    background:rgba(9,9,11,.72); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .tabs { display:flex; gap:8px; max-width:1180px; margin:0 auto; padding:12px 20px;
+  header { padding:34px 0 0; }
+  h1 { margin:0; font-family:var(--head); font-size:clamp(28px,4.4vw,40px); font-weight:400;
+    letter-spacing:0; line-height:1.25; text-shadow:0 0 28px rgba(255,95,162,.35); }
+  .sub { color:var(--text-2); font-size:13px; margin-top:8px; letter-spacing:.2px;
+    font-variant-numeric:tabular-nums; }
+  .navbar { position:sticky; top:0; z-index:40; margin-top:10px;
+    background:linear-gradient(180deg, rgba(16,12,36,.92), rgba(16,12,36,.72));
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+  .tabs { display:flex; max-width:1180px; margin:0 auto; padding:0 20px;
+    border-bottom:1px solid var(--border-soft);
     overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
   .tabs::-webkit-scrollbar { display:none; }
-  .tabbtn { flex:0 0 auto; background:transparent; color:var(--muted); border:1px solid var(--line);
-    border-radius:999px; padding:9px 16px; font:inherit; font-size:14px; font-weight:500;
-    cursor:pointer; transition:all .3s var(--spring); }
-  .tabbtn:hover { color:var(--text); border-color:rgba(255,255,255,.18); }
-  .tabbtn.active { background:var(--accent-weak); color:var(--accent); border-color:rgba(224,164,88,.4); }
+  .tabbtn { flex:0 0 auto; display:inline-flex; align-items:center; gap:8px;
+    background:transparent; color:var(--text-2); border:none;
+    border-bottom:2px solid transparent; padding:12px 18px; font:inherit; font-size:15px;
+    cursor:pointer; transition:color .12s var(--ease); white-space:nowrap; }
+  .tabbtn:hover { color:var(--text); }
+  .tabbtn.active { color:var(--text); font-weight:600; border-bottom-color:var(--pink);
+    text-shadow:0 0 16px rgba(255,95,162,.4); }
+  .tic { width:18px; height:18px; flex:0 0 auto; }
+  .tabbtn.active .tic { filter:drop-shadow(0 0 6px rgba(255,95,162,.65)); color:var(--pink); }
+  .hic { width:20px; height:20px; flex:0 0 auto; vertical-align:-4px; margin-right:8px; }
+  .hic-pink { color:var(--pink); filter:drop-shadow(0 0 7px rgba(255,95,162,.5)); }
+  .hic-amber { color:var(--amber); filter:drop-shadow(0 0 7px rgba(255,194,77,.5)); }
+  .hic-cyan { color:var(--cyan); filter:drop-shadow(0 0 7px rgba(63,217,208,.5)); }
   .platform { display:none; max-width:1180px; margin:0 auto; padding:8px 20px 64px; }
   .platform.active { display:block; }
-  .summary { margin:18px 0 4px; padding:16px 18px; border-radius:16px;
-    background:var(--accent-weak); border:1px solid rgba(224,164,88,.28);
-    border-left:3px solid var(--accent); }
-  .summary.muted { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--line);
-    color:var(--muted); font-size:13.5px; }
-  .shead { font-size:13px; font-weight:600; color:var(--accent); margin-bottom:8px;
-    letter-spacing:.01em; }
-  .summary ul { margin:0; padding-left:18px; }
-  .summary li { font-size:14px; line-height:1.6; margin:3px 0; }
-  .pick { display:block; margin-top:12px; padding:11px 13px; border-radius:12px;
-    background:rgba(0,0,0,.25); border:1px solid rgba(224,164,88,.3);
-    text-decoration:none; color:inherit; transition:all .25s var(--spring); }
-  .pick:hover { border-color:var(--accent); background:rgba(0,0,0,.35); }
-  .ptag { display:inline-block; font-size:11px; font-weight:600; color:var(--accent);
-    margin-bottom:4px; }
-  .ptitle { display:block; font-size:14px; font-weight:600; line-height:1.4;
-    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .pmeta { display:block; font-size:12px; color:var(--muted); margin-top:3px; line-height:1.4; }
-  .vhead { font-size:15px; font-weight:600; color:var(--text); margin:28px 2px 14px;
-    padding-bottom:8px; border-bottom:1px solid var(--line); }
-  .row { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+  .summary { margin:22px 0 4px; padding:18px 20px; background:var(--layer);
+    border-left:3px solid var(--pink); border-radius:0 var(--r) var(--r) 0;
+    box-shadow:-10px 0 40px -18px rgba(255,95,162,.5); }
+  .summary.muted { background:var(--layer); border-left:3px solid var(--border);
+    box-shadow:none; color:var(--text-2); font-size:14px; }
+  .shead { font-family:var(--head); font-size:15px; font-weight:400; color:var(--pink);
+    margin-bottom:10px; letter-spacing:.2px; }
+  .summary ul { margin:0; padding-left:20px; }
+  .summary li { font-size:15px; line-height:1.7; margin:4px 0; }
+  .pick { margin-top:16px; border-radius:var(--r); overflow:hidden;
+    background:linear-gradient(135deg,rgba(255,95,162,.12),rgba(63,217,208,.08));
+    border:1px solid rgba(255,95,162,.22); box-shadow:0 0 40px -14px rgba(255,95,162,.4); }
+  .pickhead { padding:16px 18px; display:flex; align-items:flex-start; justify-content:space-between;
+    gap:10px; cursor:pointer; transition:background .12s var(--ease); }
+  .pickhead:hover { background:rgba(255,255,255,.03); }
+  .pickmain { min-width:0; }
+  .ptag { font-size:12px; font-weight:600; color:var(--cyan); text-shadow:0 0 14px rgba(63,217,208,.45); }
+  .ptitle { margin:6px 0 0; font-family:var(--head); font-size:18px; font-weight:400; line-height:1.4; }
+  .pchan { margin:4px 0 0; font-size:13px; color:var(--text-2); }
+  .chev { font-size:20px; color:var(--text-helper); flex:0 0 auto; line-height:1; margin-top:2px;
+    transition:transform .2s var(--ease); }
+  .pick.open .chev { transform:rotate(180deg); }
+  .panel { display:none; border-top:1px solid var(--border-soft); padding:6px 18px 16px; }
+  .pick.open .panel { display:block; }
+  .step { padding:12px 0 2px; border-top:1px solid var(--border-soft); }
+  .step:first-child { border-top:none; }
+  .stepnum { font-size:12px; font-weight:600; color:var(--text-helper); letter-spacing:.4px; }
+  .steptext { margin:6px 0 0; font-size:15px; line-height:1.7; color:#e3dffb; }
+  .picklink { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:16px;
+    padding:12px; background:var(--pink); color:#1a0e1a; font-size:14px; font-weight:600;
+    border-radius:var(--r); text-decoration:none; transition:filter .12s var(--ease); }
+  .picklink:hover { filter:brightness(1.08); }
+  .vhead { font-family:var(--head); font-size:19px; font-weight:400; color:var(--text);
+    margin:36px 2px 16px; padding-bottom:9px; border-bottom:1px solid var(--border-soft); }
+  .row { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
-  .platform.active .card { animation:fadeUp .5s var(--spring) both; animation-delay:calc(var(--i) * 45ms); }
-  .card { position:relative; display:block; background:var(--surface); border:1px solid var(--line);
-    border-radius:18px; overflow:hidden; text-decoration:none; color:inherit;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 12px 30px -16px rgba(0,0,0,.8);
-    transition:transform .4s var(--spring), border-color .3s var(--spring), box-shadow .4s var(--spring); }
-  .card:hover { transform:translateY(-5px); border-color:rgba(224,164,88,.45);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 22px 44px -18px rgba(224,164,88,.28); }
-  .card:active { transform:translateY(-2px) scale(.99); }
-  .thumb { position:relative; aspect-ratio:16/9; background:#0c0c0f; overflow:hidden;
+  .platform.active .card { animation:fadeUp .5s var(--ease) both; animation-delay:calc(var(--i) * 45ms); }
+  .card { position:relative; display:block; background:var(--layer); overflow:hidden;
+    border:1px solid var(--border-soft); border-radius:var(--r);
+    text-decoration:none; color:inherit;
+    transition:background .12s var(--ease), border-color .12s var(--ease), box-shadow .2s var(--ease); }
+  .card:hover { background:var(--layer-2); border-color:rgba(255,95,162,.3);
+    box-shadow:0 10px 40px -16px rgba(255,95,162,.45); }
+  .thumb { position:relative; aspect-ratio:16/9; background:var(--layer-2); overflow:hidden;
     display:grid; place-items:center; }
   .thumb img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block;
-    transition:transform .5s var(--spring); }
+    transition:transform .5s var(--ease); }
   .card:hover .thumb img { transform:scale(1.05); }
-  .ph { position:absolute; font-size:34px; opacity:.4; z-index:0; }
+  .ph { position:absolute; width:34px; height:34px; opacity:.35; z-index:0; color:var(--link); }
   .thumb.broken img { display:none; }
   .thumb::after { content:""; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(to top, rgba(0,0,0,.55), transparent 45%); }
-  .rank { position:absolute; top:8px; left:10px; z-index:3; font-size:22px; font-weight:700;
-    line-height:1; color:#fff; font-variant-numeric:tabular-nums; text-shadow:0 2px 8px rgba(0,0,0,.7); }
-  .play { position:absolute; inset:0; margin:auto; width:48px; height:48px; z-index:3; display:grid;
-    place-items:center; border-radius:999px; color:#0a0a0a; background:rgba(255,255,255,.92);
-    opacity:0; transform:scale(.8); transition:all .35s var(--spring); }
+    background:linear-gradient(to top, rgba(12,8,32,.6), transparent 45%); }
+  .rank { position:absolute; top:8px; left:8px; z-index:3; font-size:13px; font-weight:700;
+    line-height:1; color:#16091f; background:var(--pink); padding:3px 9px; border-radius:6px;
+    font-variant-numeric:tabular-nums; box-shadow:0 0 16px -2px rgba(255,95,162,.6); }
+  .play { position:absolute; inset:0; margin:auto; width:46px; height:46px; z-index:3; display:grid;
+    place-items:center; border-radius:999px; color:#16091f; background:var(--pink);
+    opacity:0; transform:scale(.8); transition:all .35s var(--ease);
+    box-shadow:0 0 24px -2px rgba(255,95,162,.7); }
   .card:hover .play { opacity:1; transform:scale(1); }
-  .tag { position:absolute; left:10px; bottom:10px; z-index:3; font-size:11px; font-weight:500;
-    padding:4px 9px; border-radius:999px; color:#f2f2f4; background:rgba(20,20,23,.7);
-    border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(6px); }
-  .body { padding:13px 14px 16px; }
-  .title { font-size:15px; font-weight:600; line-height:1.4; text-wrap:balance;
+  .tag { position:absolute; left:8px; bottom:8px; z-index:3; font-size:12px;
+    padding:3px 9px; border-radius:999px; color:var(--text); background:rgba(16,12,36,.82);
+    border:1px solid var(--border-soft); backdrop-filter:blur(6px); }
+  .body { padding:14px 15px 17px; }
+  .title { font-size:15px; font-weight:600; line-height:1.5;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .channel { color:var(--muted); font-size:12.5px; margin-top:6px; }
-  .meta { font-size:12.5px; margin-top:8px; color:var(--muted); font-variant-numeric:tabular-nums; }
-  .meta b { color:var(--accent); font-weight:600; }
-  .empty { color:var(--muted); font-size:14px; padding:10px 2px 4px; }
-  .sumrow { display:flex; gap:16px; align-items:flex-start; margin:18px 0 4px; }
+  .channel { color:var(--text-2); font-size:13px; margin-top:7px; }
+  .meta { font-size:13px; margin-top:9px; color:var(--text-2); font-variant-numeric:tabular-nums; }
+  .meta b { color:var(--cyan); font-weight:600; }
+  .empty { color:var(--text-2); font-size:14px; padding:10px 2px 4px; }
+  .sumrow { display:flex; gap:16px; align-items:flex-start; margin:22px 0 4px; }
   .sumrow .summary { flex:1; min-width:0; margin:0; }
-  .sidelog { flex:0 0 270px; align-self:stretch; padding:13px 14px; border-radius:16px;
-    background:var(--surface); border:1px solid var(--line);
-    max-height:360px; overflow-y:auto; scrollbar-width:thin; }
-  .sidehead { font-size:12px; font-weight:600; color:var(--muted); margin-bottom:9px;
-    letter-spacing:.01em; }
-  .sideday { padding:9px 0; border-top:1px solid var(--line); }
+  .sidelog { flex:0 0 280px; align-self:stretch; padding:14px 16px; border-radius:var(--r);
+    background:var(--layer); max-height:380px; overflow-y:auto; scrollbar-width:thin; }
+  .sidehead { font-size:13px; font-weight:600; color:var(--text-2); margin-bottom:10px;
+    letter-spacing:.2px; }
+  .sideday { padding:10px 0; border-top:1px solid var(--border-soft); }
   .sideday:first-of-type { border-top:none; padding-top:0; }
-  .sidedate { font-size:11.5px; font-weight:600; color:var(--accent); margin-bottom:4px;
+  .sidedate { font-size:12.5px; font-weight:600; color:var(--link); margin-bottom:5px;
     font-variant-numeric:tabular-nums; }
-  .sidelog ul { margin:0; padding-left:15px; }
-  .sidelog li { font-size:11.5px; line-height:1.5; margin:2px 0; color:var(--muted); }
-  .sidepick { display:block; margin-top:5px; font-size:11px; color:var(--muted);
+  .sidelog ul { margin:0; padding-left:16px; }
+  .sidelog li { font-size:13px; line-height:1.6; margin:3px 0; color:var(--text-2); }
+  .sidepick { display:block; margin-top:5px; font-size:12px; color:var(--text-2);
     text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .sidepick:hover { color:var(--accent); }
-  footer { color:#62626d; font-size:12.5px; padding:0 0 40px; }
+  .sidepick:hover { color:var(--cyan); }
+  footer { color:var(--text-helper); font-size:13px; padding:0 0 40px; }
   @media (max-width:600px) {
     body { overflow-x:hidden; }
-    header { padding:28px 0 12px; }
+    header { padding:26px 0 0; }
     .platform { padding:6px 16px 44px; }
     .sumrow { flex-direction:column; }
-    .sidelog { flex-basis:auto; width:100%; max-height:260px; }
+    .sidelog { flex-basis:auto; width:100%; max-height:280px; }
     .wrap { padding:0 16px; }
-    .tabs { padding:11px 16px; gap:7px; }
-    .row { grid-template-columns:1fr; gap:12px; }
+    .tabs { padding:0 16px; }
+    .row { grid-template-columns:1fr; }
     .card { display:flex; flex-direction:row; align-items:stretch; }
-    .thumb { width:44%; max-width:170px; flex:0 0 auto; }
-    .body { flex:1; min-width:0; padding:11px 13px; align-self:center; }
+    .thumb { width:44%; max-width:170px; flex:0 0 auto; aspect-ratio:auto; min-height:100px; }
+    .body { flex:1; min-width:0; padding:12px 14px; align-self:center; }
     .title { font-size:14px; -webkit-line-clamp:3; }
     .play { width:38px; height:38px; }
-    .rank { font-size:18px; }
   }
   @media (prefers-reduced-motion:reduce) {
     html { scroll-behavior:auto; } .platform.active .card { animation:none; }
     * { transition:none !important; }
   }
 </style></head><body>
+<svg class="skyline" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#0a0718"><rect x="0" y="150" width="120" height="150"/><rect x="130" y="90" width="80" height="210"/><rect x="220" y="170" width="140" height="130"/><rect x="370" y="60" width="70" height="240"/><rect x="450" y="130" width="110" height="170"/><rect x="575" y="40" width="95" height="260"/><rect x="685" y="160" width="130" height="140"/><rect x="830" y="100" width="75" height="200"/><rect x="915" y="180" width="120" height="120"/><rect x="1050" y="70" width="90" height="230"/><rect x="1155" y="140" width="115" height="160"/><rect x="1285" y="110" width="80" height="190"/><rect x="1375" y="175" width="120" height="125"/></g>
+  <g fill="#ff5fa2" opacity=".7"><rect x="150" y="110" width="6" height="9"/><rect x="168" y="110" width="6" height="9"/><rect x="592" y="70" width="6" height="9"/><rect x="610" y="92" width="6" height="9"/><rect x="1072" y="98" width="6" height="9"/><rect x="1300" y="140" width="6" height="9"/></g>
+  <g fill="#3fd9d0" opacity=".7"><rect x="388" y="90" width="6" height="9"/><rect x="406" y="120" width="6" height="9"/><rect x="850" y="130" width="6" height="9"/><rect x="1178" y="170" width="6" height="9"/></g>
+  <g fill="#ffc24d" opacity=".75"><rect x="190" y="140" width="6" height="9"/><rect x="628" y="60" width="6" height="9"/><rect x="1095" y="120" width="6" height="9"/></g>
+</svg>
 <header><div class="wrap">
-  <h1>🎵 데일리 뮤직 뉴스레터</h1>
   <div class="sub">2026-06-13 · TikTok · Instagram · Reddit · 이번 달 $1.42 / $4.50</div>
+  <h1>데일리 뮤직 뉴스레터</h1>
 </div></header>
-<nav class="navbar"><div class="tabs"><button class="tabbtn active" data-pf="tiktok">🎵 TikTok</button><button class="tabbtn" data-pf="instagram">📸 Instagram</button><button class="tabbtn" data-pf="reddit">👽 Reddit</button></div></nav>
-<main><section class="platform active" id="pf-tiktok"><div class="sumrow"><div class="summary"><div class="shead">📝 오늘의 3줄 요약 · 2026-06-13</div><ul><li>올리비아 로드리고의 신보 소식이 최상위권을 장악하며 오늘 틱톡 음악 담론의 중심축을 이뤘다.</li><li>찰리 푸스·셀레나 고메즈, 리한나 등 2010년대 팝의 향수를 자극하는 스로우백 콘텐츠가 상위권에 고르게 분포하며 레트로 감성의 강세를 확인했다.</li><li>호지어 &quot;Too Sweet&quot;의 가사 편집 영상이 여전히 50만 뷰대를 유지하는 가운데, 컨트리·R&amp;B 신인들의 신곡 반응 요청 게시물이 꾸준히 유입되어 DIY 신예 중심의 저변도 활발하다.</li></ul><a class="pick" href="https://www.tiktok.com/@tehecheyennetehe/video/7650353643614473494" target="_blank" rel="noopener"><span class="ptag">👀 꼭 봐야 할 게시물</span><span class="ptitle">ROCKLIVIA IS SO BACK.
+<nav class="navbar"><div class="tabs"><button class="tabbtn active" data-pf="tiktok"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V4l10-1v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="15" r="3"/></svg>TikTok</button><button class="tabbtn" data-pf="instagram"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram</button><button class="tabbtn" data-pf="reddit"><svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><circle cx="9" cy="12.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="12.5" r="1.1" fill="currentColor" stroke="none"/><path d="M9.5 16c1.5 1 3.5 1 5 0"/><path d="M12 5l1.5-2.5 3 .8"/><circle cx="16.8" cy="3.6" r="1" fill="currentColor" stroke="none"/></svg>Reddit</button></div></nav>
+<main><section class="platform active" id="pf-tiktok"><div class="sumrow"><div class="summary"><div class="shead"><svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>오늘의 3줄 요약 · 2026-06-13</div><ul><li>올리비아 로드리고의 신보 소식이 최상위권을 장악하며 오늘 틱톡 음악 담론의 중심축을 이뤘다.</li><li>찰리 푸스·셀레나 고메즈, 리한나 등 2010년대 팝의 향수를 자극하는 스로우백 콘텐츠가 상위권에 고르게 분포하며 레트로 감성의 강세를 확인했다.</li><li>호지어 &quot;Too Sweet&quot;의 가사 편집 영상이 여전히 50만 뷰대를 유지하는 가운데, 컨트리·R&amp;B 신인들의 신곡 반응 요청 게시물이 꾸준히 유입되어 DIY 신예 중심의 저변도 활발하다.</li></ul><div class="pick"><div class="pickhead"><div class="pickmain"><div class="ptag"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>꼭 봐야 할 게시물 · 눌러서 분석 보기</div><div class="ptitle">ROCKLIVIA IS SO BACK.
 album out everywhere now!! ( I think )
-#oliviarodrigo #you</span><span class="pmeta">✧ ⸆⸉ cheyenne · 올리비아 로드리고의 컴백 앨범 발매 소식을 담은 영상으로, 당일 팬덤 반응과 화제성의 진원지를 한눈에 확인할 수 있다.</span></a></div><aside class="sidelog"><div class="sidehead">📅 지난 요약</div><div class="sidedays"><div class="sideday"><div class="sidedate">2026-06-12</div><ul><li>클래식 팝 콜라보(Charlie Puth × Selena Gomez)가 290만 인기로 전체 목록을 압도하며 노스탤지어 콘텐츠가 오늘의 트래픽을 견인했다.</li><li>스피드업·나이트코어 편집 포맷이 두 영상 합산 230만을 넘기며 원곡 재해석 트렌드가 여전히 강세임을 보여줬다.</li><li>컨트리 신인들의 미발매 트랙 공개와 일렉트로닉 신보 연속 업로드가 맞물려 장르 저변이 눈에 띄게 넓어지고 있다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@nonamemusic07/video/7640679164588084498" target="_blank" rel="noopener">👀 1. We Don&#x27;t Talk Anymore - Charlie Puth, Selena Gomez, Mr. Collipark
-2. Lonely -</a></div><div class="sideday"><div class="sidedate">2026-06-11</div><ul><li>2020년대 팝을 돌아보는 향수 콘텐츠와 스로우백 트렌드가 오늘 피드의 중심축을 이루며 높은 조회수를 견인했다.</li><li>마돈나 신곡부터 인디 싱어송라이터의 공개 미리듣기까지, 메이저와 언더그라운드를 가리지 않는 신보 릴리스 러시가 동시에 포착됐다.</li><li>slowed·펑크·하우스 등 장르 실험이 일상화되는 가운데, 가사 영상 포맷이 중간 규모 조회수를 안정적으로 끌어모으는 패턴이 유지됐다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@j.j49599/video/7644521920351718663" target="_blank" rel="noopener">👀 PT2: Trending Songs Every Year (2026-2020)
+#oliviarodrigo #you</div><div class="pchan">✧ ⸆⸉ cheyenne</div></div><span class="chev">⌄</span></div><div class="panel"><div class="step"><div class="stepnum">왜 골랐나</div><p class="steptext">올리비아 로드리고의 컴백 앨범 발매 소식을 담은 영상으로, 당일 팬덤 반응과 화제성의 진원지를 한눈에 확인할 수 있다.</p></div><a class="picklink" href="https://www.tiktok.com/@tehecheyennetehe/video/7650353643614473494" target="_blank" rel="noopener">원본 게시물 보러 가기 →</a></div></div></div><aside class="sidelog"><div class="sidehead">지난 요약</div><div class="sidedays"><div class="sideday"><div class="sidedate">2026-06-12</div><ul><li>클래식 팝 콜라보(Charlie Puth × Selena Gomez)가 290만 인기로 전체 목록을 압도하며 노스탤지어 콘텐츠가 오늘의 트래픽을 견인했다.</li><li>스피드업·나이트코어 편집 포맷이 두 영상 합산 230만을 넘기며 원곡 재해석 트렌드가 여전히 강세임을 보여줬다.</li><li>컨트리 신인들의 미발매 트랙 공개와 일렉트로닉 신보 연속 업로드가 맞물려 장르 저변이 눈에 띄게 넓어지고 있다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@nonamemusic07/video/7640679164588084498" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>1. We Don&#x27;t Talk Anymore - Charlie Puth, Selena Gomez, Mr. Collipark
+2. Lonely -</a></div><div class="sideday"><div class="sidedate">2026-06-11</div><ul><li>2020년대 팝을 돌아보는 향수 콘텐츠와 스로우백 트렌드가 오늘 피드의 중심축을 이루며 높은 조회수를 견인했다.</li><li>마돈나 신곡부터 인디 싱어송라이터의 공개 미리듣기까지, 메이저와 언더그라운드를 가리지 않는 신보 릴리스 러시가 동시에 포착됐다.</li><li>slowed·펑크·하우스 등 장르 실험이 일상화되는 가운데, 가사 영상 포맷이 중간 규모 조회수를 안정적으로 끌어모으는 패턴이 유지됐다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@j.j49599/video/7644521920351718663" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>PT2: Trending Songs Every Year (2026-2020)
 .
 .
 .
 #Songs
 #Music
 #Nostalgic
-#Pande</a></div><div class="sideday"><div class="sidedate">2026-06-10</div><ul><li>슬로우드·리버브와 스피드업(나이트코어) 필터 편집곡이 오늘 바이럴 상위권을 양분하며 음원 소비의 두 축을 뚜렷이 갈랐다.</li><li>펑크·포닉 장르가 중간 구간 트렌드를 받쳐주며 저음 기반 사운드에 대한 꾸준한 수요를 확인시켰다.</li><li>Sinéad Harnett, rocco, Naty 등 여러 아티스트가 6월 말 신곡 프리세이브·선공개를 동시에 밀어내며 릴리즈 러시가 시작되는 흐름이다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@02h.frost/video/7640726960544451848" target="_blank" rel="noopener">👀 worry &gt;&gt;&gt; Spotify playlist in bio! #songs #slowedsongs #funk #fyp #slowed</a></div><div class="sideday"><div class="sidedate">2026-06-09</div><ul><li>오늘 차트는 마이클 잭슨 원본 보컬 클립 하나가 2,100만 뷰로 압도적인 격차를 내며 레전드 향수 소비가 얼마나 강한지를 다시 증명했다.</li><li>신인 Sienna Spiro가 &quot;song of the summer&quot; 프레이밍으로 두 개의 별도 계정에서 동시 바이럴되며 조직적 팬덤 드리블 전략이 가시화됐다.</li><li>슬로우드·리버브 포맷은 펑크·펀자비·브레가까지 장르를 가리지 않고 중위권 조회수를 안정적으로 채우며 여전히 틱톡의 기본 편집 문법으로 작동 중이다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@lininvrfmia/video/7638582080409996575" target="_blank" rel="noopener">👀 Raw voice, pure legend—Michael Jackson shines even without any effects.#MichaelJ</a></div><div class="sideday"><div class="sidedate">2026-06-08</div><ul><li>신스팝·신스웨이브·80년대 레트로 사운드가 피드 전반을 장악하며 복고 열기가 압도적으로 높았다.</li><li>수백만~수천만 뷰를 기록한 상위권은 프로듀서의 감성적 팬 소통·밈·셀럽 티저가 이끌었고, 중위권은 비기너 대상 제작 튜토리얼이 촘촘히 채웠다.</li><li>여성 프로듀서 콘텐츠가 여러 편 동시에 부상하면서 프로듀서 다양성 담론이 가시화되는 흐름도 포착됐다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@king80industries/video/7525177704816102711" target="_blank" rel="noopener">👀 How to produce synth pop with a hint of post punk like Artemas and New Order 
+#Pande</a></div><div class="sideday"><div class="sidedate">2026-06-10</div><ul><li>슬로우드·리버브와 스피드업(나이트코어) 필터 편집곡이 오늘 바이럴 상위권을 양분하며 음원 소비의 두 축을 뚜렷이 갈랐다.</li><li>펑크·포닉 장르가 중간 구간 트렌드를 받쳐주며 저음 기반 사운드에 대한 꾸준한 수요를 확인시켰다.</li><li>Sinéad Harnett, rocco, Naty 등 여러 아티스트가 6월 말 신곡 프리세이브·선공개를 동시에 밀어내며 릴리즈 러시가 시작되는 흐름이다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@02h.frost/video/7640726960544451848" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>worry &gt;&gt;&gt; Spotify playlist in bio! #songs #slowedsongs #funk #fyp #slowed</a></div><div class="sideday"><div class="sidedate">2026-06-09</div><ul><li>오늘 차트는 마이클 잭슨 원본 보컬 클립 하나가 2,100만 뷰로 압도적인 격차를 내며 레전드 향수 소비가 얼마나 강한지를 다시 증명했다.</li><li>신인 Sienna Spiro가 &quot;song of the summer&quot; 프레이밍으로 두 개의 별도 계정에서 동시 바이럴되며 조직적 팬덤 드리블 전략이 가시화됐다.</li><li>슬로우드·리버브 포맷은 펑크·펀자비·브레가까지 장르를 가리지 않고 중위권 조회수를 안정적으로 채우며 여전히 틱톡의 기본 편집 문법으로 작동 중이다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@lininvrfmia/video/7638582080409996575" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Raw voice, pure legend—Michael Jackson shines even without any effects.#MichaelJ</a></div><div class="sideday"><div class="sidedate">2026-06-08</div><ul><li>신스팝·신스웨이브·80년대 레트로 사운드가 피드 전반을 장악하며 복고 열기가 압도적으로 높았다.</li><li>수백만~수천만 뷰를 기록한 상위권은 프로듀서의 감성적 팬 소통·밈·셀럽 티저가 이끌었고, 중위권은 비기너 대상 제작 튜토리얼이 촘촘히 채웠다.</li><li>여성 프로듀서 콘텐츠가 여러 편 동시에 부상하면서 프로듀서 다양성 담론이 가시화되는 흐름도 포착됐다.</li></ul><a class="sidepick" href="https://www.tiktok.com/@king80industries/video/7525177704816102711" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>How to produce synth pop with a hint of post punk like Artemas and New Order 
 
 #</a></div><div class="sideday"><div class="sidedate">2026-06-07</div><ul><li>가장 화제: &#x27;Smalltown Boy — Bronski Beat
-#BronskiBeat #Small&#x27; — 80’s music (재생 925,000)</li><li>오늘 16건 수집 · 평균 재생 197,723 · 최고 925,000</li><li>자주 등장: silence, enjoy, musicproduction, synth</li></ul></div></div></aside></div><h2 class="vhead">🆕 최근 인기</h2><div class="row"><a class="card" style="--i:1" href="https://www.tiktok.com/@tehecheyennetehe/video/7650353643614473494" target="_blank" rel="noopener">
+#BronskiBeat #Small&#x27; — 80’s music (재생 925,000)</li><li>오늘 16건 수집 · 평균 재생 197,723 · 최고 925,000</li><li>자주 등장: silence, enjoy, musicproduction, synth</li></ul></div></div></aside></div><h2 class="vhead"><svg class="hic hic-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.3 6.3l2.1 2.1M15.6 15.6l2.1 2.1M17.7 6.3l-2.1 2.1M8.4 15.6l-2.1 2.1"/></svg>최근 인기</h2><div class="row"><a class="card" style="--i:1" href="https://www.tiktok.com/@tehecheyennetehe/video/7650353643614473494" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-no1a-p-0037-no/oIIAHiC7CEJfs4FyE1twAlyr2jICIqV0Bchxiw~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781478000&amp;x-signature=oRNhKONzI3bwMCuWOfxQgZaIMWQ%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="ROCKLIVIA IS SO BACK.
 album out everywhere now!! ( I think )
 #oliviarodrigo #youseemprettysadforagirsolinlove #newmusic #GUTS #SOUR @livies hq 🩷 @Olivia Rodrigo 
@@ -178,10 +213,10 @@ Rocklivia
 Pop rock
 New music 
 Drop dead
-The cure " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+The cure " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">1</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">ROCKLIVIA IS SO BACK.
 album out everywhere now!! ( I think )
@@ -204,63 +239,63 @@ Drop dead
 The cure </div>
         <div class="channel">✧ ⸆⸉ cheyenne</div><div class="meta">2026-06-12 · 재생 1,200,000</div></div>
     </a><a class="card" style="--i:2" href="https://www.tiktok.com/@ourplayylistt/video/7648816352811044104" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/o077oGIxAAYJAdAvEsARJufnewuAGnegcAZf4A~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781391600&amp;x-signature=rXF6lzTBphnSphMbdDrk5KYY9PE%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="Let the world burn &gt; #song #mytypemusic #foryoupage #fyp #vibes " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/o077oGIxAAYJAdAvEsARJufnewuAGnegcAZf4A~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781391600&amp;x-signature=rXF6lzTBphnSphMbdDrk5KYY9PE%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="Let the world burn &gt; #song #mytypemusic #foryoupage #fyp #vibes " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">2</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">Let the world burn &gt; #song #mytypemusic #foryoupage #fyp #vibes </div>
         <div class="channel">ourplaylist</div><div class="meta">2026-06-08 · 재생 600,500</div></div>
     </a><a class="card" style="--i:3" href="https://www.tiktok.com/@cody.jpg/video/7650174228225871122" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/ooIN4XgAofAW8QcgiYjKfV8LRHMjDCigOIeUur~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781478000&amp;x-signature=yr9qMg4rnaalnDS%2FESA%2FLMZ69BM%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="ruined my month.                                                                                                                                                               #oliviarodrigo #newalbum #youlookprettysadforagirlsoinlove #music " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/ooIN4XgAofAW8QcgiYjKfV8LRHMjDCigOIeUur~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781478000&amp;x-signature=yr9qMg4rnaalnDS%2FESA%2FLMZ69BM%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="ruined my month.                                                                                                                                                               #oliviarodrigo #newalbum #youlookprettysadforagirlsoinlove #music " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">3</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">ruined my month.                                                                                                                                                               #oliviarodrigo #newalbum #youlookprettysadforagirlsoinlove #music </div>
         <div class="channel">cody.jpg</div><div class="meta">2026-06-11 · 재생 548,300</div></div>
     </a><a class="card" style="--i:4" href="https://www.tiktok.com/@ell8qrs/video/7650262757844995335" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/oEvSEaXIvs5iiAwi3BB8xAYdBAXXrEMTEVEmI~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781478000&amp;x-signature=k9qn5lHE7%2BB6jag%2BLw%2BaVyKze3s%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="my way- olivia rodrigo YAY NEW OLIVIA SONGS#yspsfagsil #oliviarodrigo #newalbum #newmusicfriday #myway " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/oEvSEaXIvs5iiAwi3BB8xAYdBAXXrEMTEVEmI~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781478000&amp;x-signature=k9qn5lHE7%2BB6jag%2BLw%2BaVyKze3s%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="my way- olivia rodrigo YAY NEW OLIVIA SONGS#yspsfagsil #oliviarodrigo #newalbum #newmusicfriday #myway " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">4</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">my way- olivia rodrigo YAY NEW OLIVIA SONGS#yspsfagsil #oliviarodrigo #newalbum #newmusicfriday #myway </div>
         <div class="channel">elly</div><div class="meta">2026-06-11 · 재생 297,400</div></div>
     </a><a class="card" style="--i:5" href="https://www.tiktok.com/@joshfawaz/video/7649104629518716168" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/oUFQDSSqJAKIBDRGEqkxQRFBUOnfQPDfEFggQD~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781305200&amp;x-signature=Gi3aUqCTm%2FVXntoNbGOSihNDtgQ%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="Think this is ready fam? Lmk in the comments pls❤️‍🔥 #newmusic #housemusic #musicheals #dancemusic #joshfawaz " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/oUFQDSSqJAKIBDRGEqkxQRFBUOnfQPDfEFggQD~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781305200&amp;x-signature=Gi3aUqCTm%2FVXntoNbGOSihNDtgQ%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="Think this is ready fam? Lmk in the comments pls❤️‍🔥 #newmusic #housemusic #musicheals #dancemusic #joshfawaz " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">5</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">Think this is ready fam? Lmk in the comments pls❤️‍🔥 #newmusic #housemusic #musicheals #dancemusic #joshfawaz </div>
         <div class="channel">josh fawaz</div><div class="meta">2026-06-08 · 재생 286,000</div></div>
-    </a></div><h2 class="vhead">🔥 전체 인기</h2><div class="row"><a class="card" style="--i:6" href="https://www.tiktok.com/@lininvrfmia/video/7638582080409996575" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast8-p-0068-tx2/oAEiiAayQRj1AEjI2DE0RZPgBAB6iHBAs8VGI~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781132400&amp;x-signature=bAqmdBM0fCzq59gSlSqGgwvGbGs%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="Raw voice, pure legend—Michael Jackson shines even without any effects.#MichaelJackson #Acapella #NoAutotune #PureTalent #MusicLegend" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+    </a></div><h2 class="vhead"><svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 3-2 4.2-2 7a2.5 2.5 0 0 0 5 0c0-.8-.3-1.5-.7-2 2.2 1.2 3.7 3.5 3.7 6.2a6 6 0 0 1-12 0c0-3.3 2.3-5.2 4-7.2 1-1.2 2-2.6 2-4z"/></svg>전체 인기</h2><div class="row"><a class="card" style="--i:6" href="https://www.tiktok.com/@lininvrfmia/video/7638582080409996575" target="_blank" rel="noopener">
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast8-p-0068-tx2/oAEiiAayQRj1AEjI2DE0RZPgBAB6iHBAs8VGI~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781132400&amp;x-signature=bAqmdBM0fCzq59gSlSqGgwvGbGs%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="Raw voice, pure legend—Michael Jackson shines even without any effects.#MichaelJackson #Acapella #NoAutotune #PureTalent #MusicLegend" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">6</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">Raw voice, pure legend—Michael Jackson shines even without any effects.#MichaelJackson #Acapella #NoAutotune #PureTalent #MusicLegend</div>
-        <div class="channel">vibehunter_m</div><div class="meta">재생 21,400,000 · 💬 2,200,000</div></div>
+        <div class="channel">vibehunter_m</div><div class="meta">재생 21,400,000 · 좋아요 2,200,000</div></div>
     </a><a class="card" style="--i:7" href="https://www.tiktok.com/@pinkpantheress/video/7615412909312707862" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-p-0037-no/ogfIY2FkrCFFqHIEAIeAhAAWFjHgcpxxDERvEC~tplv-tiktokx-origin.image?dr=10395&amp;x-expires=1781017200&amp;x-signature=1EveNr%2F1A9t36jEsFdhl6JZcvf8%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=no1a" loading="lazy" alt="i love to produce❤️thank you for being so lovely to me🥹shoutout askel arvid and panic at the disco also #tonight " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-p-0037-no/ogfIY2FkrCFFqHIEAIeAhAAWFjHgcpxxDERvEC~tplv-tiktokx-origin.image?dr=10395&amp;x-expires=1781017200&amp;x-signature=1EveNr%2F1A9t36jEsFdhl6JZcvf8%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=no1a" loading="lazy" alt="i love to produce❤️thank you for being so lovely to me🥹shoutout askel arvid and panic at the disco also #tonight " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">7</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">i love to produce❤️thank you for being so lovely to me🥹shoutout askel arvid and panic at the disco also #tonight </div>
-        <div class="channel">😘🙈☺️</div><div class="meta">재생 10,900,000 · 💬 1,900,000</div></div>
+        <div class="channel">😘🙈☺️</div><div class="meta">재생 10,900,000 · 좋아요 1,900,000</div></div>
     </a><a class="card" style="--i:8" href="https://www.tiktok.com/@xiaomansounds/video/7320684983658482950" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-eu.com/tos-maliva-p-0068/oMPqIiLIBQAYi60TbyEDaZUTP5AZEdTSoBsh3~tplv-tiktokx-origin.image?dr=10395&amp;x-expires=1781017200&amp;x-signature=31Gp11Ril4c2CUgRueLp83UVVCI%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=no1a" loading="lazy" alt="@Jan Metternich why you lying 😭
-#musicproduction #musicproducermeme #musicproducermemes #producer #producermemes #producerme #flstudio #flstudiotutorial #flstudiomemes #flstudiomeme #beatmakingmemes #makingbeats " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+#musicproduction #musicproducermeme #musicproducermemes #producer #producermemes #producerme #flstudio #flstudiotutorial #flstudiomemes #flstudiomeme #beatmakingmemes #makingbeats " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">8</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">@Jan Metternich why you lying 😭
 #musicproduction #musicproducermeme #musicproducermemes #producer #producermemes #producerme #flstudio #flstudiotutorial #flstudiomemes #flstudiomeme #beatmakingmemes #makingbeats </div>
-        <div class="channel">XIAOMAN</div><div class="meta">재생 10,100,000 · 💬 468,100</div></div>
+        <div class="channel">XIAOMAN</div><div class="meta">재생 10,100,000 · 좋아요 468,100</div></div>
     </a><a class="card" style="--i:9" href="https://www.tiktok.com/@j.j49599/video/7644521920351718663" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/okuWh0eIkfGOAInImFLoAzIGAeQLvGKDeyWRt7~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781305200&amp;x-signature=m5mjNQ6CCXHHnQp7%2Fogpw2H3r5U%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="PT2: Trending Songs Every Year (2026-2020)
 .
@@ -270,10 +305,10 @@ The cure </div>
 #Music
 #Nostalgic
 #Pandemic
-#FYP" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+#FYP" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">9</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">PT2: Trending Songs Every Year (2026-2020)
 .
@@ -284,7 +319,7 @@ The cure </div>
 #Nostalgic
 #Pandemic
 #FYP</div>
-        <div class="channel">SEA</div><div class="meta">재생 5,200,000 · 💬 591,300</div></div>
+        <div class="channel">SEA</div><div class="meta">재생 5,200,000 · 좋아요 591,300</div></div>
     </a><a class="card" style="--i:10" href="https://www.tiktok.com/@nonamemusic07/video/7640679164588084498" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/ocAJkSwBfAEyn4EWBBI1QTA8JiAqiC2oqItIi1~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781391600&amp;x-signature=N8q4ABW7zf47HJs3fDOrmiJFRHE%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="1. We Don&#x27;t Talk Anymore - Charlie Puth, Selena Gomez, Mr. Collipark
 2. Lonely - Nana
@@ -298,10 +333,10 @@ The cure </div>
 10. Baby - Justin Bieber, Ludacris
 11. Una Mattina - Papa Tin
 12. Closer - The Chainsmokers, Halsey
-🎶Nhắm Mắt lại và Nên Đeo Tai Nghe Vào Để Cảm Nhận Tốt Nhất 🎧 - 🎶 Close Your Eyes And Use Headphones For Better Experience🔥#nonamemusic #nhacnaychillphet #nhachaymoingay #8dmusic #aveeplayer " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+🎶Nhắm Mắt lại và Nên Đeo Tai Nghe Vào Để Cảm Nhận Tốt Nhất 🎧 - 🎶 Close Your Eyes And Use Headphones For Better Experience🔥#nonamemusic #nhacnaychillphet #nhachaymoingay #8dmusic #aveeplayer " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">10</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">1. We Don&#x27;t Talk Anymore - Charlie Puth, Selena Gomez, Mr. Collipark
 2. Lonely - Nana
@@ -316,16 +351,16 @@ The cure </div>
 11. Una Mattina - Papa Tin
 12. Closer - The Chainsmokers, Halsey
 🎶Nhắm Mắt lại và Nên Đeo Tai Nghe Vào Để Cảm Nhận Tốt Nhất 🎧 - 🎶 Close Your Eyes And Use Headphones For Better Experience🔥#nonamemusic #nhacnaychillphet #nhachaymoingay #8dmusic #aveeplayer </div>
-        <div class="channel">🎶🎶NoNameMusic🎶🎶</div><div class="meta">재생 2,900,000 · 💬 240,600</div></div>
-    </a></div><h2 class="vhead">📈 뜨는 중</h2><div class="row"><a class="card" style="--i:11" href="https://www.tiktok.com/@karaholtmusic/video/7647977616514878751" target="_blank" rel="noopener">
+        <div class="channel">🎶🎶NoNameMusic🎶🎶</div><div class="meta">재생 2,900,000 · 좋아요 240,600</div></div>
+    </a></div><h2 class="vhead"><svg class="hic hic-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 7h4v4"/></svg>뜨는 중</h2><div class="row"><a class="card" style="--i:11" href="https://www.tiktok.com/@karaholtmusic/video/7647977616514878751" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast8-p-0068-tx2/oEWZmAEURAffIWtAQeRiBjJEq2G8QBcAI96AIM~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781132400&amp;x-signature=oaIIEK6Mp6TnLfNMGWaQ9XwbCyI%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="Should I release this one? 🤔 
 
 New song “I Did It Tired”
 
-#emotional #country #soul #singer #newsong " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+#emotional #country #soul #singer #newsong " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">11</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">Should I release this one? 🤔 
 
@@ -334,28 +369,28 @@ New song “I Did It Tired”
 #emotional #country #soul #singer #newsong </div>
         <div class="channel">Kara Holt</div><div class="meta"><b>+300,000</b> 재생 · 누적 1,700,000</div></div>
     </a><a class="card" style="--i:12" href="https://www.tiktok.com/@artist.lara/video/7640068229448174881" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-useast2a-p-0037-euttp/osQIJ8ezIvXRYGGGVNAGeNkGKtALC6fAEfHoQz~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781305200&amp;x-signature=BSCML%2Bi0MXoXm8VQzv2AiaL3yzY%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="Moments that created the most Famous Songs in History #usa #music #songs " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+      <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-useast2a-p-0037-euttp/osQIJ8ezIvXRYGGGVNAGeNkGKtALC6fAEfHoQz~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781305200&amp;x-signature=BSCML%2Bi0MXoXm8VQzv2AiaL3yzY%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="Moments that created the most Famous Songs in History #usa #music #songs " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">12</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">Moments that created the most Famous Songs in History #usa #music #songs </div>
         <div class="channel">Artist Lara</div><div class="meta"><b>+49,400</b> 재생 · 누적 189,800</div></div>
     </a><a class="card" style="--i:13" href="https://www.tiktok.com/@theonlymajed/video/7649074818989444365" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oskROmFIuQAfGAeJfM8JNeAXCAI9FJGBoItGAL~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781218800&amp;x-signature=9I6iM%2B2f58Nw7b71vCKLBcEn0BU%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="#electronicmusic #newmusic " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+      <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oskROmFIuQAfGAeJfM8JNeAXCAI9FJGBoItGAL~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1781218800&amp;x-signature=9I6iM%2B2f58Nw7b71vCKLBcEn0BU%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="#electronicmusic #newmusic " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">13</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">#electronicmusic #newmusic </div>
         <div class="channel">majed ماجد</div><div class="meta"><b>+31,200</b> 재생 · 누적 213,400</div></div>
     </a><a class="card" style="--i:14" href="https://www.tiktok.com/@shonci/video/7647636489064582420" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://p16-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/osOIQiPiaA5Yg4KEHzblAvEAABA5ihvp3cAiB~tplv-tiktokx-dmt-logom:tos-alisg-i-0068/ogz5kAKB1B3835hiiAAO2AEcCAahfEMwmIIOAx.image?dr=9634&amp;x-expires=1780995600&amp;x-signature=SNID0PgmHOPrXZD4Gvy4GENXAi0%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast8" loading="lazy" alt="collab w/ @shiv LARP type beat #housemusic #jazz #flstudio 
 
-FL Studio is a music production software (DAW) where producers build beats from scratch using drums, melodies, samples, plugins, and effects. It’s basically the full studio on your laptop. You can record, arrange, mix, and master everything in one place." onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+FL Studio is a music production software (DAW) where producers build beats from scratch using drums, melodies, samples, plugins, and effects. It’s basically the full studio on your laptop. You can record, arrange, mix, and master everything in one place." onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">14</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">collab w/ @shiv LARP type beat #housemusic #jazz #flstudio 
 
@@ -364,29 +399,29 @@ FL Studio is a music production software (DAW) where producers build beats from 
     </a><a class="card" style="--i:15" href="https://www.tiktok.com/@kwv.official/video/7647854463608294677" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/o0gJ5CcDqBoeuJpFEjTqFAIWEBqifILghRIz87~tplv-tiktokx-origin.image?dr=9636&amp;x-expires=1780995600&amp;x-signature=tKe5D1IRLG1an5a%2FpUKnbRJ1GQc%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=81f88b70&amp;shcp=43f4a2f9&amp;idc=useast5" loading="lazy" alt="Tokyo Midnight
 ​#BronskiBeat​#80sVibes
-​#SynthPop@Ken&#x27;s World Vibes @Ken&#x27;s World Vibes @Ken&#x27;s World Vibes " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">🎵</span>
+​#SynthPop@Ken&#x27;s World Vibes @Ken&#x27;s World Vibes @Ken&#x27;s World Vibes " onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">15</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">🎵 TikTok</span>
+        <span class="tag">TikTok</span>
       </div>
       <div class="body"><div class="title">Tokyo Midnight
 ​#BronskiBeat​#80sVibes
 ​#SynthPop@Ken&#x27;s World Vibes @Ken&#x27;s World Vibes @Ken&#x27;s World Vibes </div>
         <div class="channel">Ken&#x27;s World Vibes</div><div class="meta"><b>+3,700</b> 재생 · 누적 42,400</div></div>
-    </a></div></section><section class="platform" id="pf-instagram"><div class="sumrow"><div class="summary"><div class="shead">📝 오늘의 3줄 요약 · 2026-06-13</div><ul><li>독립 아티스트들의 첫 정규 앨범 발매 소식이 오늘 하루를 관통하며 자립 릴리즈 흐름이 뚜렷했다.</li><li>힙합·랩 씬에서는 신보 예고와 자기 홍보 게시물이 잇따르며 언더그라운드 경쟁이 치열하게 펼쳐졌다.</li><li>한정판 바이닐과 엘비스 팬 콘텐츠가 공존하며 아날로그·레거시 감성도 꾸준히 자리를 지켰다.</li></ul><a class="pick" href="https://www.instagram.com/p/DZgMfUIOKnW/" target="_blank" rel="noopener"><span class="ptag">👀 꼭 봐야 할 게시물</span><span class="ptitle">After all these years, we’ve finally released our first ever fully original albu</span><span class="pmeta">jeddismith · 오늘 유일하게 의미 있는 반응을 얻은 게시물로, 독립 아티스트가 첫 오리지널 정규 앨범을 발매한 이정표적 순간이다.</span></a></div><aside class="sidelog"><div class="sidehead">📅 지난 요약</div><div class="sidedays"><div class="sideday"><div class="sidedate">2026-06-12</div><ul><li>신인·인디 아티스트들의 신곡·앨범 릴리즈 러시가 두드러지며, 하루 사이에 다수의 출시 선언이 쏟아졌다.</li><li>라이브 무대와 배틀 오브 더 밴드 결승 등 오프라인 공연 에너지도 함께 부상하고 있다.</li><li>재즈·클래식 편성과 라틴 리듬이 나란히 등장해 장르 다양성이 고루 포착된 날이었다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZdph-ugcDG/" target="_blank" rel="noopener">👀 Roger Taylor, baterista de Queen, anunció Violence Insane In A Beautiful World, </a></div><div class="sideday"><div class="sidedate">2026-06-11</div><ul><li>이번 주 금요일 midwxst의 &#x27;GRAIL&#x27; 드롭을 필두로 정식 발매 직전 버즈를 노린 선공개 전략이 피드를 주도했다.</li><li>luimid의 &quot;in2losin&quot;처럼 플랫폼 출시 전 SNS 선점으로 기대감을 쌓는 인디 아티스트들의 D2F 접근이 뚜렷하게 관찰됐다.</li><li>이메일 리스트·소규모 EP 티저 등 팬과의 직접 연결 채널을 구축하려는 움직임이 오늘 게시물 전반에 걸쳐 나타났다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZa-WRTjrrp/" target="_blank" rel="noopener">👀 GRAIL FINALLY DROPPING THIS FRIDAY LETS GOOOOOOOOOO
+    </a></div></section><section class="platform" id="pf-instagram"><div class="sumrow"><div class="summary"><div class="shead"><svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>오늘의 3줄 요약 · 2026-06-13</div><ul><li>독립 아티스트들의 첫 정규 앨범 발매 소식이 오늘 하루를 관통하며 자립 릴리즈 흐름이 뚜렷했다.</li><li>힙합·랩 씬에서는 신보 예고와 자기 홍보 게시물이 잇따르며 언더그라운드 경쟁이 치열하게 펼쳐졌다.</li><li>한정판 바이닐과 엘비스 팬 콘텐츠가 공존하며 아날로그·레거시 감성도 꾸준히 자리를 지켰다.</li></ul><div class="pick"><div class="pickhead"><div class="pickmain"><div class="ptag"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>꼭 봐야 할 게시물 · 눌러서 분석 보기</div><div class="ptitle">After all these years, we’ve finally released our first ever fully original albu</div><div class="pchan">jeddismith</div></div><span class="chev">⌄</span></div><div class="panel"><div class="step"><div class="stepnum">왜 골랐나</div><p class="steptext">오늘 유일하게 의미 있는 반응을 얻은 게시물로, 독립 아티스트가 첫 오리지널 정규 앨범을 발매한 이정표적 순간이다.</p></div><a class="picklink" href="https://www.instagram.com/p/DZgMfUIOKnW/" target="_blank" rel="noopener">원본 게시물 보러 가기 →</a></div></div></div><aside class="sidelog"><div class="sidehead">지난 요약</div><div class="sidedays"><div class="sideday"><div class="sidedate">2026-06-12</div><ul><li>신인·인디 아티스트들의 신곡·앨범 릴리즈 러시가 두드러지며, 하루 사이에 다수의 출시 선언이 쏟아졌다.</li><li>라이브 무대와 배틀 오브 더 밴드 결승 등 오프라인 공연 에너지도 함께 부상하고 있다.</li><li>재즈·클래식 편성과 라틴 리듬이 나란히 등장해 장르 다양성이 고루 포착된 날이었다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZdph-ugcDG/" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Roger Taylor, baterista de Queen, anunció Violence Insane In A Beautiful World, </a></div><div class="sideday"><div class="sidedate">2026-06-11</div><ul><li>이번 주 금요일 midwxst의 &#x27;GRAIL&#x27; 드롭을 필두로 정식 발매 직전 버즈를 노린 선공개 전략이 피드를 주도했다.</li><li>luimid의 &quot;in2losin&quot;처럼 플랫폼 출시 전 SNS 선점으로 기대감을 쌓는 인디 아티스트들의 D2F 접근이 뚜렷하게 관찰됐다.</li><li>이메일 리스트·소규모 EP 티저 등 팬과의 직접 연결 채널을 구축하려는 움직임이 오늘 게시물 전반에 걸쳐 나타났다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZa-WRTjrrp/" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>GRAIL FINALLY DROPPING THIS FRIDAY LETS GOOOOOOOOOO
 
-#midwxst #fyp #newmusic #in</a></div><div class="sideday"><div class="sidedate">2026-06-10</div><ul><li>오늘 피드는 일렉트로닉 셀렉터·삼바·오페라·트랩·크리스천 팝까지 장르 스펙트럼이 이례적으로 넓게 펼쳐졌다.</li><li>지역 공연 안내, 보조금 수혜, 신보 예고 등 커뮤니티 밀착형 소규모 음악 활동 소식이 피드의 절반 이상을 채웠다.</li><li>참여 지표 상위권은 셀렉터 큐레이션과 삼바 이벤트가 독점해, 현장감과 &#x27;발굴&#x27;의 서사가 반응을 만들어내고 있다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZYZfv5mvHR/" target="_blank" rel="noopener">👀 @iean668 
+#midwxst #fyp #newmusic #in</a></div><div class="sideday"><div class="sidedate">2026-06-10</div><ul><li>오늘 피드는 일렉트로닉 셀렉터·삼바·오페라·트랩·크리스천 팝까지 장르 스펙트럼이 이례적으로 넓게 펼쳐졌다.</li><li>지역 공연 안내, 보조금 수혜, 신보 예고 등 커뮤니티 밀착형 소규모 음악 활동 소식이 피드의 절반 이상을 채웠다.</li><li>참여 지표 상위권은 셀렉터 큐레이션과 삼바 이벤트가 독점해, 현장감과 &#x27;발굴&#x27;의 서사가 반응을 만들어내고 있다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZYZfv5mvHR/" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>@iean668 
 
-IEAN is a music selector who finds inspiration in the connection betw</a></div><div class="sideday"><div class="sidedate">2026-06-09</div><ul><li>신인·인디 아티스트들이 첫 싱글 발매와 스튜디오 티저를 잇달아 올리며 &#x27;새 음악 예고&#x27; 분위기가 지배적이다.</li><li>컨트리·얼터너티브 록·프랑스어 랩까지 장르 스펙트럼이 넓고, 라이브 공연과 페스티벌 소식도 함께 섞여 오프라인 활동이 다시 활발해지는 흐름이 보인다.</li><li>Lizzo 관련 게시물이 두 개 등장하며 팬덤이 여전히 자발적으로 콘텐츠를 재생산하고 있음을 확인할 수 있다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZV7H-vgS82/" target="_blank" rel="noopener">👀 I&#x27;m just going to leave this right here...
+IEAN is a music selector who finds inspiration in the connection betw</a></div><div class="sideday"><div class="sidedate">2026-06-09</div><ul><li>신인·인디 아티스트들이 첫 싱글 발매와 스튜디오 티저를 잇달아 올리며 &#x27;새 음악 예고&#x27; 분위기가 지배적이다.</li><li>컨트리·얼터너티브 록·프랑스어 랩까지 장르 스펙트럼이 넓고, 라이브 공연과 페스티벌 소식도 함께 섞여 오프라인 활동이 다시 활발해지는 흐름이 보인다.</li><li>Lizzo 관련 게시물이 두 개 등장하며 팬덤이 여전히 자발적으로 콘텐츠를 재생산하고 있음을 확인할 수 있다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZV7H-vgS82/" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>I&#x27;m just going to leave this right here...
 
-#CountryMusic #InTheStudio #NewMusic</a></div><div class="sideday"><div class="sidedate">2026-06-08</div><ul><li>오늘 피드는 신스팝·콜드웨이브 계열 콘텐츠가 복수의 계정에서 동시에 올라오며 80년대 전자음악 부활 흐름이 여전히 현재 진행 중임을 확인시킨다.</li><li>힙합·트랩 프로듀서들의 홈 스튜디오 업그레이드나 곡 납품 달성 등 개인 성장 서사가 브랜딩 콘텐츠로 다수 등장해 DIY 프로덕션 문화의 저변을 보여준다.</li><li>Bjooks 킥스타터가 700명 이상 후원자로 마감되며 실물 음악 미디어에 대한 팬덤의 구매력이 여전히 건재함을 입증했다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZTQB32lJYJ/" target="_blank" rel="noopener">👀 🎹 **Happy Birthday to &quot;The Controller&quot;: Celebrating Nick Rhodes!** 🎹
+#CountryMusic #InTheStudio #NewMusic</a></div><div class="sideday"><div class="sidedate">2026-06-08</div><ul><li>오늘 피드는 신스팝·콜드웨이브 계열 콘텐츠가 복수의 계정에서 동시에 올라오며 80년대 전자음악 부활 흐름이 여전히 현재 진행 중임을 확인시킨다.</li><li>힙합·트랩 프로듀서들의 홈 스튜디오 업그레이드나 곡 납품 달성 등 개인 성장 서사가 브랜딩 콘텐츠로 다수 등장해 DIY 프로덕션 문화의 저변을 보여준다.</li><li>Bjooks 킥스타터가 700명 이상 후원자로 마감되며 실물 음악 미디어에 대한 팬덤의 구매력이 여전히 건재함을 입증했다.</li></ul><a class="sidepick" href="https://www.instagram.com/p/DZTQB32lJYJ/" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>🎹 **Happy Birthday to &quot;The Controller&quot;: Celebrating Nick Rhodes!** 🎹
 
-Today, Jun</a></div><div class="sideday"><div class="sidedate">2026-06-07</div><ul><li>가장 화제: &#x27;@nuovotestamento.band show in Bochum last night &#x27; — zombrina.roxx (좋아요 40)</li><li>오늘 18건 수집 · 평균 좋아요 3 · 최고 40</li><li>자주 등장: musicproducer, synthpop, release, dreamsliv</li></ul></div></div></aside></div><h2 class="vhead">🆕 최근 인기</h2><div class="row"><a class="card" style="--i:1" href="https://www.instagram.com/p/DZSiRflDiGp/" target="_blank" rel="noopener">
+Today, Jun</a></div><div class="sideday"><div class="sidedate">2026-06-07</div><ul><li>가장 화제: &#x27;@nuovotestamento.band show in Bochum last night &#x27; — zombrina.roxx (좋아요 40)</li><li>오늘 18건 수집 · 평균 좋아요 3 · 최고 40</li><li>자주 등장: musicproducer, synthpop, release, dreamsliv</li></ul></div></div></aside></div><h2 class="vhead"><svg class="hic hic-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.3 6.3l2.1 2.1M15.6 15.6l2.1 2.1M17.7 6.3l-2.1 2.1M8.4 15.6l-2.1 2.1"/></svg>최근 인기</h2><div class="row"><a class="card" style="--i:1" href="https://www.instagram.com/p/DZSiRflDiGp/" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://scontent-otp1-1.cdninstagram.com/v/t51.82787-15/719099283_18594091552036436_857159393194482027_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ig_cache_key=MzkxNDM0MTc2MTg1ODU0NDA0MQ%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&amp;_nc_ohc=pvtR5mQ9n8YQ7kNvwEZ2V4u&amp;_nc_oc=AdqGp2FO2OSkkcCvSY7T1ZTdOrcig7NRO-X49wN4Swr6m3qxlyDJiRjRXLP5s_jOi-E&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;se=7&amp;_nc_ht=scontent-otp1-1.cdninstagram.com&amp;_nc_gid=lQnj7BbGCG43IOnEkeY_Ng&amp;_nc_ss=7a3ba&amp;oh=00_Af9_853OoS9myVEKVUxo4jvC8JXIg81zMP2YsXzK_kDvyw&amp;oe=6A2B58A2" loading="lazy" alt="Folge uns für mehr! 😍 @rapzus
-#music #hiphop #rapper #trap #artist #beats #newmusic #producer #instagood #love #spotify #rapmusic #hiphopmusic #musicproducer #freestyle #soundcloud #rappers #musician #pop #dj #rnb #singer #song #art #studio #youtube #musica #photooftheday #songs #goodmusic" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#music #hiphop #rapper #trap #artist #beats #newmusic #producer #instagood #love #spotify #rapmusic #hiphopmusic #musicproducer #freestyle #soundcloud #rappers #musician #pop #dj #rnb #singer #song #art #studio #youtube #musica #photooftheday #songs #goodmusic" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">1</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">Folge uns für mehr! 😍 @rapzus
 #music #hiphop #rapper #trap #artist #beats #newmusic #producer #instagood #love #spotify #rapmusic #hiphopmusic #musicproducer #freestyle #soundcloud #rappers #musician #pop #dj #rnb #singer #song #art #studio #youtube #musica #photooftheday #songs #goodmusic</div>
@@ -394,10 +429,10 @@ Today, Jun</a></div><div class="sideday"><div class="sidedate">2026-06-07</div><
     </a><a class="card" style="--i:2" href="https://www.instagram.com/p/DZRvsh0jfCF/" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://scontent-hel3-1.cdninstagram.com/v/t51.82787-15/718699009_18159277087456486_6774128650106553082_n.jpg?stp=dst-jpegr_e35_p1080x1080_tt6&amp;_nc_cat=108&amp;ig_cache_key=MzkxNDExNzIyMDg4NDM3ODY5Mg%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMjMxNi5oZHIucmVndWxhcl9waG90by5DMyJ9&amp;_nc_ohc=KEVGUaJGCy0Q7kNvwEgP19p&amp;_nc_oc=Adq8gdLrZQj7IygUDxBpu7sdoSym9vLb09cYLrbSHkx21ma8Goep29EXM8CUPIctsMo&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;se=-1&amp;_nc_ht=scontent-hel3-1.cdninstagram.com&amp;_nc_gid=SM94QT-0m99gIonHGR1R_g&amp;_nc_ss=7a3ba&amp;oh=00_Af8noERgjNiUsrcnc_GI4qsKJNMuiijacFLwC3tgPcMdPQ&amp;oe=6A2B028F" loading="lazy" alt="@nuovotestamento.band show in Bochum last night was ❤️‍🔥 and @thespoiled.music a pleasant surprise 💝
 
-#italodisco #synthpop #newwave #veganpunk #italiansdoitbetter" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#italodisco #synthpop #newwave #veganpunk #italiansdoitbetter" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">2</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">@nuovotestamento.band show in Bochum last night was ❤️‍🔥 and @thespoiled.music a pleasant surprise 💝
 
@@ -415,10 +450,10 @@ Uma ótima semana à todos 🖤
 .
 .
 .
-#pulpbar #intothegroove #hits80 #disco #hits90 #rocklobster #newwave #postpunk #synthpop #synthwave #darkwave #gothicrock #oquefazeremcuritiba #cwb" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#pulpbar #intothegroove #hits80 #disco #hits90 #rocklobster #newwave #postpunk #synthpop #synthwave #darkwave #gothicrock #oquefazeremcuritiba #cwb" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">3</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">Voltamos na sexta (12) com nossa festa voltada aos HITS clássicos da música POP das décadas de 70, 80&amp;90: INTO THE GROOVE!
 
@@ -439,10 +474,10 @@ I can’t wait for the first release. 🙏🏻
 
 P.S. Something is cooking 👀
 
-#musicproducer #housemusic #dj" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#musicproducer #housemusic #dj" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">4</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">I started producing on speakers I got from my dad. Now I finally upgraded my setup with a pair of KRK Rokit 5 G5s. 🔥
 I can’t wait for the first release. 🙏🏻
@@ -455,38 +490,38 @@ P.S. Something is cooking 👀
       <div class="thumb"><img src="https://scontent-cph2-1.cdninstagram.com/v/t51.82787-15/718659452_18591649804033070_208335140112799725_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=109&amp;ig_cache_key=MzkxNDUwMzA5NzQyNjgwODIwMg%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuNzU3LnNkci5yZWd1bGFyX3Bob3RvLkMzIn0%3D&amp;_nc_ohc=rITdgd1fHpAQ7kNvwEM0bfa&amp;_nc_oc=AdqUD96_RG1hzSHDffTh-arCxZrzVcg9G2iwUftSxU9je-EcCnqs-FpRh-8tMcKF-q1HGamNTkZ_GDUnKsHyexYi&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;_nc_ht=scontent-cph2-1.cdninstagram.com&amp;_nc_gid=m0Ryc1tcPK5G06Z0ZrIozg&amp;_nc_ss=7a3ba&amp;oh=00_Af_zeBBPhKggqjAMntypxg44ODS6_FnmpeEhFEdZU13CWg&amp;oe=6A2BBDC5" loading="lazy" alt="I’ll playing keys with @voltalustofficial on June 11 at @kensingtonclub1935 . @voidvisions and @silica_sun and @djfn1 will also performing!  Hope to see you all there! This coming Thursday! Presented by @other_voices_events 
 .
 .
-#sandiegomusic #sandiegomusicscene #darksynth #synthpop #darksynthpop" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#sandiegomusic #sandiegomusicscene #darksynth #synthpop #darksynthpop" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">5</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">I’ll playing keys with @voltalustofficial on June 11 at @kensingtonclub1935 . @voidvisions and @silica_sun and @djfn1 will also performing!  Hope to see you all there! This coming Thursday! Presented by @other_voices_events 
 .
 .
 #sandiegomusic #sandiegomusicscene #darksynth #synthpop #darksynthpop</div>
         <div class="channel">johnnytranartmusic</div><div class="meta">2026-06-07 · 좋아요 15</div></div>
-    </a></div><h2 class="vhead">🔥 전체 인기</h2><div class="row"><a class="card" style="--i:6" href="https://www.instagram.com/p/DZSiRflDiGp/" target="_blank" rel="noopener">
+    </a></div><h2 class="vhead"><svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 3-2 4.2-2 7a2.5 2.5 0 0 0 5 0c0-.8-.3-1.5-.7-2 2.2 1.2 3.7 3.5 3.7 6.2a6 6 0 0 1-12 0c0-3.3 2.3-5.2 4-7.2 1-1.2 2-2.6 2-4z"/></svg>전체 인기</h2><div class="row"><a class="card" style="--i:6" href="https://www.instagram.com/p/DZSiRflDiGp/" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://scontent-otp1-1.cdninstagram.com/v/t51.82787-15/719099283_18594091552036436_857159393194482027_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ig_cache_key=MzkxNDM0MTc2MTg1ODU0NDA0MQ%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&amp;_nc_ohc=pvtR5mQ9n8YQ7kNvwEZ2V4u&amp;_nc_oc=AdqGp2FO2OSkkcCvSY7T1ZTdOrcig7NRO-X49wN4Swr6m3qxlyDJiRjRXLP5s_jOi-E&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;se=7&amp;_nc_ht=scontent-otp1-1.cdninstagram.com&amp;_nc_gid=lQnj7BbGCG43IOnEkeY_Ng&amp;_nc_ss=7a3ba&amp;oh=00_Af9_853OoS9myVEKVUxo4jvC8JXIg81zMP2YsXzK_kDvyw&amp;oe=6A2B58A2" loading="lazy" alt="Folge uns für mehr! 😍 @rapzus
-#music #hiphop #rapper #trap #artist #beats #newmusic #producer #instagood #love #spotify #rapmusic #hiphopmusic #musicproducer #freestyle #soundcloud #rappers #musician #pop #dj #rnb #singer #song #art #studio #youtube #musica #photooftheday #songs #goodmusic" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#music #hiphop #rapper #trap #artist #beats #newmusic #producer #instagood #love #spotify #rapmusic #hiphopmusic #musicproducer #freestyle #soundcloud #rappers #musician #pop #dj #rnb #singer #song #art #studio #youtube #musica #photooftheday #songs #goodmusic" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">6</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">Folge uns für mehr! 😍 @rapzus
 #music #hiphop #rapper #trap #artist #beats #newmusic #producer #instagood #love #spotify #rapmusic #hiphopmusic #musicproducer #freestyle #soundcloud #rappers #musician #pop #dj #rnb #singer #song #art #studio #youtube #musica #photooftheday #songs #goodmusic</div>
-        <div class="channel">rapzus</div><div class="meta">좋아요 43 · 💬 1</div></div>
+        <div class="channel">rapzus</div><div class="meta">좋아요 43 · 댓글 1</div></div>
     </a><a class="card" style="--i:7" href="https://www.instagram.com/p/DZRvsh0jfCF/" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://scontent-hel3-1.cdninstagram.com/v/t51.82787-15/718699009_18159277087456486_6774128650106553082_n.jpg?stp=dst-jpegr_e35_p1080x1080_tt6&amp;_nc_cat=108&amp;ig_cache_key=MzkxNDExNzIyMDg4NDM3ODY5Mg%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMjMxNi5oZHIucmVndWxhcl9waG90by5DMyJ9&amp;_nc_ohc=KEVGUaJGCy0Q7kNvwEgP19p&amp;_nc_oc=Adq8gdLrZQj7IygUDxBpu7sdoSym9vLb09cYLrbSHkx21ma8Goep29EXM8CUPIctsMo&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;se=-1&amp;_nc_ht=scontent-hel3-1.cdninstagram.com&amp;_nc_gid=SM94QT-0m99gIonHGR1R_g&amp;_nc_ss=7a3ba&amp;oh=00_Af8noERgjNiUsrcnc_GI4qsKJNMuiijacFLwC3tgPcMdPQ&amp;oe=6A2B028F" loading="lazy" alt="@nuovotestamento.band show in Bochum last night was ❤️‍🔥 and @thespoiled.music a pleasant surprise 💝
 
-#italodisco #synthpop #newwave #veganpunk #italiansdoitbetter" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#italodisco #synthpop #newwave #veganpunk #italiansdoitbetter" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">7</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">@nuovotestamento.band show in Bochum last night was ❤️‍🔥 and @thespoiled.music a pleasant surprise 💝
 
 #italodisco #synthpop #newwave #veganpunk #italiansdoitbetter</div>
-        <div class="channel">zombrina.roxx</div><div class="meta">좋아요 40 · 💬 8</div></div>
+        <div class="channel">zombrina.roxx</div><div class="meta">좋아요 40 · 댓글 8</div></div>
     </a><a class="card" style="--i:8" href="https://www.instagram.com/p/DZSXtq5EeAn/" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/718816264_18168251434439046_4182467863465375583_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=103&amp;ig_cache_key=MzkxNDI5NTMxOTYzOTIyMDI2Mw%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuNTM3LnNkci5yZWd1bGFyX3Bob3RvLkMyIn0%3D&amp;_nc_ohc=4uOMIJ9TLG4Q7kNvwGybsKC&amp;_nc_oc=Adptp_ycTW5u2fDSzC3z8g7hgRbpebWJO0ARMZ8YDi69N09n5gOCNVKkWtyPruwMNss&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;_nc_ht=scontent-bru2-1.cdninstagram.com&amp;_nc_gid=_Z04jMp5lkSskQwYXefcbg&amp;_nc_ss=7a3ba&amp;oh=00_Af8AViZDPqkIj0ZMBhT961OtnmYmZJ7Dx0QRkw-x9QCxOg&amp;oe=6A2B53FD" loading="lazy" alt="Voltamos na sexta (12) com nossa festa voltada aos HITS clássicos da música POP das décadas de 70, 80&amp;90: INTO THE GROOVE!
 
@@ -499,10 +534,10 @@ Uma ótima semana à todos 🖤
 .
 .
 .
-#pulpbar #intothegroove #hits80 #disco #hits90 #rocklobster #newwave #postpunk #synthpop #synthwave #darkwave #gothicrock #oquefazeremcuritiba #cwb" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#pulpbar #intothegroove #hits80 #disco #hits90 #rocklobster #newwave #postpunk #synthpop #synthwave #darkwave #gothicrock #oquefazeremcuritiba #cwb" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">8</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">Voltamos na sexta (12) com nossa festa voltada aos HITS clássicos da música POP das décadas de 70, 80&amp;90: INTO THE GROOVE!
 
@@ -516,17 +551,17 @@ Uma ótima semana à todos 🖤
 .
 .
 #pulpbar #intothegroove #hits80 #disco #hits90 #rocklobster #newwave #postpunk #synthpop #synthwave #darkwave #gothicrock #oquefazeremcuritiba #cwb</div>
-        <div class="channel">pulp.bar</div><div class="meta">좋아요 36 · 💬 0</div></div>
+        <div class="channel">pulp.bar</div><div class="meta">좋아요 36 · 댓글 0</div></div>
     </a><a class="card" style="--i:9" href="https://www.instagram.com/p/DZShluMDVsf/" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://scontent-otp1-1.cdninstagram.com/v/t51.82787-15/718378766_17977968138031917_8948468655255931911_n.jpg?stp=dst-jpegr_e35_p1080x1080_tt6&amp;_nc_cat=107&amp;ig_cache_key=MzkxNDMzNzk5NDU3MDgxMTExOQ%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMzAyNC5oZHIucmVndWxhcl9waG90by5DMyJ9&amp;_nc_ohc=HKY85Oh1FJcQ7kNvwGHaRDV&amp;_nc_oc=AdrJ8ghADmL8wVPt-42ZKrfDFqZmsaBsRGnmP2EWFkiA6SMrDH7Zmsl7q7MF1xSTVXw&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;se=-1&amp;_nc_ht=scontent-otp1-1.cdninstagram.com&amp;_nc_gid=lQnj7BbGCG43IOnEkeY_Ng&amp;_nc_ss=7a3ba&amp;oh=00_Af_4PZPI__s8AiWQa1oxY8bHjsp_-WL8yBCuQ66tfjtMsQ&amp;oe=6A2B4E00" loading="lazy" alt="I started producing on speakers I got from my dad. Now I finally upgraded my setup with a pair of KRK Rokit 5 G5s. 🔥
 I can’t wait for the first release. 🙏🏻
 
 P.S. Something is cooking 👀
 
-#musicproducer #housemusic #dj" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#musicproducer #housemusic #dj" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">9</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">I started producing on speakers I got from my dad. Now I finally upgraded my setup with a pair of KRK Rokit 5 G5s. 🔥
 I can’t wait for the first release. 🙏🏻
@@ -534,130 +569,130 @@ I can’t wait for the first release. 🙏🏻
 P.S. Something is cooking 👀
 
 #musicproducer #housemusic #dj</div>
-        <div class="channel">dj_davelan</div><div class="meta">좋아요 16 · 💬 10</div></div>
+        <div class="channel">dj_davelan</div><div class="meta">좋아요 16 · 댓글 10</div></div>
     </a><a class="card" style="--i:10" href="https://www.instagram.com/p/DZTG9PCSo2K/" target="_blank" rel="noopener">
       <div class="thumb"><img src="https://scontent-cph2-1.cdninstagram.com/v/t51.82787-15/718659452_18591649804033070_208335140112799725_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=109&amp;ig_cache_key=MzkxNDUwMzA5NzQyNjgwODIwMg%3D%3D.3-ccb7-5&amp;ccb=7-5&amp;_nc_sid=58cdad&amp;efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuNzU3LnNkci5yZWd1bGFyX3Bob3RvLkMzIn0%3D&amp;_nc_ohc=rITdgd1fHpAQ7kNvwEM0bfa&amp;_nc_oc=AdqUD96_RG1hzSHDffTh-arCxZrzVcg9G2iwUftSxU9je-EcCnqs-FpRh-8tMcKF-q1HGamNTkZ_GDUnKsHyexYi&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_zt=23&amp;_nc_ht=scontent-cph2-1.cdninstagram.com&amp;_nc_gid=m0Ryc1tcPK5G06Z0ZrIozg&amp;_nc_ss=7a3ba&amp;oh=00_Af_zeBBPhKggqjAMntypxg44ODS6_FnmpeEhFEdZU13CWg&amp;oe=6A2BBDC5" loading="lazy" alt="I’ll playing keys with @voltalustofficial on June 11 at @kensingtonclub1935 . @voidvisions and @silica_sun and @djfn1 will also performing!  Hope to see you all there! This coming Thursday! Presented by @other_voices_events 
 .
 .
-#sandiegomusic #sandiegomusicscene #darksynth #synthpop #darksynthpop" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">📸</span>
+#sandiegomusic #sandiegomusicscene #darksynth #synthpop #darksynthpop" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">10</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">📸 Instagram</span>
+        <span class="tag">Instagram</span>
       </div>
       <div class="body"><div class="title">I’ll playing keys with @voltalustofficial on June 11 at @kensingtonclub1935 . @voidvisions and @silica_sun and @djfn1 will also performing!  Hope to see you all there! This coming Thursday! Presented by @other_voices_events 
 .
 .
 #sandiegomusic #sandiegomusicscene #darksynth #synthpop #darksynthpop</div>
-        <div class="channel">johnnytranartmusic</div><div class="meta">좋아요 15 · 💬 0</div></div>
-    </a></div><h2 class="vhead">📈 뜨는 중</h2><div class="row"><p class="empty">내일부터 데이터가 쌓입니다 (전일 대비 계산)</p></div></section><section class="platform" id="pf-reddit"><div class="sumrow"><div class="summary"><div class="shead">📝 오늘의 3줄 요약 · 2026-06-13</div><ul><li>오늘 음악 커뮤니티는 신스팝·뉴웨이브 복고 열기로 뒤덮였으며, Depeche Mode와 Heaven 17의 클래식 트랙이 r/synthpop에서 나란히 부상했다.</li><li>CD 컬렉션 공유 게시물이 r/CDs와 r/depechemode에 동시 등장하며 실물 미디어 중심의 아카이빙 문화가 여전히 살아 있음을 보여준다.</li><li>RateYourMusic 기반 일본 음악 톱 300 목록이 화제를 모으며, 레트로 서구 사운드와 병행해 글로벌 취향 탐구 욕구도 감지된다.</li></ul><a class="pick" href="#" target="_blank" rel="noopener"><span class="ptag">👀 꼭 봐야 할 게시물</span><span class="ptitle">Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</span><span class="pmeta">r/ToddintheShadow · 비극적 역사를 가진 Ou Est Le Swimming Pool을 뒤늦게 발견한 이 게시물은 오늘의 신스팝 향수 무드 속에서 씬의 가장 어두운 이면을 건드려 감정적 밀도가 가장 높다.</span></a></div><aside class="sidelog"><div class="sidehead">📅 지난 요약</div><div class="sidedays"><div class="sideday"><div class="sidedate">2026-06-12</div><ul><li>오늘 수집된 게시물에서 신스팝·뉴웨이브 장르가 복수의 서브레딧에 걸쳐 동시에 부상하며 80년대 사운드에 대한 집단적 향수가 뚜렷이 감지된다.</li><li>Laura Branigan의 〈Self Control〉과 Heaven 17의 〈Temptation〉이 r/synthpop에 나란히 올라오고, 실물 CD 컬렉션 게시물이 Depeche Mode 팬덤에도 크로스포스팅되어 아날로그 수집 문화와 장르 부흥이 맞물리고 있다.</li><li>일본 음악 올타임 300선 차트와 I Am the World Trade Center 앨범 소개가 함께 등장해, 글로벌·인디 영역으로 청취 지평을 넓히려는 수요도 동시에 확인된다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener">👀 Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-11</div><ul><li>신스팝·뉴웨이브 관련 게시물이 오늘 유독 집중적으로 올라오며 80년대 레트로 장르에 대한 커뮤니티 관심이 뚜렷하게 재점화됐다.</li><li>Heaven 17, Laura Branigan, Dead or Alive 등 고전 트랙들이 잇달아 공유되면서 단순 향수를 넘어 신세대 리스너의 장르 입문 신호로 읽힌다.</li><li>일본 음악 300위 리스트와 I Am the World Trade Center 앨범 소개가 동시에 등장한 것은 영미권 바깥으로 시선을 넓히려는 흐름과 맞닿아 있다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener">👀 Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-10</div><ul><li>신스팝과 뉴웨이브 장르가 여러 서브레딧에 걸쳐 동시다발적으로 언급되며 80년대 복고 취향이 뚜렷하게 나타났다.</li><li>Laura Branigan, Heaven 17, Dead or Alive 등 고전 트랙들이 개별 게시물로 올라오며 장르 팬층이 활발히 움직이고 있다.</li><li>전체 인기 순위는 드라마·영화 게시물이 압도했지만, 음악 커뮤니티는 신스팝이라는 단일 키워드로 집결하는 응집력을 보였다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener">👀 Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-09</div><ul><li>신스팝·뉴웨이브 향수가 오늘의 음악 피드를 관통했다—Laura Branigan, Heaven 17, Dead or Alive가 나란히 올라오며 80년대 사운드에 대한 집단적 리와인드가 뚜렷했다.</li><li>일본 음악 아카이빙 열기도 주목할 만한데, RateYourMusic 기반 &#x27;Top 300&#x27; 리스트가 커뮤니티의 관심을 끌며 장르·시대를 넘나드는 글로벌 취향 탐색 흐름을 보여줬다.</li><li>비음악 게시물의 압도적 인기(1~8위)와 달리 음악 관련 게시물은 소수 고관여 팬덤 중심으로 조용하지만 응집력 있게 소비되는 양상이었다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener">👀 Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-08</div><ul><li>80년대 신스팝·뉴웨이브 클래식이 여러 커뮤니티에서 동시에 소환되며 복고 향수가 오늘의 음악 대화를 지배했다.</li><li>일본 음악 역대 Top 300 리스트가 등장해 장르와 시대를 넘나드는 아카이브 취향이 수면 위로 올라왔다.</li><li>보컬로이드 팬덤에서는 &quot;뭔가 이상하다&quot;는 불안감이 퍼지며 커뮤니티 내부의 미묘한 균열이 감지됐다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener">👀 Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-07</div><ul><li>가장 화제: &#x27;Some facts about Tessica Brown, the woman who we&#x27; — r/idiocracy (업보트 6,325)</li><li>오늘 16건 수집 · 평균 업보트 1,901 · 최고 6,325</li><li>자주 등장: vegan, synthpop, some, her</li></ul></div></div></aside></div><h2 class="vhead">🆕 최근 인기</h2><div class="row"><a class="card" style="--i:1" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+        <div class="channel">johnnytranartmusic</div><div class="meta">좋아요 15 · 댓글 0</div></div>
+    </a></div><h2 class="vhead"><svg class="hic hic-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 7h4v4"/></svg>뜨는 중</h2><div class="row"><p class="empty">내일부터 데이터가 쌓입니다 (전일 대비 계산)</p></div></section><section class="platform" id="pf-reddit"><div class="sumrow"><div class="summary"><div class="shead"><svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>오늘의 3줄 요약 · 2026-06-13</div><ul><li>오늘 음악 커뮤니티는 신스팝·뉴웨이브 복고 열기로 뒤덮였으며, Depeche Mode와 Heaven 17의 클래식 트랙이 r/synthpop에서 나란히 부상했다.</li><li>CD 컬렉션 공유 게시물이 r/CDs와 r/depechemode에 동시 등장하며 실물 미디어 중심의 아카이빙 문화가 여전히 살아 있음을 보여준다.</li><li>RateYourMusic 기반 일본 음악 톱 300 목록이 화제를 모으며, 레트로 서구 사운드와 병행해 글로벌 취향 탐구 욕구도 감지된다.</li></ul><div class="pick"><div class="pickhead"><div class="pickmain"><div class="ptag"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>꼭 봐야 할 게시물 · 눌러서 분석 보기</div><div class="ptitle">Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</div><div class="pchan">r/ToddintheShadow</div></div><span class="chev">⌄</span></div><div class="panel"><div class="step"><div class="stepnum">왜 골랐나</div><p class="steptext">비극적 역사를 가진 Ou Est Le Swimming Pool을 뒤늦게 발견한 이 게시물은 오늘의 신스팝 향수 무드 속에서 씬의 가장 어두운 이면을 건드려 감정적 밀도가 가장 높다.</p></div><a class="picklink" href="#" target="_blank" rel="noopener">원본 게시물 보러 가기 →</a></div></div></div><aside class="sidelog"><div class="sidehead">지난 요약</div><div class="sidedays"><div class="sideday"><div class="sidedate">2026-06-12</div><ul><li>오늘 수집된 게시물에서 신스팝·뉴웨이브 장르가 복수의 서브레딧에 걸쳐 동시에 부상하며 80년대 사운드에 대한 집단적 향수가 뚜렷이 감지된다.</li><li>Laura Branigan의 〈Self Control〉과 Heaven 17의 〈Temptation〉이 r/synthpop에 나란히 올라오고, 실물 CD 컬렉션 게시물이 Depeche Mode 팬덤에도 크로스포스팅되어 아날로그 수집 문화와 장르 부흥이 맞물리고 있다.</li><li>일본 음악 올타임 300선 차트와 I Am the World Trade Center 앨범 소개가 함께 등장해, 글로벌·인디 영역으로 청취 지평을 넓히려는 수요도 동시에 확인된다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-11</div><ul><li>신스팝·뉴웨이브 관련 게시물이 오늘 유독 집중적으로 올라오며 80년대 레트로 장르에 대한 커뮤니티 관심이 뚜렷하게 재점화됐다.</li><li>Heaven 17, Laura Branigan, Dead or Alive 등 고전 트랙들이 잇달아 공유되면서 단순 향수를 넘어 신세대 리스너의 장르 입문 신호로 읽힌다.</li><li>일본 음악 300위 리스트와 I Am the World Trade Center 앨범 소개가 동시에 등장한 것은 영미권 바깥으로 시선을 넓히려는 흐름과 맞닿아 있다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-10</div><ul><li>신스팝과 뉴웨이브 장르가 여러 서브레딧에 걸쳐 동시다발적으로 언급되며 80년대 복고 취향이 뚜렷하게 나타났다.</li><li>Laura Branigan, Heaven 17, Dead or Alive 등 고전 트랙들이 개별 게시물로 올라오며 장르 팬층이 활발히 움직이고 있다.</li><li>전체 인기 순위는 드라마·영화 게시물이 압도했지만, 음악 커뮤니티는 신스팝이라는 단일 키워드로 집결하는 응집력을 보였다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-09</div><ul><li>신스팝·뉴웨이브 향수가 오늘의 음악 피드를 관통했다—Laura Branigan, Heaven 17, Dead or Alive가 나란히 올라오며 80년대 사운드에 대한 집단적 리와인드가 뚜렷했다.</li><li>일본 음악 아카이빙 열기도 주목할 만한데, RateYourMusic 기반 &#x27;Top 300&#x27; 리스트가 커뮤니티의 관심을 끌며 장르·시대를 넘나드는 글로벌 취향 탐색 흐름을 보여줬다.</li><li>비음악 게시물의 압도적 인기(1~8위)와 달리 음악 관련 게시물은 소수 고관여 팬덤 중심으로 조용하지만 응집력 있게 소비되는 양상이었다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-08</div><ul><li>80년대 신스팝·뉴웨이브 클래식이 여러 커뮤니티에서 동시에 소환되며 복고 향수가 오늘의 음악 대화를 지배했다.</li><li>일본 음악 역대 Top 300 리스트가 등장해 장르와 시대를 넘나드는 아카이브 취향이 수면 위로 올라왔다.</li><li>보컬로이드 팬덤에서는 &quot;뭔가 이상하다&quot;는 불안감이 퍼지며 커뮤니티 내부의 미묘한 균열이 감지됐다.</li></ul><a class="sidepick" href="#" target="_blank" rel="noopener"><svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Just found out about Ou Est Le Swimming Pool and got fucked up about their tragi</a></div><div class="sideday"><div class="sidedate">2026-06-07</div><ul><li>가장 화제: &#x27;Some facts about Tessica Brown, the woman who we&#x27; — r/idiocracy (업보트 6,325)</li><li>오늘 16건 수집 · 평균 업보트 1,901 · 최고 6,325</li><li>자주 등장: vegan, synthpop, some, her</li></ul></div></div></aside></div><h2 class="vhead"><svg class="hic hic-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.3 6.3l2.1 2.1M15.6 15.6l2.1 2.1M17.7 6.3l-2.1 2.1M8.4 15.6l-2.1 2.1"/></svg>최근 인기</h2><div class="row"><a class="card" style="--i:1" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">1</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">I (65M) found out that my daughter&#x27;s (34F) fiancé (35M) is gay</div>
         <div class="channel">r/BestofRedditorUpdates</div><div class="meta">2026-06-07 · 업보트 5,110</div></div>
     </a><a class="card" style="--i:2" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://preview.redd.it/pilmaa7ym56h1.jpg?width=140&amp;height=140&amp;crop=1:1,smart&amp;auto=webp&amp;s=4c9bbdac1c265e136cbce68d2651d4c57b3e348f" loading="lazy" alt="The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">👽</span>
+      <div class="thumb"><img src="https://preview.redd.it/pilmaa7ym56h1.jpg?width=140&amp;height=140&amp;crop=1:1,smart&amp;auto=webp&amp;s=4c9bbdac1c265e136cbce68d2651d4c57b3e348f" loading="lazy" alt="The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">2</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)</div>
         <div class="channel">r/shittymoviedetails</div><div class="meta">2026-06-09 · 업보트 3,873</div></div>
     </a><a class="card" style="--i:3" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">3</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">I didn&#x27;t know anything about He-Man before this movie, and I walked out a fan.</div>
         <div class="channel">r/MastersOfTheUniverse</div><div class="meta">2026-06-10 · 업보트 271</div></div>
     </a><a class="card" style="--i:4" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://external-preview.redd.it/dmw1NDc0NTNjaTZoMaQ7QRXPNq80p-3GNJsQ3_UIPm-Yh4ymE4h0j3zLfKTK.png?width=140&amp;height=106&amp;format=jpg&amp;auto=webp&amp;s=7c0478428fde196497d49b20f258304c52e60f78" loading="lazy" alt="Depeche Mode - Just Can’t Get Enough" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">👽</span>
+      <div class="thumb"><img src="https://external-preview.redd.it/dmw1NDc0NTNjaTZoMaQ7QRXPNq80p-3GNJsQ3_UIPm-Yh4ymE4h0j3zLfKTK.png?width=140&amp;height=106&amp;format=jpg&amp;auto=webp&amp;s=7c0478428fde196497d49b20f258304c52e60f78" loading="lazy" alt="Depeche Mode - Just Can’t Get Enough" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">4</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">Depeche Mode - Just Can’t Get Enough</div>
         <div class="channel">r/synthpop</div><div class="meta">2026-06-10 · 업보트 127</div></div>
-    </a></div><h2 class="vhead">🔥 전체 인기</h2><div class="row"><a class="card" style="--i:5" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+    </a></div><h2 class="vhead"><svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 3-2 4.2-2 7a2.5 2.5 0 0 0 5 0c0-.8-.3-1.5-.7-2 2.2 1.2 3.7 3.5 3.7 6.2a6 6 0 0 1-12 0c0-3.3 2.3-5.2 4-7.2 1-1.2 2-2.6 2-4z"/></svg>전체 인기</h2><div class="row"><a class="card" style="--i:5" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">5</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">Some facts about Tessica Brown, the woman who went viral for spraying Gorilla Glue in her hair</div>
-        <div class="channel">r/idiocracy</div><div class="meta">업보트 6,334 · 💬 633</div></div>
+        <div class="channel">r/idiocracy</div><div class="meta">업보트 6,334 · 댓글 633</div></div>
     </a><a class="card" style="--i:6" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">6</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">I (65M) found out that my daughter&#x27;s (34F) fiancé (35M) is gay</div>
-        <div class="channel">r/BestofRedditorUpdates</div><div class="meta">업보트 5,110 · 💬 1,370</div></div>
+        <div class="channel">r/BestofRedditorUpdates</div><div class="meta">업보트 5,110 · 댓글 1,370</div></div>
     </a><a class="card" style="--i:7" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">7</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">(New Update) My(f19) dad asked our godparents not to have the waiters sing Happy Birthday to my brother(m11) who likely has hyperacusis autism, but they did it anyway</div>
-        <div class="channel">r/BestofRedditorUpdates</div><div class="meta">업보트 4,968 · 💬 699</div></div>
+        <div class="channel">r/BestofRedditorUpdates</div><div class="meta">업보트 4,968 · 댓글 699</div></div>
     </a><a class="card" style="--i:8" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://preview.redd.it/pilmaa7ym56h1.jpg?width=140&amp;height=140&amp;crop=1:1,smart&amp;auto=webp&amp;s=4c9bbdac1c265e136cbce68d2651d4c57b3e348f" loading="lazy" alt="The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">👽</span>
+      <div class="thumb"><img src="https://preview.redd.it/pilmaa7ym56h1.jpg?width=140&amp;height=140&amp;crop=1:1,smart&amp;auto=webp&amp;s=4c9bbdac1c265e136cbce68d2651d4c57b3e348f" loading="lazy" alt="The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">8</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)</div>
-        <div class="channel">r/shittymoviedetails</div><div class="meta">업보트 3,873 · 💬 101</div></div>
+        <div class="channel">r/shittymoviedetails</div><div class="meta">업보트 3,873 · 댓글 101</div></div>
     </a><a class="card" style="--i:9" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">9</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">I consumed no content for a month. Here&#x27;s what happened</div>
-        <div class="channel">r/digitalminimalism</div><div class="meta">업보트 3,458 · 💬 143</div></div>
-    </a></div><h2 class="vhead">📈 뜨는 중</h2><div class="row"><a class="card" style="--i:10" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+        <div class="channel">r/digitalminimalism</div><div class="meta">업보트 3,458 · 댓글 143</div></div>
+    </a></div><h2 class="vhead"><svg class="hic hic-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 7h4v4"/></svg>뜨는 중</h2><div class="row"><a class="card" style="--i:10" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">10</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">I (65M) found out that my daughter&#x27;s (34F) fiancé (35M) is gay</div>
         <div class="channel">r/BestofRedditorUpdates</div><div class="meta"><b>+83</b> 업보트 · 누적 5,110</div></div>
     </a><a class="card" style="--i:11" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><img src="https://preview.redd.it/pilmaa7ym56h1.jpg?width=140&amp;height=140&amp;crop=1:1,smart&amp;auto=webp&amp;s=4c9bbdac1c265e136cbce68d2651d4c57b3e348f" loading="lazy" alt="The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><span class="ph">👽</span>
+      <div class="thumb"><img src="https://preview.redd.it/pilmaa7ym56h1.jpg?width=140&amp;height=140&amp;crop=1:1,smart&amp;auto=webp&amp;s=4c9bbdac1c265e136cbce68d2651d4c57b3e348f" loading="lazy" alt="The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)" onerror="this.parentNode.classList.add(&quot;broken&quot;)"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">11</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">The poster for A View To A Kill (1985) features the other poster for A View To A Kill (1985)</div>
         <div class="channel">r/shittymoviedetails</div><div class="meta"><b>+33</b> 업보트 · 누적 3,873</div></div>
     </a><a class="card" style="--i:12" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">12</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">I didn&#x27;t know anything about He-Man before this movie, and I walked out a fan.</div>
         <div class="channel">r/MastersOfTheUniverse</div><div class="meta"><b>+10</b> 업보트 · 누적 271</div></div>
     </a><a class="card" style="--i:13" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">13</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">The Princess Pea Bride 🫛</div>
         <div class="channel">r/oldhagfashion</div><div class="meta"><b>+9</b> 업보트 · 누적 2,892</div></div>
     </a><a class="card" style="--i:14" href="#" target="_blank" rel="noopener">
-      <div class="thumb"><span class="ph">👽</span>
+      <div class="thumb"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
         <span class="rank">14</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">👽 Reddit</span>
+        <span class="tag">Reddit</span>
       </div>
       <div class="body"><div class="title">Backrooms (2026) is directed by a 20-year old, which didn&#x27;t send you spiraling because you processed those feelings when that girl from your college improv troupe won an Emmy. You&#x27;re 90% sure quitting comedy to focus on finals was the right move, and now you only wake up crying 2-3 times per week.</div>
         <div class="channel">r/shittymoviedetails</div><div class="meta"><b>+7</b> 업보트 · 누적 3,147</div></div>
@@ -676,4 +711,8 @@ P.S. Something is cooking 👀
       });
     });
   }));
+  document.querySelectorAll('.pick').forEach(p => {
+    const h = p.querySelector('.pickhead');
+    if (h) h.addEventListener('click', () => p.classList.toggle('open'));
+  });
 </script></body></html>

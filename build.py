@@ -34,13 +34,30 @@ DRY = "--dry" in sys.argv
 # 플랫폼 정의: 액터 ID, 단가($/결과), 실행 시작비($), 인기 지표 라벨, 보조 지표 라벨, 탭 이모지
 PLATFORMS = {
     "tiktok":    {"actor": "clockworks~tiktok-scraper", "unit": 0.0037, "start": 0.001,
-                  "score": "재생", "second": "좋아요", "label": "TikTok", "emoji": "🎵"},
+                  "score": "재생", "second": "좋아요", "label": "TikTok"},
     "instagram": {"actor": "apify~instagram-scraper",   "unit": 0.0027, "start": 0.0,
-                  "score": "좋아요", "second": "댓글", "label": "Instagram", "emoji": "📸"},
+                  "score": "좋아요", "second": "댓글", "label": "Instagram"},
     "reddit":    {"actor": "harshmaur~reddit-scraper",  "unit": 0.002,  "start": 0.02,
-                  "score": "업보트", "second": "댓글", "label": "Reddit", "emoji": "👽"},
+                  "score": "업보트", "second": "댓글", "label": "Reddit"},
 }
-VIEWS = [("recent", "🆕 최근 인기"), ("all_time", "🔥 전체 인기"), ("trending", "📈 뜨는 중")]
+VIEWS = [("recent", "최근 인기"), ("all_time", "전체 인기"), ("trending", "뜨는 중")]
+
+# ---- 네온 라인 아이콘 (테마용, 단색 currentColor) ----
+PLATFORM_ICON = {
+    "tiktok": '<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V4l10-1v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="15" r="3"/></svg>',
+    "instagram": '<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>',
+    "reddit": '<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><circle cx="9" cy="12.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="12.5" r="1.1" fill="currentColor" stroke="none"/><path d="M9.5 16c1.5 1 3.5 1 5 0"/><path d="M12 5l1.5-2.5 3 .8"/><circle cx="16.8" cy="3.6" r="1" fill="currentColor" stroke="none"/></svg>',
+}
+VHEAD_ICON = {
+    "recent": '<svg class="hic hic-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.3 6.3l2.1 2.1M15.6 15.6l2.1 2.1M17.7 6.3l-2.1 2.1M8.4 15.6l-2.1 2.1"/></svg>',
+    "all_time": '<svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 3-2 4.2-2 7a2.5 2.5 0 0 0 5 0c0-.8-.3-1.5-.7-2 2.2 1.2 3.7 3.5 3.7 6.2a6 6 0 0 1-12 0c0-3.3 2.3-5.2 4-7.2 1-1.2 2-2.6 2-4z"/></svg>',
+    "trending": '<svg class="hic hic-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 7h4v4"/></svg>',
+}
+# 썸네일 자리표시(영상 썸네일 없을 때만)
+NOTE_SVG = '<svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>'
+# 섹션 헤더용 아이콘
+IC_DOC = '<svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>'
+IC_EYE = '<svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'
 
 
 def log(msg):
@@ -202,7 +219,10 @@ _SUMMARY_SYSTEM = (
     "너는 음악 트렌드 분석가다. 아래 번호가 매겨진 '오늘 수집된 게시물' 목록을 보고 한국어로 출력한다.\n"
     "- 1~3번째 줄: 그날의 흐름을 요약한 간결한 세 문장. 각 줄에 한 문장씩, 반드시 줄바꿈으로 분리.\n"
     "- 4번째 줄: 오늘 '꼭 봐야 할' 게시물 하나를 골라 정확히 다음 형식으로 출력 → PICK|<번호>|<왜 봐야 하는지 한 문장>\n"
-    "불릿·서론·다른 설명 없이 정확히 4줄만 출력한다.")
+    "- 5번째 줄: 그 게시물이 왜 떴는지 한 문장 → WHY|<문장>\n"
+    "- 6번째 줄: 그 게시물의 핵심 포인트 한 문장 → POINT|<문장>\n"
+    "- 7번째 줄: 내 음악 작업에 따라해볼 점 한 문장 → APPLY|<문장>\n"
+    "불릿·서론·다른 설명 없이 정확히 7줄만 출력한다.")
 
 
 def _ordered(items):
@@ -219,11 +239,13 @@ def _parse_summary(text, ordered):
     if not text or "Not logged in" in text or "/login" in text:
         return None
     lines, pick = [], None
+    analysis = {}
     for raw in text.splitlines():
         s = raw.strip(" -•\t").strip()
         if not s:
             continue
-        if s.upper().startswith("PICK") and "|" in s:
+        up = s.upper()
+        if up.startswith("PICK") and "|" in s:
             parts = s.split("|")
             m = _re.search(r"\d+", parts[1]) if len(parts) > 1 else None
             reason = parts[2].strip() if len(parts) > 2 else ""
@@ -233,11 +255,16 @@ def _parse_summary(text, ordered):
                     it = ordered[idx]
                     pick = {"title": (it.get("title") or "")[:80], "url": it.get("url", "#"),
                             "channel": it.get("channel", ""), "reason": reason}
+        elif up.startswith(("WHY", "POINT", "APPLY")) and "|" in s:
+            key, val = s.split("|", 1)
+            analysis[key.strip().lower()] = val.strip()
         else:
             lines.append(s)
     lines = lines[:3]
     if not lines:
         return None
+    if pick and analysis:
+        pick["analysis"] = analysis
     return {"lines": lines, "pick": pick}
 
 
@@ -261,7 +288,12 @@ def _summarize_heuristic(label, items):
         ("자주 등장: " + ", ".join(common)) if common else "다양한 주제가 고르게 분포",
     ]
     pick = {"title": (top.get("title") or "")[:80], "url": top.get("url", "#"),
-            "channel": top.get("channel", ""), "reason": f"오늘 가장 높은 {slabel} {fmt(top.get('score'))}"}
+            "channel": top.get("channel", ""), "reason": f"오늘 가장 높은 {slabel} {fmt(top.get('score'))}",
+            "analysis": {
+                "why": f"오늘 수집분 중 {slabel}가 가장 높음 ({fmt(top.get('score'))}).",
+                "point": f"{top.get('channel','')}의 게시물" + (f" — 자주 등장: {', '.join(common)}" if common else "") + ".",
+                "apply": "상위 게시물의 포맷·키워드를 내 작업 방향의 참고점으로 활용.",
+            }}
     return {"lines": lines, "pick": pick}
 
 
@@ -371,15 +403,15 @@ def card_html(r, kind, rank):
     elif kind == "recent":
         meta = f"{html.escape(r.get('published',''))} · {p['score']} {fmt(r.get('score'))}"
     else:
-        meta = f"{p['score']} {fmt(r.get('score'))} · 💬 {fmt(r.get('second'))}"
+        meta = f"{p['score']} {fmt(r.get('score'))} · {p['second']} {fmt(r.get('second'))}"
     thumb_tag = (f'<img src="{thumb}" loading="lazy" alt="{title}" '
                  f'onerror="this.parentNode.classList.add(&quot;broken&quot;)">'
                  if thumb else '')
     return f"""<a class="card" style="--i:{rank}" href="{url}" target="_blank" rel="noopener">
-      <div class="thumb">{thumb_tag}<span class="ph">{p['emoji']}</span>
+      <div class="thumb">{thumb_tag}{NOTE_SVG}
         <span class="rank">{rank}</span>
         <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">{p['emoji']} {html.escape(p['label'])}</span>
+        <span class="tag">{html.escape(p['label'])}</span>
       </div>
       <div class="body"><div class="title">{title}</div>
         <div class="channel">{channel}</div><div class="meta">{meta}</div></div>
@@ -410,7 +442,8 @@ def extract_summaries_from_html(text):
     entry = {}
     for pid, body in re.findall(
             r'<section class="platform[^"]*" id="pf-(\w+)">(.*?)</section>', text, re.S):
-        m = re.search(r'<div class="summary"[^>]*>(.*?)(?:<h2 class="vhead">)', body, re.S)
+        m = re.search(r'<div class="summary"[^>]*>(.*?)(?:<aside class="sidelog"|<h2 class="vhead">)',
+                      body, re.S)
         if not m:
             continue
         block = m.group(1)
@@ -418,13 +451,13 @@ def extract_summaries_from_html(text):
         if not lines:
             continue
         pick = None
-        href = re.search(r'<a class="pick" href="([^"]*)"', block)
-        ptitle = re.search(r'<span class="ptitle">(.*?)</span>', block, re.S)
+        href = re.search(r'<a class="picklink" href="([^"]*)"', block)
+        ptitle = re.search(r'<div class="ptitle">(.*?)</div>', block, re.S)
         if ptitle:
-            pmeta = re.search(r'<span class="pmeta">(.*?)</span>', block, re.S)
+            pchan = re.search(r'<div class="pchan">(.*?)</div>', block, re.S)
             pick = {"url": html.unescape(href.group(1)) if href else "",
                     "title": html.unescape(ptitle.group(1)).strip(),
-                    "meta": html.unescape(pmeta.group(1)).strip() if pmeta else ""}
+                    "meta": html.unescape(pchan.group(1)).strip() if pchan else ""}
         entry[pid] = {"lines": lines, "pick": pick}
     return entry
 
@@ -460,12 +493,12 @@ def side_log(pid, log_data, skip_date):
         if pk and pk.get("title"):
             purl = html.escape(pk.get("url") or "#") or "#"
             pick_html = (f'<a class="sidepick" href="{purl}" target="_blank" rel="noopener">'
-                         f'👀 {html.escape(pk["title"])}</a>')
+                         f'{IC_EYE}{html.escape(pk["title"])}</a>')
         days += (f'<div class="sideday"><div class="sidedate">{html.escape(date)}</div>'
                  f'<ul>{lis}</ul>{pick_html}</div>')
     if not days:
         return ""
-    return (f'<aside class="sidelog"><div class="sidehead">📅 지난 요약</div>'
+    return (f'<aside class="sidelog"><div class="sidehead">지난 요약</div>'
             f'<div class="sidedays">{days}</div></aside>')
 
 
@@ -473,7 +506,8 @@ def render(ranks, summaries, spent, budget, log_data=None):
     btns, blocks = "", ""
     for i, (pid, p) in enumerate(PLATFORMS.items()):
         act = " active" if i == 0 else ""
-        btns += f'<button class="tabbtn{act}" data-pf="{pid}">{p["emoji"]} {p["label"]}</button>'
+        btns += (f'<button class="tabbtn{act}" data-pf="{pid}">'
+                 f'{PLATFORM_ICON.get(pid, "")}{p["label"]}</button>')
         sm = (summaries or {}).get(pid)
         if sm and sm.get("lines"):
             lis = "".join(f"<li>{html.escape(x)}</li>" for x in sm["lines"])
@@ -484,16 +518,31 @@ def render(ranks, summaries, spent, budget, log_data=None):
                 purl = html.escape(pk.get("url", "#") or "#")
                 ptitle = html.escape(pk.get("title", ""))
                 pchan = html.escape(pk.get("channel", "") or "")
-                preason = html.escape(pk.get("reason", "") or "")
+                an = pk.get("analysis") or {}
+                if an:
+                    steps = [("1 · 왜 떴나", an.get("why", "")),
+                             ("2 · 핵심 포인트", an.get("point", "")),
+                             ("3 · 따라해볼 점", an.get("apply", ""))]
+                else:
+                    steps = [("왜 골랐나", pk.get("reason", "") or "")]
+                steps_html = "".join(
+                    f'<div class="step"><div class="stepnum">{html.escape(t)}</div>'
+                    f'<p class="steptext">{html.escape(v)}</p></div>'
+                    for t, v in steps if v)
                 pick_html = (
-                    f'<a class="pick" href="{purl}" target="_blank" rel="noopener">'
-                    f'<span class="ptag">👀 꼭 봐야 할 게시물</span>'
-                    f'<span class="ptitle">{ptitle}</span>'
-                    f'<span class="pmeta">{pchan}{" · " + preason if preason else ""}</span></a>')
-            summary = (f'<div class="summary"><div class="shead">📝 오늘의 3줄 요약{date_note}</div>'
+                    f'<div class="pick">'
+                    f'<div class="pickhead">'
+                    f'<div class="pickmain"><div class="ptag">{IC_EYE}꼭 봐야 할 게시물 · 눌러서 분석 보기</div>'
+                    f'<div class="ptitle">{ptitle}</div>'
+                    f'<div class="pchan">{pchan}</div></div>'
+                    f'<span class="chev">⌄</span></div>'
+                    f'<div class="panel">{steps_html}'
+                    f'<a class="picklink" href="{purl}" target="_blank" rel="noopener">원본 게시물 보러 가기 →</a>'
+                    f'</div></div>')
+            summary = (f'<div class="summary"><div class="shead">{IC_DOC}오늘의 3줄 요약{date_note}</div>'
                        f'<ul>{lis}</ul>{pick_html}</div>')
         else:
-            summary = ('<div class="summary muted">📝 3줄 요약은 다음 수집 때 생성됩니다 '
+            summary = (f'<div class="summary muted">{IC_DOC}3줄 요약은 다음 수집 때 생성됩니다 '
                        '(Claude 분석)</div>')
         today_iso = TODAY.isoformat()
         side = side_log(pid, log_data, today_iso)
@@ -510,7 +559,8 @@ def render(ranks, summaries, spent, budget, log_data=None):
                 note = ("내일부터 데이터가 쌓입니다 (전일 대비 계산)"
                         if vkey == "trending" else "아직 항목이 없습니다")
                 cards = f'<p class="empty">{note}</p>'
-            sections += f'<h2 class="vhead">{vlabel}</h2><div class="row">{cards}</div>'
+            sections += (f'<h2 class="vhead">{VHEAD_ICON.get(vkey, "")}{vlabel}</h2>'
+                         f'<div class="row">{cards}</div>')
         blocks += f'<section class="platform{act}" id="pf-{pid}">{sections}</section>'
 
     date_str = TODAY.isoformat()
@@ -526,145 +576,180 @@ def render(ranks, summaries, spent, budget, log_data=None):
 <title>데일리 뮤직 뉴스레터 · {date_str}</title>
 <link rel="icon" href="{favicon}">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <style>
   :root {{
     color-scheme:dark;
-    --bg:#09090b; --surface:#141417; --line:rgba(255,255,255,.07);
-    --text:#ededf0; --muted:#9a9aa6; --accent:#e0a458; --accent-weak:rgba(224,164,88,.14);
-    --spring:cubic-bezier(.16,1,.3,1);
+    --bg:#100c24; --layer:#1b1640; --layer-2:#251f53;
+    --border:rgba(157,139,255,.10); --border-soft:rgba(157,139,255,.06); --r:14px;
+    --text:#ece9ff; --text-2:#a9a1d6; --text-helper:#7d75ad;
+    --pink:#ff5fa2; --cyan:#3fd9d0; --amber:#ffc24d; --link:#9d8bff;
+    --head:'Jua',Pretendard,sans-serif;
+    --ease:cubic-bezier(.2,0,.38,.9);
   }}
   * {{ box-sizing:border-box; }}
   html {{ scroll-behavior:smooth; }}
   body {{
-    margin:0; color:var(--text); min-height:100dvh;
+    margin:0; background:var(--bg); color:var(--text); min-height:100dvh;
     font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
-    word-break:keep-all; -webkit-font-smoothing:antialiased;
-    background:
-      radial-gradient(1100px 600px at 12% -10%, rgba(224,164,88,.12), transparent 60%),
-      radial-gradient(900px 500px at 115% 0%, rgba(255,255,255,.04), transparent 55%),
-      var(--bg);
+    word-break:keep-all; -webkit-font-smoothing:antialiased; font-size:16px; line-height:1.6;
+    background-image:
+      radial-gradient(820px 520px at 6% -6%, rgba(255,95,162,.20), transparent 58%),
+      radial-gradient(760px 520px at 110% 2%, rgba(63,217,208,.16), transparent 56%),
+      radial-gradient(1100px 700px at 50% 24%, rgba(123,79,242,.16), transparent 62%),
+      linear-gradient(180deg, #1a1340 0%, #140e30 42%, #0c0820 100%);
     background-attachment:fixed;
   }}
+  .skyline {{ position:fixed; left:0; right:0; bottom:0; height:300px; z-index:0;
+    pointer-events:none; opacity:.5; }}
   body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-    opacity:.04; background-image:url("{grain}"); }}
+    opacity:.05; background-image:url("{grain}"); }}
   header, .navbar, main, footer {{ position:relative; z-index:1; }}
   .wrap {{ max-width:1180px; margin:0 auto; padding:0 20px; }}
-  header {{ padding:40px 0 18px; }}
-  h1 {{ margin:0; font-size:clamp(26px,4vw,40px); font-weight:700; letter-spacing:-.02em;
-    line-height:1.15; text-wrap:balance;
-    background:linear-gradient(92deg,#fff 30%,var(--accent)); -webkit-background-clip:text;
-    background-clip:text; color:transparent; }}
-  .sub {{ color:var(--muted); font-size:14px; margin-top:8px; font-variant-numeric:tabular-nums; }}
-  .navbar {{ position:sticky; top:0; z-index:40; margin-top:14px;
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    background:rgba(9,9,11,.72); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }}
-  .tabs {{ display:flex; gap:8px; max-width:1180px; margin:0 auto; padding:12px 20px;
+  header {{ padding:34px 0 0; }}
+  h1 {{ margin:0; font-family:var(--head); font-size:clamp(28px,4.4vw,40px); font-weight:400;
+    letter-spacing:0; line-height:1.25; text-shadow:0 0 28px rgba(255,95,162,.35); }}
+  .sub {{ color:var(--text-2); font-size:13px; margin-top:8px; letter-spacing:.2px;
+    font-variant-numeric:tabular-nums; }}
+  .navbar {{ position:sticky; top:0; z-index:40; margin-top:10px;
+    background:linear-gradient(180deg, rgba(16,12,36,.92), rgba(16,12,36,.72));
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }}
+  .tabs {{ display:flex; max-width:1180px; margin:0 auto; padding:0 20px;
+    border-bottom:1px solid var(--border-soft);
     overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }}
   .tabs::-webkit-scrollbar {{ display:none; }}
-  .tabbtn {{ flex:0 0 auto; background:transparent; color:var(--muted); border:1px solid var(--line);
-    border-radius:999px; padding:9px 16px; font:inherit; font-size:14px; font-weight:500;
-    cursor:pointer; transition:all .3s var(--spring); }}
-  .tabbtn:hover {{ color:var(--text); border-color:rgba(255,255,255,.18); }}
-  .tabbtn.active {{ background:var(--accent-weak); color:var(--accent); border-color:rgba(224,164,88,.4); }}
+  .tabbtn {{ flex:0 0 auto; display:inline-flex; align-items:center; gap:8px;
+    background:transparent; color:var(--text-2); border:none;
+    border-bottom:2px solid transparent; padding:12px 18px; font:inherit; font-size:15px;
+    cursor:pointer; transition:color .12s var(--ease); white-space:nowrap; }}
+  .tabbtn:hover {{ color:var(--text); }}
+  .tabbtn.active {{ color:var(--text); font-weight:600; border-bottom-color:var(--pink);
+    text-shadow:0 0 16px rgba(255,95,162,.4); }}
+  .tic {{ width:18px; height:18px; flex:0 0 auto; }}
+  .tabbtn.active .tic {{ filter:drop-shadow(0 0 6px rgba(255,95,162,.65)); color:var(--pink); }}
+  .hic {{ width:20px; height:20px; flex:0 0 auto; vertical-align:-4px; margin-right:8px; }}
+  .hic-pink {{ color:var(--pink); filter:drop-shadow(0 0 7px rgba(255,95,162,.5)); }}
+  .hic-amber {{ color:var(--amber); filter:drop-shadow(0 0 7px rgba(255,194,77,.5)); }}
+  .hic-cyan {{ color:var(--cyan); filter:drop-shadow(0 0 7px rgba(63,217,208,.5)); }}
   .platform {{ display:none; max-width:1180px; margin:0 auto; padding:8px 20px 64px; }}
   .platform.active {{ display:block; }}
-  .summary {{ margin:18px 0 4px; padding:16px 18px; border-radius:16px;
-    background:var(--accent-weak); border:1px solid rgba(224,164,88,.28);
-    border-left:3px solid var(--accent); }}
-  .summary.muted {{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--line);
-    color:var(--muted); font-size:13.5px; }}
-  .shead {{ font-size:13px; font-weight:600; color:var(--accent); margin-bottom:8px;
-    letter-spacing:.01em; }}
-  .summary ul {{ margin:0; padding-left:18px; }}
-  .summary li {{ font-size:14px; line-height:1.6; margin:3px 0; }}
-  .pick {{ display:block; margin-top:12px; padding:11px 13px; border-radius:12px;
-    background:rgba(0,0,0,.25); border:1px solid rgba(224,164,88,.3);
-    text-decoration:none; color:inherit; transition:all .25s var(--spring); }}
-  .pick:hover {{ border-color:var(--accent); background:rgba(0,0,0,.35); }}
-  .ptag {{ display:inline-block; font-size:11px; font-weight:600; color:var(--accent);
-    margin-bottom:4px; }}
-  .ptitle {{ display:block; font-size:14px; font-weight:600; line-height:1.4;
-    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
-  .pmeta {{ display:block; font-size:12px; color:var(--muted); margin-top:3px; line-height:1.4; }}
-  .vhead {{ font-size:15px; font-weight:600; color:var(--text); margin:28px 2px 14px;
-    padding-bottom:8px; border-bottom:1px solid var(--line); }}
-  .row {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }}
+  .summary {{ margin:22px 0 4px; padding:18px 20px; background:var(--layer);
+    border-left:3px solid var(--pink); border-radius:0 var(--r) var(--r) 0;
+    box-shadow:-10px 0 40px -18px rgba(255,95,162,.5); }}
+  .summary.muted {{ background:var(--layer); border-left:3px solid var(--border);
+    box-shadow:none; color:var(--text-2); font-size:14px; }}
+  .shead {{ font-family:var(--head); font-size:15px; font-weight:400; color:var(--pink);
+    margin-bottom:10px; letter-spacing:.2px; }}
+  .summary ul {{ margin:0; padding-left:20px; }}
+  .summary li {{ font-size:15px; line-height:1.7; margin:4px 0; }}
+  .pick {{ margin-top:16px; border-radius:var(--r); overflow:hidden;
+    background:linear-gradient(135deg,rgba(255,95,162,.12),rgba(63,217,208,.08));
+    border:1px solid rgba(255,95,162,.22); box-shadow:0 0 40px -14px rgba(255,95,162,.4); }}
+  .pickhead {{ padding:16px 18px; display:flex; align-items:flex-start; justify-content:space-between;
+    gap:10px; cursor:pointer; transition:background .12s var(--ease); }}
+  .pickhead:hover {{ background:rgba(255,255,255,.03); }}
+  .pickmain {{ min-width:0; }}
+  .ptag {{ font-size:12px; font-weight:600; color:var(--cyan); text-shadow:0 0 14px rgba(63,217,208,.45); }}
+  .ptitle {{ margin:6px 0 0; font-family:var(--head); font-size:18px; font-weight:400; line-height:1.4; }}
+  .pchan {{ margin:4px 0 0; font-size:13px; color:var(--text-2); }}
+  .chev {{ font-size:20px; color:var(--text-helper); flex:0 0 auto; line-height:1; margin-top:2px;
+    transition:transform .2s var(--ease); }}
+  .pick.open .chev {{ transform:rotate(180deg); }}
+  .panel {{ display:none; border-top:1px solid var(--border-soft); padding:6px 18px 16px; }}
+  .pick.open .panel {{ display:block; }}
+  .step {{ padding:12px 0 2px; border-top:1px solid var(--border-soft); }}
+  .step:first-child {{ border-top:none; }}
+  .stepnum {{ font-size:12px; font-weight:600; color:var(--text-helper); letter-spacing:.4px; }}
+  .steptext {{ margin:6px 0 0; font-size:15px; line-height:1.7; color:#e3dffb; }}
+  .picklink {{ display:flex; align-items:center; justify-content:center; gap:7px; margin-top:16px;
+    padding:12px; background:var(--pink); color:#1a0e1a; font-size:14px; font-weight:600;
+    border-radius:var(--r); text-decoration:none; transition:filter .12s var(--ease); }}
+  .picklink:hover {{ filter:brightness(1.08); }}
+  .vhead {{ font-family:var(--head); font-size:19px; font-weight:400; color:var(--text);
+    margin:36px 2px 16px; padding-bottom:9px; border-bottom:1px solid var(--border-soft); }}
+  .row {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }}
   @keyframes fadeUp {{ from {{ opacity:0; transform:translateY(16px); }} to {{ opacity:1; transform:none; }} }}
-  .platform.active .card {{ animation:fadeUp .5s var(--spring) both; animation-delay:calc(var(--i) * 45ms); }}
-  .card {{ position:relative; display:block; background:var(--surface); border:1px solid var(--line);
-    border-radius:18px; overflow:hidden; text-decoration:none; color:inherit;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 12px 30px -16px rgba(0,0,0,.8);
-    transition:transform .4s var(--spring), border-color .3s var(--spring), box-shadow .4s var(--spring); }}
-  .card:hover {{ transform:translateY(-5px); border-color:rgba(224,164,88,.45);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 22px 44px -18px rgba(224,164,88,.28); }}
-  .card:active {{ transform:translateY(-2px) scale(.99); }}
-  .thumb {{ position:relative; aspect-ratio:16/9; background:#0c0c0f; overflow:hidden;
+  .platform.active .card {{ animation:fadeUp .5s var(--ease) both; animation-delay:calc(var(--i) * 45ms); }}
+  .card {{ position:relative; display:block; background:var(--layer); overflow:hidden;
+    border:1px solid var(--border-soft); border-radius:var(--r);
+    text-decoration:none; color:inherit;
+    transition:background .12s var(--ease), border-color .12s var(--ease), box-shadow .2s var(--ease); }}
+  .card:hover {{ background:var(--layer-2); border-color:rgba(255,95,162,.3);
+    box-shadow:0 10px 40px -16px rgba(255,95,162,.45); }}
+  .thumb {{ position:relative; aspect-ratio:16/9; background:var(--layer-2); overflow:hidden;
     display:grid; place-items:center; }}
   .thumb img {{ position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block;
-    transition:transform .5s var(--spring); }}
+    transition:transform .5s var(--ease); }}
   .card:hover .thumb img {{ transform:scale(1.05); }}
-  .ph {{ position:absolute; font-size:34px; opacity:.4; z-index:0; }}
+  .ph {{ position:absolute; width:34px; height:34px; opacity:.35; z-index:0; color:var(--link); }}
   .thumb.broken img {{ display:none; }}
   .thumb::after {{ content:""; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(to top, rgba(0,0,0,.55), transparent 45%); }}
-  .rank {{ position:absolute; top:8px; left:10px; z-index:3; font-size:22px; font-weight:700;
-    line-height:1; color:#fff; font-variant-numeric:tabular-nums; text-shadow:0 2px 8px rgba(0,0,0,.7); }}
-  .play {{ position:absolute; inset:0; margin:auto; width:48px; height:48px; z-index:3; display:grid;
-    place-items:center; border-radius:999px; color:#0a0a0a; background:rgba(255,255,255,.92);
-    opacity:0; transform:scale(.8); transition:all .35s var(--spring); }}
+    background:linear-gradient(to top, rgba(12,8,32,.6), transparent 45%); }}
+  .rank {{ position:absolute; top:8px; left:8px; z-index:3; font-size:13px; font-weight:700;
+    line-height:1; color:#16091f; background:var(--pink); padding:3px 9px; border-radius:6px;
+    font-variant-numeric:tabular-nums; box-shadow:0 0 16px -2px rgba(255,95,162,.6); }}
+  .play {{ position:absolute; inset:0; margin:auto; width:46px; height:46px; z-index:3; display:grid;
+    place-items:center; border-radius:999px; color:#16091f; background:var(--pink);
+    opacity:0; transform:scale(.8); transition:all .35s var(--ease);
+    box-shadow:0 0 24px -2px rgba(255,95,162,.7); }}
   .card:hover .play {{ opacity:1; transform:scale(1); }}
-  .tag {{ position:absolute; left:10px; bottom:10px; z-index:3; font-size:11px; font-weight:500;
-    padding:4px 9px; border-radius:999px; color:#f2f2f4; background:rgba(20,20,23,.7);
-    border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(6px); }}
-  .body {{ padding:13px 14px 16px; }}
-  .title {{ font-size:15px; font-weight:600; line-height:1.4; text-wrap:balance;
+  .tag {{ position:absolute; left:8px; bottom:8px; z-index:3; font-size:12px;
+    padding:3px 9px; border-radius:999px; color:var(--text); background:rgba(16,12,36,.82);
+    border:1px solid var(--border-soft); backdrop-filter:blur(6px); }}
+  .body {{ padding:14px 15px 17px; }}
+  .title {{ font-size:15px; font-weight:600; line-height:1.5;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }}
-  .channel {{ color:var(--muted); font-size:12.5px; margin-top:6px; }}
-  .meta {{ font-size:12.5px; margin-top:8px; color:var(--muted); font-variant-numeric:tabular-nums; }}
-  .meta b {{ color:var(--accent); font-weight:600; }}
-  .empty {{ color:var(--muted); font-size:14px; padding:10px 2px 4px; }}
-  .sumrow {{ display:flex; gap:16px; align-items:flex-start; margin:18px 0 4px; }}
+  .channel {{ color:var(--text-2); font-size:13px; margin-top:7px; }}
+  .meta {{ font-size:13px; margin-top:9px; color:var(--text-2); font-variant-numeric:tabular-nums; }}
+  .meta b {{ color:var(--cyan); font-weight:600; }}
+  .empty {{ color:var(--text-2); font-size:14px; padding:10px 2px 4px; }}
+  .sumrow {{ display:flex; gap:16px; align-items:flex-start; margin:22px 0 4px; }}
   .sumrow .summary {{ flex:1; min-width:0; margin:0; }}
-  .sidelog {{ flex:0 0 270px; align-self:stretch; padding:13px 14px; border-radius:16px;
-    background:var(--surface); border:1px solid var(--line);
-    max-height:360px; overflow-y:auto; scrollbar-width:thin; }}
-  .sidehead {{ font-size:12px; font-weight:600; color:var(--muted); margin-bottom:9px;
-    letter-spacing:.01em; }}
-  .sideday {{ padding:9px 0; border-top:1px solid var(--line); }}
+  .sidelog {{ flex:0 0 280px; align-self:stretch; padding:14px 16px; border-radius:var(--r);
+    background:var(--layer); max-height:380px; overflow-y:auto; scrollbar-width:thin; }}
+  .sidehead {{ font-size:13px; font-weight:600; color:var(--text-2); margin-bottom:10px;
+    letter-spacing:.2px; }}
+  .sideday {{ padding:10px 0; border-top:1px solid var(--border-soft); }}
   .sideday:first-of-type {{ border-top:none; padding-top:0; }}
-  .sidedate {{ font-size:11.5px; font-weight:600; color:var(--accent); margin-bottom:4px;
+  .sidedate {{ font-size:12.5px; font-weight:600; color:var(--link); margin-bottom:5px;
     font-variant-numeric:tabular-nums; }}
-  .sidelog ul {{ margin:0; padding-left:15px; }}
-  .sidelog li {{ font-size:11.5px; line-height:1.5; margin:2px 0; color:var(--muted); }}
-  .sidepick {{ display:block; margin-top:5px; font-size:11px; color:var(--muted);
+  .sidelog ul {{ margin:0; padding-left:16px; }}
+  .sidelog li {{ font-size:13px; line-height:1.6; margin:3px 0; color:var(--text-2); }}
+  .sidepick {{ display:block; margin-top:5px; font-size:12px; color:var(--text-2);
     text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
-  .sidepick:hover {{ color:var(--accent); }}
-  footer {{ color:#62626d; font-size:12.5px; padding:0 0 40px; }}
+  .sidepick:hover {{ color:var(--cyan); }}
+  footer {{ color:var(--text-helper); font-size:13px; padding:0 0 40px; }}
   @media (max-width:600px) {{
     body {{ overflow-x:hidden; }}
-    header {{ padding:28px 0 12px; }}
+    header {{ padding:26px 0 0; }}
     .platform {{ padding:6px 16px 44px; }}
     .sumrow {{ flex-direction:column; }}
-    .sidelog {{ flex-basis:auto; width:100%; max-height:260px; }}
+    .sidelog {{ flex-basis:auto; width:100%; max-height:280px; }}
     .wrap {{ padding:0 16px; }}
-    .tabs {{ padding:11px 16px; gap:7px; }}
-    .row {{ grid-template-columns:1fr; gap:12px; }}
+    .tabs {{ padding:0 16px; }}
+    .row {{ grid-template-columns:1fr; }}
     .card {{ display:flex; flex-direction:row; align-items:stretch; }}
-    .thumb {{ width:44%; max-width:170px; flex:0 0 auto; }}
-    .body {{ flex:1; min-width:0; padding:11px 13px; align-self:center; }}
+    .thumb {{ width:44%; max-width:170px; flex:0 0 auto; aspect-ratio:auto; min-height:100px; }}
+    .body {{ flex:1; min-width:0; padding:12px 14px; align-self:center; }}
     .title {{ font-size:14px; -webkit-line-clamp:3; }}
     .play {{ width:38px; height:38px; }}
-    .rank {{ font-size:18px; }}
   }}
   @media (prefers-reduced-motion:reduce) {{
     html {{ scroll-behavior:auto; }} .platform.active .card {{ animation:none; }}
     * {{ transition:none !important; }}
   }}
 </style></head><body>
+<svg class="skyline" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#0a0718"><rect x="0" y="150" width="120" height="150"/><rect x="130" y="90" width="80" height="210"/><rect x="220" y="170" width="140" height="130"/><rect x="370" y="60" width="70" height="240"/><rect x="450" y="130" width="110" height="170"/><rect x="575" y="40" width="95" height="260"/><rect x="685" y="160" width="130" height="140"/><rect x="830" y="100" width="75" height="200"/><rect x="915" y="180" width="120" height="120"/><rect x="1050" y="70" width="90" height="230"/><rect x="1155" y="140" width="115" height="160"/><rect x="1285" y="110" width="80" height="190"/><rect x="1375" y="175" width="120" height="125"/></g>
+  <g fill="#ff5fa2" opacity=".7"><rect x="150" y="110" width="6" height="9"/><rect x="168" y="110" width="6" height="9"/><rect x="592" y="70" width="6" height="9"/><rect x="610" y="92" width="6" height="9"/><rect x="1072" y="98" width="6" height="9"/><rect x="1300" y="140" width="6" height="9"/></g>
+  <g fill="#3fd9d0" opacity=".7"><rect x="388" y="90" width="6" height="9"/><rect x="406" y="120" width="6" height="9"/><rect x="850" y="130" width="6" height="9"/><rect x="1178" y="170" width="6" height="9"/></g>
+  <g fill="#ffc24d" opacity=".75"><rect x="190" y="140" width="6" height="9"/><rect x="628" y="60" width="6" height="9"/><rect x="1095" y="120" width="6" height="9"/></g>
+</svg>
 <header><div class="wrap">
-  <h1>🎵 데일리 뮤직 뉴스레터</h1>
   <div class="sub">{date_str} · TikTok · Instagram · Reddit · 이번 달 ${spent:.2f} / ${budget:.2f}</div>
+  <h1>데일리 뮤직 뉴스레터</h1>
 </div></header>
 <nav class="navbar"><div class="tabs">{btns}</div></nav>
 <main>{blocks}</main>
@@ -682,6 +767,10 @@ def render(ranks, summaries, spent, budget, log_data=None):
       }});
     }});
   }}));
+  document.querySelectorAll('.pick').forEach(p => {{
+    const h = p.querySelector('.pickhead');
+    if (h) h.addEventListener('click', () => p.classList.toggle('open'));
+  }});
 </script></body></html>"""
 
 
