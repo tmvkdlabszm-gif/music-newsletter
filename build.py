@@ -855,7 +855,9 @@ def main():
                     units = conf.get("keywords", [])
                 for kw in units:
                     label = ", ".join(kw) if isinstance(kw, list) else kw
-                    est = start + unit * n
+                    # reddit는 서브레딧당 n개씩 → 묶음 크기를 예산 추정에 반영
+                    n_est = n * len(kw) if isinstance(kw, list) else n
+                    est = start + unit * n_est
                     if state["spent"] + est > budget:
                         log(f"월 예산(${budget}) 도달 → {pid}/'{label}' 이후 수집 중단")
                         break
