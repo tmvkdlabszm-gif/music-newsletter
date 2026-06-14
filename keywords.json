@@ -1,7 +1,7 @@
 {
   "platforms": {
     "tiktok":    { "keywords": ["new music", "music production"], "max_results": 8 },
-    "instagram": { "keywords": ["newmusic", "musicproduction"], "max_results": 8 },
+    "instagram": { "keywords": ["newmusicfriday", "musicproduction"], "max_results": 8 },
     "reddit":    { "subreddits": ["WeAreTheMusicMakers", "edmproduction", "synthesizers", "synthpop", "listentothis"], "max_results": 4 }
   },
   "recent_days": 7,
