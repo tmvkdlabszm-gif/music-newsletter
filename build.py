@@ -182,8 +182,16 @@ def payload_for(platform, kw, n):
         return {"directUrls": [f"https://www.instagram.com/explore/tags/{tag}/"],
                 "resultsType": "posts", "resultsLimit": n}
     if platform == "reddit":
-        return {"searchTerms": [kw], "searchPosts": True, "searchSort": "top",
-                "searchTime": "month", "maxPostsCount": n}
+        # kw는 서브레딧 이름 묶음(list). 각 음악 서브레딧의 '주간 인기'를 한 run으로 수집.
+        subs = kw if isinstance(kw, list) else [kw]
+        urls = []
+        for s in subs:
+            name = str(s).strip().strip("/")
+            if name.startswith("r/"):
+                name = name[2:]
+            if name:
+                urls.append({"url": f"https://www.reddit.com/r/{name}/top/?t=week"})
+        return {"startUrls": urls, "maxPostsCount": n}
     return {}
 
 
@@ -364,7 +372,7 @@ def update_history(history, items):
 
 def rank_platform(history, platform, recent_days):
     rows = [dict(r) for r in history.values() if r.get("platform") == platform]
-    all_time = sorted(rows, key=lambda r: r.get("score") or 0, reverse=True)[:5]
+    all_time_all = sorted(rows, key=lambda r: r.get("score") or 0, reverse=True)
 
     cutoff = TODAY - datetime.timedelta(days=recent_days)
     def is_recent(r):
@@ -372,15 +380,32 @@ def rank_platform(history, platform, recent_days):
             return datetime.date.fromisoformat(r["published"]) >= cutoff
         except (ValueError, KeyError, TypeError):
             return False
-    recent = sorted([r for r in rows if is_recent(r)],
-                    key=lambda r: r.get("score") or 0, reverse=True)[:5]
+    recent_all = sorted([r for r in rows if is_recent(r)],
+                        key=lambda r: r.get("score") or 0, reverse=True)
 
     trend = []
     for r in rows:
         pv = r.get("prev_score")
         if pv is not None and (r.get("score") or 0) - pv > 0:
             trend.append(dict(r, delta=(r["score"] - pv)))
-    trending = sorted(trend, key=lambda r: r["delta"], reverse=True)[:5]
+    trending_all = sorted(trend, key=lambda r: r["delta"], reverse=True)
+
+    # 뷰 간 중복 제거: 한 게시물은 한 섹션에만 (우선순위 최근 > 뜨는중 > 전체)
+    claimed = set()
+    def take(pool, k=5):
+        out = []
+        for r in pool:
+            rid = r.get("id")
+            if rid in claimed:
+                continue
+            claimed.add(rid)
+            out.append(r)
+            if len(out) >= k:
+                break
+        return out
+    recent = take(recent_all)
+    trending = take(trending_all)
+    all_time = take(all_time_all)
     return {"recent": recent, "all_time": all_time, "trending": trending}
 
 
@@ -820,13 +845,19 @@ def main():
         else:
             for pid in PLATFORMS:
                 conf = pf_cfg.get(pid, {})
-                kws = conf.get("keywords", [])
                 n = int(conf.get("max_results", 8))
                 unit, start = PLATFORMS[pid]["unit"], PLATFORMS[pid]["start"]
-                for kw in kws:
+                # reddit는 음악 서브레딧 묶음을 한 번의 run으로, 나머지는 키워드별 run
+                if pid == "reddit":
+                    subs = conf.get("subreddits") or conf.get("keywords", [])
+                    units = [subs] if subs else []
+                else:
+                    units = conf.get("keywords", [])
+                for kw in units:
+                    label = ", ".join(kw) if isinstance(kw, list) else kw
                     est = start + unit * n
                     if state["spent"] + est > budget:
-                        log(f"월 예산(${budget}) 도달 → {pid}/'{kw}' 이후 수집 중단")
+                        log(f"월 예산(${budget}) 도달 → {pid}/'{label}' 이후 수집 중단")
                         break
                     try:
                         items = fetch(token, pid, kw, n)
@@ -834,12 +865,12 @@ def main():
                         got = len(items)
                         fetched += got
                         state["spent"] += start + unit * got
-                        log(f"수집: {pid} · '{kw}' {got}개 (누적 ${state['spent']:.2f})")
+                        log(f"수집: {pid} · '{label}' {got}개 (누적 ${state['spent']:.2f})")
                         time.sleep(1)
                     except urllib.error.HTTPError as e:
-                        log(f"수집 실패 {pid}/'{kw}': HTTP {e.code} {e.reason}")
+                        log(f"수집 실패 {pid}/'{label}': HTTP {e.code} {e.reason}")
                     except Exception as e:
-                        log(f"수집 실패 {pid}/'{kw}': {e}")
+                        log(f"수집 실패 {pid}/'{label}': {e}")
             save_json(HISTORY, history)
             save_json(STATE, state)
 
