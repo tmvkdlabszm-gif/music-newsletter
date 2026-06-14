@@ -290,5 +290,43 @@
         "meta": "r/synthesizers · 물리 악기와 디지털 신스를 감도 제어까지 통합한 DIY 접근이 이날 가장 독창적인 제작 아이디어다"
       }
     }
+  },
+  "2026-06-15": {
+    "tiktok": {
+      "lines": [
+        "하우스 뮤직 콘텐츠가 상위 조회수를 독식하며 장르 열기가 뚜렷하게 올라오고 있다.",
+        "릴리스 예고·피드백 요청형 게시물이 다수 포진해 팬 참여를 활용한 발매 전략이 주류로 자리 잡는 흐름이다.",
+        "FL Studio·Ableton 기반 프로덕션 튜토리얼이 꾸준히 소비되며 '보며 배우는' 제작 교육 수요가 여전히 강하다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@adanmade_/video/7649441209483545869",
+        "title": "adanmade shows his 4 NOTE METHOD and makes an INSANE beat 🤯- Full video out now ",
+        "meta": "adanmade · 4개의 노트만으로 임팩트 있는 비트를 완성하는 구체적 방법론을 공개해 실전 프로듀서라면 바로 적용 가능한 영상이다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "독립 아티스트들이 컴백 예고와 프로젝트 티저로 팔로워의 기대감을 먼저 쌓는 전략이 오늘 피드를 지배했다.",
+        "아프로비츠·아프로드릴·반다 전통음악 등 지역 뿌리를 앞세운 장르들이 인디 신에서 조용히 자기 자리를 넓히고 있다.",
+        "AI 스템 분리 기술이 소규모 제작자 레벨까지 내려오며 리믹스와 재해석의 진입장벽을 실질적으로 무너뜨리고 있다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZlVIsRE3GF/",
+        "title": "MicSwap Remix is an AI-powered app that allows users to split audio tracks into ",
+        "meta": "micswapvideo · AI로 오디오를 스템 단위로 분해해 리믹스할 수 있는 앱 소개로, 독립 프로듀서의 워크플로우 변화를 예고하는 게시물이다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "신시사이저 구매 인증 게시물이 상위권을 독점하며 하드웨어 신스 입문 열풍이 커뮤니티를 달구고 있다.",
+        "Tears for Fears, Depeche Mode, Simple Minds 등 80년대 신스팝 클래식이 잇따라 소환되며 레트로 사운드에 대한 향수가 다시 부상하고 있다.",
+        "보컬 더블트래킹, 베이스 레이어링, 멜로디 작법 등 실전 제작 질문들이 활발히 올라오며 기술 학습 수요가 높았다."
+      ],
+      "pick": {
+        "url": "#",
+        "title": "Accordion using software synthesizer and force sensor for dynamics",
+        "meta": "r/synthesizers · 아코디언에 소프트 신스와 포스 센서를 결합한 DIY 악기 프로젝트로, 하드웨어·소프트웨어·물리적 연주감을 융합한 독창적 시도가 단연 돋보인다."
+      }
+    }
   }
 }
