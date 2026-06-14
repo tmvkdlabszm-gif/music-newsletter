@@ -1,8 +1,8 @@
 {
   "platforms": {
-    "tiktok":    { "keywords": ["music production", "sound design"], "max_results": 8 },
-    "instagram": { "keywords": ["bedroomproducer", "synthwave"], "max_results": 8 },
-    "reddit":    { "subreddits": ["WeAreTheMusicMakers", "edmproduction", "synthesizers", "synthpop"], "max_results": 12 }
+    "tiktok":    { "keywords": ["new music", "music production"], "max_results": 8 },
+    "instagram": { "keywords": ["newmusic", "musicproduction"], "max_results": 8 },
+    "reddit":    { "subreddits": ["WeAreTheMusicMakers", "edmproduction", "synthesizers", "synthpop", "listentothis"], "max_results": 12 }
   },
   "recent_days": 7,
   "monthly_budget_usd": 4.5
