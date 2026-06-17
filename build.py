@@ -42,22 +42,21 @@ PLATFORMS = {
 }
 VIEWS = [("recent", "최근 인기"), ("all_time", "전체 인기"), ("trending", "뜨는 중")]
 
-# ---- 네온 라인 아이콘 (테마용, 단색 currentColor) ----
+# ---- Carbon UI 아이콘 (단색 currentColor, viewBox 0 0 32 32) ----
+# tiktok/reddit는 Carbon에 로고가 없어 music/forum으로 대체
 PLATFORM_ICON = {
-    "tiktok": '<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V4l10-1v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="15" r="3"/></svg>',
-    "instagram": '<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>',
-    "reddit": '<svg class="tic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><circle cx="9" cy="12.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="12.5" r="1.1" fill="currentColor" stroke="none"/><path d="M9.5 16c1.5 1 3.5 1 5 0"/><path d="M12 5l1.5-2.5 3 .8"/><circle cx="16.8" cy="3.6" r="1" fill="currentColor" stroke="none"/></svg>',
+    "tiktok": '<svg class="tic" viewBox="0 0 32 32" fill="currentColor"><path d="M25,4H10A2.002,2.002,0,0,0,8,6V20.5563A3.9551,3.9551,0,0,0,6,20a4,4,0,1,0,4,4V12H25v8.5562A3.9545,3.9545,0,0,0,23,20a4,4,0,1,0,4,4V6A2.0023,2.0023,0,0,0,25,4ZM6,26a2,2,0,1,1,2-2A2.0023,2.0023,0,0,1,6,26Zm17,0a2,2,0,1,1,2-2A2.0027,2.0027,0,0,1,23,26ZM10,6H25v4H10Z"/></svg>',
+    "instagram": '<svg class="tic" viewBox="0 0 32 32" fill="currentColor"><circle cx="22.406" cy="9.594" r="1.44"/><path d="M16,9.8378A6.1622,6.1622,0,1,0,22.1622,16,6.1622,6.1622,0,0,0,16,9.8378ZM16,20a4,4,0,1,1,4-4A4,4,0,0,1,16,20Z"/><path d="M16,6.1622c3.2041,0,3.5837.0122,4.849.07a6.6418,6.6418,0,0,1,2.2283.4132,3.9748,3.9748,0,0,1,2.2774,2.2774,6.6418,6.6418,0,0,1,.4132,2.2283c.0577,1.2653.07,1.6449.07,4.849s-.0122,3.5837-.07,4.849a6.6418,6.6418,0,0,1-.4132,2.2283,3.9748,3.9748,0,0,1-2.2774,2.2774,6.6418,6.6418,0,0,1-2.2283.4132c-1.2652.0577-1.6446.07-4.849.07s-3.5838-.0122-4.849-.07a6.6418,6.6418,0,0,1-2.2283-.4132,3.9748,3.9748,0,0,1-2.2774-2.2774,6.6418,6.6418,0,0,1-.4132-2.2283c-.0577-1.2653-.07-1.6449-.07-4.849s.0122-3.5837.07-4.849a6.6418,6.6418,0,0,1,.4132-2.2283A3.9748,3.9748,0,0,1,8.9227,6.6453a6.6418,6.6418,0,0,1,2.2283-.4132c1.2653-.0577,1.6449-.07,4.849-.07M16,4c-3.259,0-3.6677.0138-4.9476.0722A8.8068,8.8068,0,0,0,8.14,4.63,6.1363,6.1363,0,0,0,4.63,8.14a8.8068,8.8068,0,0,0-.5578,2.9129C4.0138,12.3323,4,12.741,4,16s.0138,3.6677.0722,4.9476A8.8074,8.8074,0,0,0,4.63,23.8605a6.1363,6.1363,0,0,0,3.51,3.51,8.8068,8.8068,0,0,0,2.9129.5578C12.3323,27.9862,12.741,28,16,28s3.6677-.0138,4.9476-.0722a8.8074,8.8074,0,0,0,2.9129-.5578,6.1363,6.1363,0,0,0,3.51-3.51,8.8074,8.8074,0,0,0,.5578-2.9129C27.9862,19.6677,28,19.259,28,16s-.0138-3.6677-.0722-4.9476A8.8068,8.8068,0,0,0,27.37,8.14a6.1363,6.1363,0,0,0-3.51-3.5095,8.8074,8.8074,0,0,0-2.9129-.5578C19.6677,4.0138,19.259,4,16,4Z"/></svg>',
+    "reddit": '<svg class="tic" viewBox="0 0 32 32" fill="currentColor"><path d="M28,6H8C6.8,6,6,6.8,6,8v14c0,1.2,0.8,2,2,2h8v-2H8V8h20v14h-7.2L16,28.8l1.6,1.2l4.2-6H28c1.2,0,2-0.8,2-2V8C30,6.8,29.2,6,28,6z"/><path d="M4,18H2V5c0-1.7,1.3-3,3-3h13v2H5C4.4,4,4,4.4,4,5V18z"/></svg>',
 }
 VHEAD_ICON = {
-    "recent": '<svg class="hic hic-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.3 6.3l2.1 2.1M15.6 15.6l2.1 2.1M17.7 6.3l-2.1 2.1M8.4 15.6l-2.1 2.1"/></svg>',
-    "all_time": '<svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 3-2 4.2-2 7a2.5 2.5 0 0 0 5 0c0-.8-.3-1.5-.7-2 2.2 1.2 3.7 3.5 3.7 6.2a6 6 0 0 1-12 0c0-3.3 2.3-5.2 4-7.2 1-1.2 2-2.6 2-4z"/></svg>',
-    "trending": '<svg class="hic hic-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 7h4v4"/></svg>',
+    "recent": '<svg class="hic hic-cyan" viewBox="0 0 32 32" fill="currentColor"><path d="M20.59 22 15 16.41 15 7 17 7 17 15.58 22 20.59 20.59 22z"/><path d="M16,2A13.94,13.94,0,0,0,6,6.23V2H4v8h8V8H7.08A12,12,0,1,1,4,16H2A14,14,0,1,0,16,2Z"/></svg>',
+    "all_time": '<svg class="hic hic-pink" viewBox="0 0 32 32" fill="currentColor"><path d="M26,7H24V6a2.0023,2.0023,0,0,0-2-2H10A2.0023,2.0023,0,0,0,8,6V7H6A2.0023,2.0023,0,0,0,4,9v3a4.0045,4.0045,0,0,0,4,4h.322A8.1689,8.1689,0,0,0,15,21.9341V26H10v2H22V26H17V21.9311A7.9661,7.9661,0,0,0,23.74,16H24a4.0045,4.0045,0,0,0,4-4V9A2.0023,2.0023,0,0,0,26,7ZM8,14a2.0023,2.0023,0,0,1-2-2V9H8Zm14,0a6,6,0,0,1-6.1855,5.9971A6.1991,6.1991,0,0,1,10,13.7065V6H22Zm4-2a2.0023,2.0023,0,0,1-2,2V9h2Z"/></svg>',
+    "trending": '<svg class="hic hic-amber" viewBox="0 0 32 32" fill="currentColor"><path d="M4.67,28l6.39-12,7.3,6.49a2,2,0,0,0,1.7.47,2,2,0,0,0,1.42-1.07L27,10.9,25.18,10,19.69,21l-7.3-6.49A2,2,0,0,0,10.71,14a2,2,0,0,0-1.42,1L4,25V2H2V28a2,2,0,0,0,2,2H30V28Z"/></svg>',
 }
-# 썸네일 자리표시(영상 썸네일 없을 때만)
-NOTE_SVG = '<svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>'
 # 섹션 헤더용 아이콘
-IC_DOC = '<svg class="hic hic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>'
-IC_EYE = '<svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'
+IC_DOC = '<svg class="hic hic-pink" viewBox="0 0 32 32" fill="currentColor"><path d="M25.7,9.3l-7-7C18.5,2.1,18.3,2,18,2H8C6.9,2,6,2.9,6,4v24c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V10C26,9.7,25.9,9.5,25.7,9.3z M18,4.4l5.6,5.6H18V4.4z M24,28H8V4h8v6c0,1.1,0.9,2,2,2h6V28z"/><path d="M10 22H22V24H10z"/><path d="M10 16H22V18H10z"/></svg>'
+IC_EYE = '<svg class="hic hic-cyan" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 32 32" fill="currentColor"><path d="M30.94,15.66A16.69,16.69,0,0,0,16,5,16.69,16.69,0,0,0,1.06,15.66a1,1,0,0,0,0,.68A16.69,16.69,0,0,0,16,27,16.69,16.69,0,0,0,30.94,16.34,1,1,0,0,0,30.94,15.66ZM16,25c-5.3,0-10.9-3.93-12.93-9C5.1,10.93,10.7,7,16,7s10.9,3.93,12.93,9C26.9,21.07,21.3,25,16,25Z"/><path d="M16,10a6,6,0,1,0,6,6A6,6,0,0,0,16,10Zm0,10a4,4,0,1,1,4-4A4,4,0,0,1,16,20Z"/></svg>'
 
 
 def log(msg):
@@ -444,7 +443,7 @@ def fmt(n):
         return "0"
 
 
-def card_html(r, kind, rank):
+def card_html(r, kind, rank, featured=False):
     p = PLATFORMS[r["platform"]]
     title = html.escape(r.get("title", "") or "")
     channel = html.escape(r.get("channel", "") or "")
@@ -453,17 +452,20 @@ def card_html(r, kind, rank):
     if kind == "trending":
         meta = f"<b>+{fmt(r.get('delta'))}</b> {p['score']} · 누적 {fmt(r.get('score'))}"
     elif kind == "recent":
-        meta = f"{html.escape(r.get('published',''))} · {p['score']} {fmt(r.get('score'))}"
+        meta = f"{html.escape(r.get('published',''))} · {p['score']} <b>{fmt(r.get('score'))}</b>"
     else:
-        meta = f"{p['score']} {fmt(r.get('score'))} · {p['second']} {fmt(r.get('second'))}"
+        meta = f"{p['score']} <b>{fmt(r.get('score'))}</b> · {p['second']} {fmt(r.get('second'))}"
     thumb_tag = (f'<img src="{thumb}" loading="lazy" alt="{title}" '
                  f'onerror="this.parentNode.classList.add(&quot;broken&quot;)">'
                  if thumb else '')
-    return f"""<a class="card" style="--i:{rank}" href="{url}" target="_blank" rel="noopener">
-      <div class="thumb">{thumb_tag}{NOTE_SVG}
+    glyph = PLATFORM_ICON.get(r["platform"], "")
+    thumb_cls = "thumb" if thumb else "thumb noimg"
+    hero = " card--hero" if featured else ""
+    return f"""<a class="card v-{kind}{hero}" style="--i:{rank}" href="{url}" target="_blank" rel="noopener">
+      <div class="{thumb_cls}">{thumb_tag}<span class="ph">{glyph}</span>
         <span class="rank">{rank}</span>
-        <span class="play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag">{html.escape(p['label'])}</span>
+        <span class="play"><svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor"><path fill="none" d="M11,23a1,1,0,0,1-1-1V10a1,1,0,0,1,1.4473-.8945l12,6a1,1,0,0,1,0,1.789l-12,6A1.001,1.001,0,0,1,11,23Z"/><path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm7.4473,14.8945-12,6A1,1,0,0,1,10,22V10a1,1,0,0,1,1.4473-.8945l12,6a1,1,0,0,1,0,1.789Z"/></svg></span>
+        <span class="tag">{glyph}{html.escape(p['label'])}</span>
       </div>
       <div class="body"><div class="title">{title}</div>
         <div class="channel">{channel}</div><div class="meta">{meta}</div></div>
@@ -604,9 +606,9 @@ def render(ranks, summaries, spent, budget, log_data=None):
             rows = ranks[pid][vkey]
             if rows:
                 cards = ""
-                for r in rows:
+                for n, r in enumerate(rows):
                     idx += 1
-                    cards += card_html(r, vkey, idx)
+                    cards += card_html(r, vkey, idx, featured=(n == 0))
             else:
                 note = ("내일부터 데이터가 쌓입니다 (전일 대비 계산)"
                         if vkey == "trending" else "아직 항목이 없습니다")
@@ -618,149 +620,142 @@ def render(ranks, summaries, spent, budget, log_data=None):
     date_str = TODAY.isoformat()
     favicon = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>"
                "<text y='.9em' font-size='90'>🎵</text></svg>")
-    grain = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'>"
-             "<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/>"
-             "</filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="매일 자동 정리되는 음악 인기 게시물 — TikTok·Instagram·Reddit">
 <meta property="og:title" content="데일리 뮤직 뉴스레터">
 <title>데일리 뮤직 뉴스레터 · {date_str}</title>
 <link rel="icon" href="{favicon}">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Sans+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root {{
     color-scheme:dark;
-    --bg:#100c24; --layer:#1b1640; --layer-2:#251f53;
-    --border:rgba(157,139,255,.10); --border-soft:rgba(157,139,255,.06); --r:14px;
-    --text:#ece9ff; --text-2:#a9a1d6; --text-helper:#7d75ad;
-    --pink:#ff5fa2; --cyan:#3fd9d0; --amber:#ffc24d; --link:#9d8bff;
-    --head:'Jua',Pretendard,sans-serif;
+    --bg:#161616; --layer:#262626; --layer-2:#393939; --layer-3:#525252;
+    --border:#393939; --border-soft:#262626; --border-strong:#6f6f6f; --r:0;
+    --text:#f4f4f4; --text-2:#c6c6c6; --text-helper:#8d8d8d;
+    --link:#78a9ff; --accent:#4589ff; --btn:#0f62fe; --btn-hover:#0353e9;
+    --recent:#78a9ff; --alltime:#be95ff; --trending:#3ddbd9;
+    --head:'IBM Plex Sans','IBM Plex Sans KR',sans-serif;
     --ease:cubic-bezier(.2,0,.38,.9);
   }}
   * {{ box-sizing:border-box; }}
   html {{ scroll-behavior:smooth; }}
   body {{
     margin:0; background:var(--bg); color:var(--text); min-height:100dvh;
-    font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+    font-family:'IBM Plex Sans','IBM Plex Sans KR',system-ui,-apple-system,sans-serif;
     word-break:keep-all; -webkit-font-smoothing:antialiased; font-size:16px; line-height:1.6;
-    background-image:
-      radial-gradient(820px 520px at 6% -6%, rgba(255,95,162,.20), transparent 58%),
-      radial-gradient(760px 520px at 110% 2%, rgba(63,217,208,.16), transparent 56%),
-      radial-gradient(1100px 700px at 50% 24%, rgba(123,79,242,.16), transparent 62%),
-      linear-gradient(180deg, #1a1340 0%, #140e30 42%, #0c0820 100%);
-    background-attachment:fixed;
   }}
-  .skyline {{ position:fixed; left:0; right:0; bottom:0; height:300px; z-index:0;
-    pointer-events:none; opacity:.5; }}
-  body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-    opacity:.05; background-image:url("{grain}"); }}
   header, .navbar, main, footer {{ position:relative; z-index:1; }}
   .wrap {{ max-width:1180px; margin:0 auto; padding:0 20px; }}
-  header {{ padding:34px 0 0; }}
-  h1 {{ margin:0; font-family:var(--head); font-size:clamp(28px,4.4vw,40px); font-weight:400;
-    letter-spacing:0; line-height:1.25; text-shadow:0 0 28px rgba(255,95,162,.35); }}
+  header {{ padding:48px 0 0; }}
+  h1 {{ margin:0; font-family:var(--head); font-size:clamp(28px,4.4vw,40px); font-weight:300;
+    letter-spacing:0; line-height:1.25; }}
   .sub {{ color:var(--text-2); font-size:13px; margin-top:8px; letter-spacing:.2px;
     font-variant-numeric:tabular-nums; }}
-  .navbar {{ position:sticky; top:0; z-index:40; margin-top:10px;
-    background:linear-gradient(180deg, rgba(16,12,36,.92), rgba(16,12,36,.72));
-    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }}
+  .navbar {{ position:sticky; top:0; z-index:40; margin-top:16px;
+    background:var(--bg); border-bottom:1px solid var(--border); }}
   .tabs {{ display:flex; max-width:1180px; margin:0 auto; padding:0 20px;
-    border-bottom:1px solid var(--border-soft);
     overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }}
   .tabs::-webkit-scrollbar {{ display:none; }}
   .tabbtn {{ flex:0 0 auto; display:inline-flex; align-items:center; gap:8px;
     background:transparent; color:var(--text-2); border:none;
-    border-bottom:2px solid transparent; padding:12px 18px; font:inherit; font-size:15px;
-    cursor:pointer; transition:color .12s var(--ease); white-space:nowrap; }}
-  .tabbtn:hover {{ color:var(--text); }}
-  .tabbtn.active {{ color:var(--text); font-weight:600; border-bottom-color:var(--pink);
-    text-shadow:0 0 16px rgba(255,95,162,.4); }}
+    border-bottom:3px solid transparent; padding:13px 18px; font:inherit; font-size:15px;
+    cursor:pointer; transition:color .11s var(--ease),border-color .11s var(--ease),background .11s var(--ease); white-space:nowrap; }}
+  .tabbtn:hover {{ color:var(--text); background:var(--layer); }}
+  .tabbtn.active {{ color:var(--text); font-weight:600; border-bottom-color:var(--accent); }}
   .tic {{ width:18px; height:18px; flex:0 0 auto; }}
-  .tabbtn.active .tic {{ filter:drop-shadow(0 0 6px rgba(255,95,162,.65)); color:var(--pink); }}
+  .tabbtn.active .tic {{ color:var(--accent); }}
   .hic {{ width:20px; height:20px; flex:0 0 auto; vertical-align:-4px; margin-right:8px; }}
-  .hic-pink {{ color:var(--pink); filter:drop-shadow(0 0 7px rgba(255,95,162,.5)); }}
-  .hic-amber {{ color:var(--amber); filter:drop-shadow(0 0 7px rgba(255,194,77,.5)); }}
-  .hic-cyan {{ color:var(--cyan); filter:drop-shadow(0 0 7px rgba(63,217,208,.5)); }}
+  .hic-pink {{ color:var(--alltime); }}
+  .hic-amber {{ color:var(--trending); }}
+  .hic-cyan {{ color:var(--recent); }}
   .platform {{ display:none; max-width:1180px; margin:0 auto; padding:8px 20px 64px; }}
   .platform.active {{ display:block; }}
   .summary {{ margin:22px 0 4px; padding:18px 20px; background:var(--layer);
-    border-left:3px solid var(--pink); border-radius:0 var(--r) var(--r) 0;
-    box-shadow:-10px 0 40px -18px rgba(255,95,162,.5); }}
+    border-left:3px solid var(--accent); }}
   .summary.muted {{ background:var(--layer); border-left:3px solid var(--border);
-    box-shadow:none; color:var(--text-2); font-size:14px; }}
-  .shead {{ font-family:var(--head); font-size:15px; font-weight:400; color:var(--pink);
+    color:var(--text-2); font-size:14px; }}
+  .shead {{ font-family:var(--head); font-size:15px; font-weight:600; color:var(--accent);
     margin-bottom:10px; letter-spacing:.2px; }}
   .summary ul {{ margin:0; padding-left:20px; }}
   .summary li {{ font-size:15px; line-height:1.7; margin:4px 0; }}
-  .pick {{ margin-top:16px; border-radius:var(--r); overflow:hidden;
-    background:linear-gradient(135deg,rgba(255,95,162,.12),rgba(63,217,208,.08));
-    border:1px solid rgba(255,95,162,.22); box-shadow:0 0 40px -14px rgba(255,95,162,.4); }}
+  .pick {{ margin-top:16px; overflow:hidden;
+    background:var(--layer); border:1px solid var(--border); border-left:3px solid var(--accent); }}
   .pickhead {{ padding:16px 18px; display:flex; align-items:flex-start; justify-content:space-between;
     gap:10px; cursor:pointer; transition:background .12s var(--ease); }}
-  .pickhead:hover {{ background:rgba(255,255,255,.03); }}
+  .pickhead:hover {{ background:var(--layer-2); }}
   .pickmain {{ min-width:0; }}
-  .ptag {{ font-size:12px; font-weight:600; color:var(--cyan); text-shadow:0 0 14px rgba(63,217,208,.45); }}
-  .ptitle {{ margin:6px 0 0; font-family:var(--head); font-size:18px; font-weight:400; line-height:1.4; }}
+  .ptag {{ font-size:12px; font-weight:600; color:var(--accent); letter-spacing:.3px; }}
+  .ptitle {{ margin:6px 0 0; font-family:var(--head); font-size:18px; font-weight:600; line-height:1.4; }}
   .pchan {{ margin:4px 0 0; font-size:13px; color:var(--text-2); }}
   .chev {{ font-size:20px; color:var(--text-helper); flex:0 0 auto; line-height:1; margin-top:2px;
     transition:transform .2s var(--ease); }}
   .pick.open .chev {{ transform:rotate(180deg); }}
-  .panel {{ display:none; border-top:1px solid var(--border-soft); padding:6px 18px 16px; }}
+  .panel {{ display:none; border-top:1px solid var(--border); padding:6px 18px 16px; }}
   .pick.open .panel {{ display:block; }}
-  .step {{ padding:12px 0 2px; border-top:1px solid var(--border-soft); }}
+  .step {{ padding:12px 0 2px; border-top:1px solid var(--border); }}
   .step:first-child {{ border-top:none; }}
   .stepnum {{ font-size:12px; font-weight:600; color:var(--text-helper); letter-spacing:.4px; }}
-  .steptext {{ margin:6px 0 0; font-size:15px; line-height:1.7; color:#e3dffb; }}
+  .steptext {{ margin:6px 0 0; font-size:15px; line-height:1.7; color:var(--text); }}
   .picklink {{ display:flex; align-items:center; justify-content:center; gap:7px; margin-top:16px;
-    padding:12px; background:var(--pink); color:#1a0e1a; font-size:14px; font-weight:600;
-    border-radius:var(--r); text-decoration:none; transition:filter .12s var(--ease); }}
-  .picklink:hover {{ filter:brightness(1.08); }}
-  .vhead {{ font-family:var(--head); font-size:19px; font-weight:400; color:var(--text);
-    margin:36px 2px 16px; padding-bottom:9px; border-bottom:1px solid var(--border-soft); }}
-  .row {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }}
+    padding:13px; background:var(--btn); color:#fff; font-size:14px; font-weight:600;
+    text-decoration:none; transition:background .12s var(--ease); }}
+  .picklink:hover {{ background:var(--btn-hover); }}
+  .vhead {{ font-family:var(--head); font-size:19px; font-weight:600; color:var(--text);
+    margin:40px 2px 16px; padding-bottom:9px; border-bottom:1px solid var(--border); }}
+  .row {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }}
   @keyframes fadeUp {{ from {{ opacity:0; transform:translateY(16px); }} to {{ opacity:1; transform:none; }} }}
   .platform.active .card {{ animation:fadeUp .5s var(--ease) both; animation-delay:calc(var(--i) * 45ms); }}
+  .v-recent {{ --vc:var(--recent); }}
+  .v-all_time {{ --vc:var(--alltime); }}
+  .v-trending {{ --vc:var(--trending); }}
   .card {{ position:relative; display:block; background:var(--layer); overflow:hidden;
-    border:1px solid var(--border-soft); border-radius:var(--r);
+    border:1px solid var(--border); border-top:3px solid var(--vc,var(--border));
     text-decoration:none; color:inherit;
-    transition:background .12s var(--ease), border-color .12s var(--ease), box-shadow .2s var(--ease); }}
-  .card:hover {{ background:var(--layer-2); border-color:rgba(255,95,162,.3);
-    box-shadow:0 10px 40px -16px rgba(255,95,162,.45); }}
+    transition:background .12s var(--ease), border-color .12s var(--ease), transform .12s var(--ease); }}
+  .card:hover {{ background:var(--layer-2); border-color:var(--border-strong); }}
+  .card:hover {{ border-top-color:var(--vc); }}
+  .card--hero {{ grid-column:span 2; }}
+  .card--hero .thumb {{ aspect-ratio:16/8; }}
+  .card--hero .body {{ padding:18px 20px 20px; }}
+  .card--hero .title {{ font-size:19px; -webkit-line-clamp:3; }}
+  .card--hero .rank {{ font-size:15px; padding:5px 12px; }}
   .thumb {{ position:relative; aspect-ratio:16/9; background:var(--layer-2); overflow:hidden;
     display:grid; place-items:center; }}
   .thumb img {{ position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block;
     transition:transform .5s var(--ease); }}
   .card:hover .thumb img {{ transform:scale(1.05); }}
-  .ph {{ position:absolute; width:34px; height:34px; opacity:.35; z-index:0; color:var(--link); }}
+  .ph {{ position:absolute; width:48px; height:48px; opacity:.5; z-index:0; color:var(--vc,var(--text-helper)); }}
+  .thumb.noimg, .thumb.broken {{ background:linear-gradient(135deg, color-mix(in srgb, var(--vc) 24%, var(--layer-2)), var(--layer)); }}
   .thumb.broken img {{ display:none; }}
   .thumb::after {{ content:""; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(to top, rgba(12,8,32,.6), transparent 45%); }}
-  .rank {{ position:absolute; top:8px; left:8px; z-index:3; font-size:13px; font-weight:700;
-    line-height:1; color:#16091f; background:var(--pink); padding:3px 9px; border-radius:6px;
-    font-variant-numeric:tabular-nums; box-shadow:0 0 16px -2px rgba(255,95,162,.6); }}
+    background:linear-gradient(to top, rgba(0,0,0,.55), transparent 45%); }}
+  .rank {{ position:absolute; top:8px; left:8px; z-index:3; font-size:13px; font-weight:600;
+    line-height:1; color:#fff; background:var(--accent); padding:3px 9px;
+    font-variant-numeric:tabular-nums; }}
   .play {{ position:absolute; inset:0; margin:auto; width:46px; height:46px; z-index:3; display:grid;
-    place-items:center; border-radius:999px; color:#16091f; background:var(--pink);
-    opacity:0; transform:scale(.8); transition:all .35s var(--ease);
-    box-shadow:0 0 24px -2px rgba(255,95,162,.7); }}
+    place-items:center; color:#fff;
+    opacity:0; transform:scale(.85); transition:all .3s var(--ease); }}
   .card:hover .play {{ opacity:1; transform:scale(1); }}
   .tag {{ position:absolute; left:8px; bottom:8px; z-index:3; font-size:12px;
-    padding:3px 9px; border-radius:999px; color:var(--text); background:rgba(16,12,36,.82);
-    border:1px solid var(--border-soft); backdrop-filter:blur(6px); }}
+    display:inline-flex; align-items:center; gap:5px;
+    padding:4px 9px; color:var(--text); background:rgba(22,22,22,.82);
+    border:1px solid var(--border); }}
+  .tag svg {{ width:13px; height:13px; color:var(--vc); }}
   .body {{ padding:14px 15px 17px; }}
   .title {{ font-size:15px; font-weight:600; line-height:1.5;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }}
   .channel {{ color:var(--text-2); font-size:13px; margin-top:7px; }}
   .meta {{ font-size:13px; margin-top:9px; color:var(--text-2); font-variant-numeric:tabular-nums; }}
-  .meta b {{ color:var(--cyan); font-weight:600; }}
+  .meta b {{ color:var(--accent); font-weight:600; }}
   .empty {{ color:var(--text-2); font-size:14px; padding:10px 2px 4px; }}
   .sumrow {{ display:flex; gap:16px; align-items:flex-start; margin:22px 0 4px; }}
   .sumrow .summary {{ flex:1; min-width:0; margin:0; }}
-  .sidelog {{ flex:0 0 280px; align-self:stretch; padding:14px 16px; border-radius:var(--r);
-    background:var(--layer); max-height:380px; overflow-y:auto; scrollbar-width:thin; }}
+  .sidelog {{ flex:0 0 280px; align-self:stretch; padding:14px 16px;
+    background:var(--layer); border:1px solid var(--border);
+    max-height:380px; overflow-y:auto; scrollbar-width:thin; }}
   .sidehead {{ font-size:13px; font-weight:600; color:var(--text-2); margin-bottom:10px;
     letter-spacing:.2px; }}
   .sideday {{ padding:10px 0; border-top:1px solid var(--border-soft); }}
@@ -771,7 +766,7 @@ def render(ranks, summaries, spent, budget, log_data=None):
   .sidelog li {{ font-size:13px; line-height:1.6; margin:3px 0; color:var(--text-2); }}
   .sidepick {{ display:block; margin-top:5px; font-size:12px; color:var(--text-2);
     text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
-  .sidepick:hover {{ color:var(--cyan); }}
+  .sidepick:hover {{ color:var(--link); }}
   footer {{ color:var(--text-helper); font-size:13px; padding:0 0 40px; }}
   @media (max-width:600px) {{
     body {{ overflow-x:hidden; }}
@@ -783,6 +778,9 @@ def render(ranks, summaries, spent, budget, log_data=None):
     .tabs {{ padding:0 16px; }}
     .row {{ grid-template-columns:1fr; }}
     .card {{ display:flex; flex-direction:row; align-items:stretch; }}
+    .card--hero {{ grid-column:span 1; }}
+    .card--hero .thumb {{ aspect-ratio:auto; }}
+    .card--hero .title {{ font-size:14px; }}
     .thumb {{ width:44%; max-width:170px; flex:0 0 auto; aspect-ratio:auto; min-height:100px; }}
     .body {{ flex:1; min-width:0; padding:12px 14px; align-self:center; }}
     .title {{ font-size:14px; -webkit-line-clamp:3; }}
@@ -793,12 +791,6 @@ def render(ranks, summaries, spent, budget, log_data=None):
     * {{ transition:none !important; }}
   }}
 </style></head><body>
-<svg class="skyline" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-  <g fill="#0a0718"><rect x="0" y="150" width="120" height="150"/><rect x="130" y="90" width="80" height="210"/><rect x="220" y="170" width="140" height="130"/><rect x="370" y="60" width="70" height="240"/><rect x="450" y="130" width="110" height="170"/><rect x="575" y="40" width="95" height="260"/><rect x="685" y="160" width="130" height="140"/><rect x="830" y="100" width="75" height="200"/><rect x="915" y="180" width="120" height="120"/><rect x="1050" y="70" width="90" height="230"/><rect x="1155" y="140" width="115" height="160"/><rect x="1285" y="110" width="80" height="190"/><rect x="1375" y="175" width="120" height="125"/></g>
-  <g fill="#ff5fa2" opacity=".7"><rect x="150" y="110" width="6" height="9"/><rect x="168" y="110" width="6" height="9"/><rect x="592" y="70" width="6" height="9"/><rect x="610" y="92" width="6" height="9"/><rect x="1072" y="98" width="6" height="9"/><rect x="1300" y="140" width="6" height="9"/></g>
-  <g fill="#3fd9d0" opacity=".7"><rect x="388" y="90" width="6" height="9"/><rect x="406" y="120" width="6" height="9"/><rect x="850" y="130" width="6" height="9"/><rect x="1178" y="170" width="6" height="9"/></g>
-  <g fill="#ffc24d" opacity=".75"><rect x="190" y="140" width="6" height="9"/><rect x="628" y="60" width="6" height="9"/><rect x="1095" y="120" width="6" height="9"/></g>
-</svg>
 <header><div class="wrap">
   <div class="sub">{date_str} · TikTok · Instagram · Reddit · 이번 달 ${spent:.2f} / ${budget:.2f}</div>
   <h1>데일리 뮤직 뉴스레터</h1>
