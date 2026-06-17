@@ -166,7 +166,7 @@ def norm_reddit(it):
         "platform": "reddit",
         "title": first(it, "title", default="(제목 없음)"),
         "channel": comm,
-        "url": first(it, "url", "link", default="#"),
+        "url": first(it, "postUrl", "url", "link", default="#"),
         "thumbnail": first(it, "thumbnailUrl", "thumbnail", "image") or "",
         "published": to_date(first(it, "createdAt", "created", "createdAtUtc")),
         "score": int(first(it, "upVotes", "score", "ups", default=0) or 0),
