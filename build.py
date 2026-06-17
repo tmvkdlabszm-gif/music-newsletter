@@ -319,15 +319,25 @@ def _summarize_claude_cli(label, items):
         return None
     ordered = _ordered(items)
     prompt = f"{_SUMMARY_SYSTEM}\n\n[{label}] 오늘 수집:\n{_summary_listing(ordered)}"
-    try:
-        r = subprocess.run([CLAUDE_BIN, "-p"], input=prompt, capture_output=True,
-                           text=True, timeout=150)
-        if r.returncode != 0:
-            return None
-        return _parse_summary(r.stdout.strip(), ordered)
-    except Exception as e:
-        log(f"claude CLI 요약 실패 {label}: {e}")
-        return None
+    # CLI(구독, $0)가 실질적 주 채널 — 일시적 실패 시 1회 재시도해 휴리스틱 폴백 방지
+    last_err = None
+    for attempt in range(2):
+        try:
+            r = subprocess.run([CLAUDE_BIN, "-p"], input=prompt, capture_output=True,
+                               text=True, timeout=150)
+            if r.returncode == 0:
+                res = _parse_summary(r.stdout.strip(), ordered)
+                if res:
+                    return res
+                last_err = "빈 응답/파싱 실패"
+            else:
+                last_err = f"returncode={r.returncode} {(r.stderr or '').strip()[:150]}"
+        except Exception as e:
+            last_err = str(e)
+        if attempt == 0:
+            time.sleep(2)
+    log(f"claude CLI 요약 실패 {label}: {last_err}")
+    return None
 
 
 def _summarize_claude_api(label, items):
@@ -345,14 +355,31 @@ def _summarize_claude_api(label, items):
         "https://api.anthropic.com/v1/messages", data=body, method="POST",
         headers={"content-type": "application/json", "x-api-key": key,
                  "anthropic-version": "2023-06-01"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-        text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
-        return _parse_summary(text, ordered)
-    except Exception as e:
-        log(f"API 요약 실패 {label}: {e}")
-        return None
+    last_err = None
+    for attempt in range(2):  # 일시적 실패(400/429/5xx) 시 1회 재시도 → 휴리스틱 폴백 방지
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+            text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
+            res = _parse_summary(text, ordered)
+            if res:
+                return res
+            last_err = "빈 응답/파싱 실패"
+        except urllib.error.HTTPError as e:
+            detail = ""
+            try:
+                detail = e.read().decode("utf-8")[:200]
+            except Exception:
+                pass
+            last_err = f"HTTP {e.code} {e.reason} {detail}".strip()
+            if e.code != 429 and 400 <= e.code < 500:
+                break  # 크레딧 부족·잘못된 요청 등은 재시도해도 안 됨
+        except Exception as e:
+            last_err = str(e)
+        if attempt == 0:
+            time.sleep(2)
+    log(f"API 요약 실패 {label}: {last_err}")
+    return None
 
 
 # ---------- history / ranking ----------

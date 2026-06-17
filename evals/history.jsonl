@@ -1,0 +1,4 @@
+{"date": "2026-06-17", "goldenset": "v2", "run": "baseline (tiktok=heuristic fallback)", "score": 0.675, "per_platform": {"tiktok": 0.17, "instagram": 1.0, "reddit": 0.86}, "note": "TikTok API 400 → 휴리스틱 폴백"}
+{"date": "2026-06-17", "goldenset": "v2", "run": "fixed (tiktok=claude 재생성)", "score": 0.952, "per_platform": {"tiktok": 1.0, "instagram": 1.0, "reddit": 0.86}, "note": "TikTok summarize 재호출로 Claude 분석 확보 — 한 가지만 변경"}
+{"date": "2026-06-17", "goldenset": "v3-FROZEN", "run": "baseline (tiktok=heuristic)", "score": 0.75, "per_platform": {"tiktok": 0.25, "instagram": 1.0, "reddit": 1.0}, "note": "동결 시점 베이스라인. fact-accuracy 추가(7항목). 어느 플랫폼도 fact-accuracy 미탈락"}
+{"date": "2026-06-17", "goldenset": "v3-FROZEN", "run": "fixed (tiktok=claude)", "score": 1.0, "per_platform": {"tiktok": 1.0, "instagram": 1.0, "reddit": 1.0}, "note": "tiktok 재요약 한 가지 변경 → 만점"}
