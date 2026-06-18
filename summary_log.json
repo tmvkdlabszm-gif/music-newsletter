@@ -442,5 +442,43 @@
         "meta": "r/synthesizers · 신스 역사의 한 챕터가 닫힌 순간으로, 이 사운드가 어디서 왔는지를 되짚어볼 필요가 있다."
       }
     }
+  },
+  "2026-06-19": {
+    "tiktok": {
+      "lines": [
+        "오늘 피드는 비트메이킹·프로듀서 정체성 콘텐츠가 60만 뷰를 넘기며 압도적으로 상위권을 점령했다.",
+        "신곡 프리세이브 요청이 여러 아티스트에서 동시에 터지며 릴리즈 마케팅 경쟁이 뚜렷하게 가시화됐다.",
+        "UK R&B와 시티팝이 중간 조회수대를 형성하며 틈새 팬덤의 안정적인 반응을 이끌어냈다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@vstpluginstore/video/7644973447197625607",
+        "title": "#MusicProducer\n#Beatmaker\n#MusicBeats\n#zaytoven \n#BeatMaking\nMusicProduction\nHip",
+        "meta": "vstpluginstore · 60만 뷰로 오늘 전체 피드 1위를 차지한 비트메이킹 프로듀서 콘텐츠라 오늘 트렌드의 실질적 정점을 보여준다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "오늘 피드는 믹싱·마스터링 강좌, 플러그인 출시, 기법 팁 등 제작 교육 콘텐츠가 절반 이상을 차지하며 프로듀서 대상 콘텐츠가 주류를 형성했다.",
+        "YG 신보 트랙리스트 공개부터 인디 아티스트 싱글까지 릴리즈 소식이 집중되며 주말을 앞두고 New Music Friday 무드가 뚜렷하게 나타났다.",
+        "이번 일요일 세계 음악의 날을 앞두고 커뮤니티 전반에서 음악의 힘과 축제 분위기를 환기하는 움직임이 감지된다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZvouxSAZPq/",
+        "title": "Introducing Multiplier by Parish Audio.\n\nMultiplier takes a single vocal and add",
+        "meta": "parish_audio · 단 하나의 보컬 소스로 여러 레이어를 자동 생성하는 Parish Audio Multiplier는 보컬 편곡 방식 자체를 바꿀 수 있는 도구다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "80년대 신스팝과 아날로그 신디사이저에 대한 향수가 커뮤니티 전반을 지배했으며, Polivoks 제작자 타계 소식이 신스 애호가들의 감성을 자극했다.",
+        "Bass Station 구입기와 Juno·Moog 연주 영상 등 하드웨어 신디 실물 공유가 높은 공감을 얻으며 '손으로 만지는 악기'에 대한 열망이 두드러졌다.",
+        "EDM 프로덕션 쪽에서는 코드 포화(saturation) 시 발생하는 머드(mud) 문제와 베이스 레이어링 이해 부족이 공통 고민으로 떠올랐다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1u954m8/i_measured_why_chords_turn_to_mud_when_you/",
+        "title": "I measured why chords turn to mud when you saturate them (and the old fix most p",
+        "meta": "r/edmproduction · 코드에 새추레이션을 걸 때 왜 소리가 탁해지는지 실측 데이터로 증명하고 기존 플러그인이 놓치는 해결책까지 제시한 희귀한 기술 심층 글이다."
+      }
+    }
   }
 }
