@@ -480,5 +480,43 @@
         "meta": "r/edmproduction · 코드에 새추레이션을 걸 때 왜 소리가 탁해지는지 실측 데이터로 증명하고 기존 플러그인이 놓치는 해결책까지 제시한 희귀한 기술 심층 글이다."
       }
     }
+  },
+  "2026-06-20": {
+    "tiktok": {
+      "lines": [
+        "오늘 틱톡 음악 씬은 프로듀서의 감성적 자기표현 콘텐츠가 1,120만 뷰로 정상을 차지하며 기술보다 '진심'이 바이럴의 핵심임을 드러냈다.",
+        "신보 드롭 예고와 팬 참여형 콘텐츠(피처링 공모, 드롭 여부 투표)가 중위권 인기를 고르게 견인하며 릴리스 전 기대감 조성이 필수 전략으로 굳어지고 있다.",
+        "DAW 가격 비교·2000년대 비트 재현·Ableton 입문 등 교육성 콘텐츠도 수만 뷰를 꾸준히 쌓아 제작자 커뮤니티의 학습 수요가 여전히 탄탄함을 확인시켰다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@pinkpantheress/video/7615412909312707862",
+        "title": "i love to produce❤️thank you for being so lovely to me🥹shoutout askel arvid and ",
+        "meta": "😘🙈☺️ · 기술 시연 없이 감사 한 마디와 작업실 분위기만으로 1,120만 뷰를 돌파해 '감정 연결'이 오늘 최강의 바이럴 공식임을 증명한 영상이다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "라이브 공연과 100년 된 피아노처럼 '진짜 소리'에 대한 갈망이 오늘 피드를 관통하는 핵심 흐름이다.",
+        "2010년에 타계한 래퍼 Eyedea의 손으로 쓴 가사로 만든 신보가 등장하며 레거시 아티스트의 유작 발매가 다시 주목받고 있다.",
+        "라틴 음악의 약진, 독립 배급사들의 New Music Friday 릴리즈, 메인스트림 EDM 비판까지 맞물리며 '진정성' 담론이 여러 장르에서 동시에 불붙고 있다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZyLKRgFQzd/",
+        "title": "This piano is over 100 years old.\n\nAnd yeah, no piano plugin sounds like this.\n\n",
+        "meta": "cold.weather.studios · 디지털 플러그인이 절대 복제할 수 없다는 100년 된 피아노의 질감을 직접 들려주며 아날로그 사운드의 가치를 정면으로 도발한다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "신시사이저 커뮤니티는 Polivoks 창시자 Vladimir Kuzmin의 별세 소식으로 하드웨어 레거시와 추모 정서가 함께 흘렀다.",
+        "80년대 신스팝 향수가 강하게 작동해 Human League, Depeche Mode, Book of Love 등 클래식 트랙들이 나란히 소환됐다.",
+        "EDM 프로덕션 쪽에서는 코드 새추레이션의 진흙화 원인과 베이스 레이어링 같은 기술적 난제가 핵심 화두로 떠올랐다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1u954m8/i_measured_why_chords_turn_to_mud_when_you/",
+        "title": "I measured why chords turn to mud when you saturate them (and the old fix most p",
+        "meta": "r/edmproduction · 코드에 새추레이션을 걸면 왜 탁해지는지 실측 데이터로 원인과 해결책을 함께 제시한 보기 드문 기술 분석 글이다."
+      }
+    }
   }
 }

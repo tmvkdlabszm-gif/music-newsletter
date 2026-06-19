@@ -443,9 +443,28 @@ def fmt(n):
         return "0"
 
 
+def _dehash(s):
+    """해시태그 줄·인라인 해시태그·여분 공백 제거."""
+    body = re.sub(r"#\S+", "", " ".join(ln for ln in (s or "").splitlines() if not ln.strip().startswith("#")))
+    return re.sub(r"\s+", " ", body).strip(" ·-—")
+
+
+def _clean_post_title(r):
+    """생 제목(해시태그 덩어리·캡션 없음)을 읽기 쉬운 한 줄로. 캡션 없으면 채널/토픽으로 대체."""
+    raw = r.get("title") or ""
+    body = _dehash(raw)
+    if body and body != "(캡션 없음)":
+        return body[:64]
+    tags = re.findall(r"#(\w+)", raw)
+    chan = (r.get("channel") or "").strip()
+    if tags:
+        return ((chan + " · " if chan else "") + " · ".join(tags[:2]))[:64]
+    return f"{chan}의 게시물" if chan else PLATFORMS[r["platform"]]["label"] + " 게시물"
+
+
 def card_html(r, kind, rank, featured=False):
     p = PLATFORMS[r["platform"]]
-    title = html.escape(r.get("title", "") or "")
+    title = html.escape(_clean_post_title(r))
     channel = html.escape(r.get("channel", "") or "")
     url = html.escape(r.get("url", "#") or "#")
     thumb = html.escape(r.get("thumbnail", "") or "")
@@ -556,6 +575,94 @@ def side_log(pid, log_data, skip_date):
             f'<div class="sidedays">{days}</div></aside>')
 
 
+# ---- 인디고 테마 (sample4i): 기본 구조 CSS 위에 색·표면을 덮어쓰는 오버라이드 ----
+_NOISE = ("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E"
+          "%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E"
+          "%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+THEME_STYLE = """<style>
+  :root {
+    --spring:cubic-bezier(.16,1,.3,1); --r:22px;
+    --bg:#0c0c12; --layer:#16161f; --layer-2:#1e1e2a; --layer-3:#272736;
+    --border:rgba(255,255,255,.08); --border-soft:rgba(255,255,255,.05); --border-strong:rgba(255,255,255,.2);
+    --text:#f3f3f7; --text-2:#a5a5b5; --text-helper:#6c6c7e;
+    --accent:#6e7bff; --link:#9aa3ff; --btn:#6e7bff; --btn-hover:#5b68f0;
+    --recent:#6e7bff; --alltime:#a78bfa; --trending:#4fd6b8;
+    --head:'Pretendard',system-ui,sans-serif;
+  }
+  body { font-family:'Pretendard',system-ui,-apple-system,sans-serif; color:var(--text);
+    background:
+      radial-gradient(900px 560px at 8% -8%, rgba(110,123,255,.20), transparent 58%),
+      radial-gradient(760px 520px at 108% 0%, rgba(167,139,250,.13), transparent 56%),
+      radial-gradient(1000px 700px at 50% 120%, rgba(79,214,184,.09), transparent 60%),
+      linear-gradient(180deg,#101018 0%,#0c0c12 50%,#09090e 100%);
+    background-attachment:fixed; }
+  body::before { content:""; position:fixed; inset:0; z-index:60; pointer-events:none;
+    opacity:.035; mix-blend-mode:overlay; background-image:url("__NOISE__"); }
+  header,.navbar,main,footer { position:relative; z-index:1; }
+  header { padding:56px 0 0; }
+  h1 { font-family:var(--head); font-weight:900; letter-spacing:-.04em;
+    font-size:clamp(40px,7vw,86px); line-height:.92; color:#fff; text-shadow:0 0 44px rgba(110,123,255,.4); }
+  .sub { color:var(--link); text-transform:uppercase; letter-spacing:.2em; font-weight:700; font-size:11px; }
+  .navbar { background:rgba(12,12,18,.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border); }
+  .tabs { display:flex; align-items:center; gap:6px; padding-top:6px; padding-bottom:6px; border-bottom:none; }
+  .tabbtn { font-weight:800; border:none; border-bottom:none; border-radius:999px; padding:9px 18px;
+    color:var(--text-2); transition:all .26s var(--spring); }
+  .tabbtn:hover { background:rgba(255,255,255,.06); color:#fff; }
+  .tabbtn.active { color:#fff; background:var(--accent); box-shadow:0 0 26px -4px rgba(110,123,255,.8); }
+  .tabbtn.active .tic { color:#fff; }
+  .tabsfill { margin-left:auto; display:flex; align-items:center; gap:7px; padding-right:2px;
+    color:var(--text-helper); font-size:12px; font-weight:600; white-space:nowrap; }
+  .tabsfill .dot { width:7px; height:7px; border-radius:999px; background:var(--accent); }
+  .vhead { font-family:var(--head); font-weight:900; letter-spacing:-.02em; }
+  .shead,.ptag { color:var(--link); font-weight:800; text-transform:uppercase; letter-spacing:.1em; }
+  .summary,.pick,.sidelog { background:var(--layer); border:1px solid var(--border); border-radius:var(--r);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 22px 44px -24px rgba(0,0,0,.6); }
+  .summary,.pick { border-left:4px solid var(--accent); }
+  .ptitle { font-family:var(--head); font-weight:800; }
+  .picklink { background:var(--accent); color:#fff; font-weight:900; text-transform:uppercase; letter-spacing:.08em;
+    border-radius:999px; box-shadow:0 0 28px -6px rgba(110,123,255,.8); transition:all .26s var(--spring); }
+  .picklink:hover { background:var(--btn-hover); transform:translateY(-1px); }
+  .card { background:var(--layer); border:1px solid var(--border); border-top:3px solid var(--vc,var(--border));
+    border-radius:var(--r); box-shadow:0 25px 50px -18px rgba(0,0,0,.6);
+    transition:transform .4s var(--spring), box-shadow .4s var(--spring), border-color .3s var(--spring); }
+  .card:hover { transform:translateY(-6px); border-color:var(--border-strong);
+    box-shadow:0 34px 60px -20px rgba(110,123,255,.3); }
+  .card:active { transform:scale(.99); }
+  .thumb.noimg, .thumb.broken { background:linear-gradient(135deg, color-mix(in srgb, var(--vc) 18%, var(--layer-2)), var(--layer)); }
+  .rank { background:var(--accent); color:#fff; font-weight:900; border-radius:10px;
+    box-shadow:0 0 16px -2px rgba(110,123,255,.6); }
+  .tag { background:rgba(12,12,18,.72); border:1px solid var(--border); border-radius:999px; color:#fff; }
+  .tag svg { color:var(--link); }
+  .title { font-weight:700; }
+  .meta b { color:var(--link); }
+  .play { color:#fff; background:var(--accent); border-radius:999px; box-shadow:0 0 24px -2px rgba(110,123,255,.8); }
+  .ph { color:var(--vc,var(--accent)); opacity:.45; }
+  .sn-arrow { position:absolute; top:12px; right:12px; width:34px; height:34px; display:grid; place-items:center;
+    background:var(--accent); color:#fff; border-radius:999px; font-weight:900; font-size:17px; line-height:1;
+    opacity:0; transform:translateY(-6px) scale(.8); z-index:4; transition:all .3s var(--spring); pointer-events:none;
+    box-shadow:0 0 16px -2px rgba(110,123,255,.8); }
+  .card:hover .sn-arrow { opacity:1; transform:none; }
+  h1,.vhead,.ptitle,.title { text-wrap:balance; }
+  .rv { opacity:0; transform:translateY(18px);
+    transition:opacity .6s var(--spring) var(--d,0ms), transform .6s var(--spring) var(--d,0ms); }
+  .rv.in { opacity:1; transform:none; }
+</style>""".replace("__NOISE__", _NOISE)
+THEME_JS = """<script>
+(function(){
+  var tabs=document.querySelector('.tabs');
+  if(tabs){var f=document.createElement('span'); f.className='tabsfill';
+    f.innerHTML='<span class="dot"></span> 매일 아침 자동 수집 \\u00b7 TikTok\\u00b7Instagram\\u00b7Reddit'; tabs.appendChild(f);}
+  document.querySelectorAll('.card').forEach(function(c){
+    var a=document.createElement('span'); a.className='sn-arrow'; a.textContent='\\u2197'; c.appendChild(a);});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.summary,.vhead,.sidelog').forEach(function(el,i){
+    el.style.setProperty('--d',(i%6)*70+'ms'); el.classList.add('rv'); io.observe(el);});
+})();
+</script>"""
+
+
 def render(ranks, summaries, spent, budget, log_data=None):
     btns, blocks = "", ""
     for i, (pid, p) in enumerate(PLATFORMS.items()):
@@ -570,7 +677,7 @@ def render(ranks, summaries, spent, budget, log_data=None):
             pick_html = ""
             if pk and pk.get("title"):
                 purl = html.escape(pk.get("url", "#") or "#")
-                ptitle = html.escape(pk.get("title", ""))
+                ptitle = html.escape(_dehash(pk.get("title", "")) or "추천 게시물")
                 pchan = html.escape(pk.get("channel", "") or "")
                 an = pk.get("analysis") or {}
                 if an:
@@ -628,7 +735,7 @@ def render(ranks, summaries, spent, budget, log_data=None):
 <link rel="icon" href="{favicon}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Sans+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   :root {{
     color-scheme:dark;
@@ -790,7 +897,7 @@ def render(ranks, summaries, spent, budget, log_data=None):
     html {{ scroll-behavior:auto; }} .platform.active .card {{ animation:none; }}
     * {{ transition:none !important; }}
   }}
-</style></head><body>
+</style>{THEME_STYLE}</head><body>
 <header><div class="wrap">
   <div class="sub">{date_str} · TikTok · Instagram · Reddit · 이번 달 ${spent:.2f} / ${budget:.2f}</div>
   <h1>데일리 뮤직 뉴스레터</h1>
@@ -815,7 +922,7 @@ def render(ranks, summaries, spent, budget, log_data=None):
     const h = p.querySelector('.pickhead');
     if (h) h.addEventListener('click', () => p.classList.toggle('open'));
   }});
-</script></body></html>"""
+</script>{THEME_JS}</body></html>"""
 
 
 # ---------- git push ----------
