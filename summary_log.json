@@ -518,5 +518,43 @@
         "meta": "r/edmproduction · 코드에 새추레이션을 걸면 왜 탁해지는지 실측 데이터로 원인과 해결책을 함께 제시한 보기 드문 기술 분석 글이다."
       }
     }
+  },
+  "2026-06-21": {
+    "tiktok": {
+      "lines": [
+        "비트메이킹·프로덕션 튜토리얼 콘텐츠가 상위권을 장악하며 '어떻게 만드는가'에 대한 크리에이터 수요가 뚜렷하게 증가했다.",
+        "K-팝 트랙을 서양 DAW로 직접 재현하는 크로스오버 교육 콘텐츠가 새로운 고관여 포맷으로 부상하고 있다.",
+        "여성 프로듀서와 인디 아티스트들의 셀프 프로모션 신곡 공개가 피드를 고르게 채우며 공급 다양성이 확장되는 흐름이다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@melodymelodyymelodyyy/video/7649882673602710797",
+        "title": "aespa - LEMONADE synth tutorial #musicproductiontips #musicproducer #ableton #kp",
+        "meta": "melody grace · K-팝 히트곡 aespa의 LEMONADE를 Ableton으로 직접 재현한 신스 튜토리얼로, 동서양 프로덕션 감각을 한 영상에서 동시에 흡수할 수 있다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "이번 주 뉴 뮤직 프라이데이를 중심으로 쇼크 록부터 인디 팝까지 장르를 가로지르는 신곡들이 대거 쏟아지며 릴리즈 경쟁이 치열했다.",
+        "프로덕션 팁과 장비 광고가 꾸준히 올라왔지만 실질적인 반응은 신곡 공개 게시물에 압도적으로 쏠렸다.",
+        "치유·사랑·창작 과정을 담은 스토리텔링 콘텐츠가 저조한 수치 속에서도 꾸준히 게시되며 아티스트 서사 마케팅의 흐름이 이어졌다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZ0uvmXEx5F/",
+        "title": "The shock rock icon has unleashed \"Exit Wound,\" the first single from his upcomi",
+        "meta": "mixxmusicmagazine · 쇼크 록 아이콘의 신보 선발 싱글 \"Exit Wound\"는 이번 주 가장 높은 관심을 받은 장르 기대작이다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "하드웨어 신스 커뮤니티는 Polivoks 창시자 Vladimir Kuzmin의 별세 소식으로 깊은 추모 분위기가 흘렀다.",
+        "80년대 영국 신스팝—Human League, Yaz, Tears For Fears—에 대한 향수가 여러 커뮤니티에서 동시에 터져 나왔다.",
+        "EDM 프로듀서들 사이에서는 새츄레이션, 베이스 레이어링, LUFS 등 믹싱 기초에 대한 실전 고민이 활발하게 공유됐다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1u954m8/i_measured_why_chords_turn_to_mud_when_you/",
+        "title": "I measured why chords turn to mud when you saturate them (and the old fix most p",
+        "meta": "r/edmproduction · 새츄레이션이 코드를 탁하게 만드는 이유를 실측 데이터로 증명하고 대부분의 플러그인이 놓치는 해법까지 제시한 희귀한 글이다."
+      }
+    }
   }
 }
