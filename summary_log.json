@@ -556,5 +556,43 @@
         "meta": "r/edmproduction · 새츄레이션이 코드를 탁하게 만드는 이유를 실측 데이터로 증명하고 대부분의 플러그인이 놓치는 해법까지 제시한 희귀한 글이다."
       }
     }
+  },
+  "2026-06-22": {
+    "tiktok": {
+      "lines": [
+        "마이클 잭슨 'Bad'를 1분 만에 재현한 영상이 910만 뷰를 기록하며, 클래식 트랙의 빠른 재현이 오늘의 가장 강력한 바이럴 공식으로 떠올랐다.",
+        "비트메이킹·프로덕션 튜토리얼 콘텐츠가 피드를 장악했고, 여성 프로듀서 Misstiq를 포함한 개인 제작자들이 뚜렷한 존재감을 드러냈다.",
+        "독립 아티스트들의 신곡 공개(larissalambert, Johnny Huynh, Newport)와 Kanye·Chris Brown 앨범 소식이 겹치며 신보 기대감이 피드 전반에 흐른다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@provokind/video/7634264208380546326",
+        "title": "How I made Bad in 1 minute #michaeljackson #flstudio #musicproducer #beatmaker #",
+        "meta": "ProvoKind · FL Studio로 'Bad'를 1분 재현한 영상이 910만 뷰로 오늘 피드를 압도하므로 반드시 봐야 한다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "오늘은 에디토리얼 플레이리스트 대거 입점이라는 구체적 성과 사례가 압도적 화제를 독식하며 나머지 게시물과 수천 배의 참여도 격차를 만들었다.",
+        "하드웨어 신스(KORG modwave)에 대한 관심이 꾸준히 유효하며, 콤팩트 모듈 장비로의 전환 흐름이 소규모지만 감지된다.",
+        "릴리즈 공지·작곡 팁·스튜디오 셋업 등 대다수 인디 아티스트 게시물은 참여도 제로에 수렴해, 콘텐츠 형식만으로는 유기적 도달이 사실상 불가능함을 재확인시켰다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZ3MIU1gRs0/",
+        "title": "Congratulations @channeltres “Black Guy Techno” has officially landed 46 editori",
+        "meta": "organicmktg · 에디토리얼 플레이리스트 46개 동시 입점이라는 검증 가능한 수치로 스트리밍 성과를 증명한 유일한 사례라 반드시 분석해야 한다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "신시사이저 커뮤니티는 Polivoks 설계자 Vladimir Kuzmin의 별세 소식으로 애도와 함께 아날로그 신스에 대한 깊은 경의를 표했다.",
+        "80년대 영국 신스팝 명곡들이 다수 공유되며 Depeche Mode·Tears For Fears 등 레트로 사운드에 대한 향수가 오늘 하루 피드를 지배했다.",
+        "EDM 프로덕션 쪽에서는 코드 새추레이션 시 발생하는 머드 현상의 기술적 분석과 믹싱 측정 관련 실용 토론이 활발하게 이어졌다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1u954m8/i_measured_why_chords_turn_to_mud_when_you/",
+        "title": "I measured why chords turn to mud when you saturate them (and the old fix most p",
+        "meta": "r/edmproduction · 코드가 새추레이션을 거치면 왜 뭉개지는지 측정값으로 증명한 희귀한 기술 분석 글이다."
+      }
+    }
   }
 }
