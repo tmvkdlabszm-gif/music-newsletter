@@ -594,5 +594,43 @@
         "meta": "r/edmproduction · 코드가 새추레이션을 거치면 왜 뭉개지는지 측정값으로 증명한 희귀한 기술 분석 글이다."
       }
     }
+  },
+  "2026-06-23": {
+    "tiktok": {
+      "lines": [
+        "오늘 TikTok 음악 씬은 기술 과시보다 진심 어린 감사와 감정 표현을 담은 게시물이 압도적 조회수를 기록하며 정서적 연결이 최강의 바이럴 공식임을 다시 확인시켜 줬다.",
+        "인디·베드룸팝 아티스트들의 신보 발매 및 프리세이브 캠페인이 줄을 이었고, 프로듀서와 아티스트의 관계를 유머로 다룬 콘텐츠가 수십만 뷰로 뒤를 받쳤다.",
+        "DAW 가격 비교, 보컬 믹싱 튜토리얼 등 실용적 프로덕션 교육 콘텐츠는 롱테일 관심을 꾸준히 유지하며 크리에이터 학습 수요가 여전히 탄탄함을 보여줬다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@pinkpantheress/video/7615412909312707862",
+        "title": "i love to produce❤️thank you for being so lovely to me🥹shoutout askel arvid and ",
+        "meta": "😘🙈☺️ · 1,130만 뷰를 끌어낸 이 게시물은 프로듀서의 순수한 열정과 팬을 향한 감사 한 줄이 어떻게 최고의 바이럴 콘텐츠가 되는지를 보여주는 교과서적 사례다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "이날은 뉴뮤직 프라이데이를 앞두고 다수의 아티스트가 동시에 신곡을 공개하거나 예고하는 릴리즈 집중일의 흐름이 뚜렷했다.",
+        "믹스·마스터 크레딧 명시, 플러그인·장비 추천 등 프로덕션 퀄리티와 도구에 대한 커뮤니티의 관심이 꾸준히 드러났다.",
+        "대부분의 게시물 인기 지수가 낮은 반면, 크레딧과 해시태그를 명확히 갖춘 릴리즈 게시물만이 유의미한 반응을 얻어 포맷 전략의 중요성이 확인됐다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZ5pRtKjY4V/",
+        "title": "Dvojsingl 10toes/Amazing v Pátek\n#newmusicfriday #LevakSZN \n\nMix/Master by @honz",
+        "meta": "echolevakbob · 290의 압도적 인기로 이날 유일하게 커뮤니티 반응을 이끌어낸 릴리즈로, 크레딧 투명성과 해시태그 전략이 결합된 모범 사례다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "아날로그 신스 DIY와 빈티지 기어 재발견이 커뮤니티 상위권을 장악하며 하드웨어 향수 열풍이 두드러졌다.",
+        "80년대 신스팝(Tears For Fears, Depeche Mode, Book of Love) 재조명이 활발해, 클래식 사운드로의 회귀 흐름이 뚜렷했다.",
+        "EDM 프로덕션 쪽에서는 deadmau5 공식 리믹스 성공담과 saturation 코드 뭉개짐의 과학적 분석 등 실전 노하우 공유가 눈에 띄었다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1u954m8/i_measured_why_chords_turn_to_mud_when_you/",
+        "title": "I measured why chords turn to mud when you saturate them (and the old fix most p",
+        "meta": "r/edmproduction · 코드에 새추레이션을 걸면 왜 진흙처럼 뭉개지는지 실측 데이터로 증명하고 대부분의 플러그인이 건너뛰는 해법까지 제시한 글이다."
+      }
+    }
   }
 }
