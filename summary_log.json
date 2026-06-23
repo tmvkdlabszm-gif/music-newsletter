@@ -632,5 +632,43 @@
         "meta": "r/edmproduction · 코드에 새추레이션을 걸면 왜 진흙처럼 뭉개지는지 실측 데이터로 증명하고 대부분의 플러그인이 건너뛰는 해법까지 제시한 글이다."
       }
     }
+  },
+  "2026-06-24": {
+    "tiktok": {
+      "lines": [
+        "K팝 그룹 간 초대형 글로벌 콜라보(LE SSERAFIM·ILLIT·KATSEYE)와 마돈나-사브리나 카펜터의 코첼라 무대가 오늘 바이럴 상위권을 독식했다.",
+        "Suno로 엄마의 새벽 문자를 즉석에서 노래로 만든 영상이 240만 뷰를 넘기며 AI 작곡 도구가 감성 스토리텔링과 결합하는 새 공식을 증명했다.",
+        "믹싱·MIDI·리버브 등 실전 프로덕션 팁 영상들이 수만~수십만 조회수를 꾸준히 쌓으며 교육형 콘텐츠가 크리에이터 이코노미의 안정적 허리를 담당하고 있음을 재확인했다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@caioklin_/video/7632316213825146133",
+        "title": "Made this on @Suno from a 3am message my mom sent me ❤️ #suno #singersongwriter ",
+        "meta": "CaioKlin · 일상의 텍스트 한 줄을 AI로 완성된 곡으로 바꾸는 과정이 창작 진입장벽의 붕괴를 가장 직관적으로 보여준다"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "이번 주 금요일을 겨냥한 신곡 릴리즈 예고가 집중적으로 올라오며 '뮤직 프라이데이' 사이클이 뚜렷하게 작동하고 있다.",
+        "프로듀서 교육 콘텐츠와 믹싱·작곡 팁 게시물이 다수 등장해 크리에이터들이 제작 노하우를 적극 공유하는 흐름이 보인다.",
+        "플러그인 세일, 콜라보 발표, 감성 서사 릴리즈가 겹치며 여름 시즌 음악 시장의 전반적인 활성화 분위기가 감지된다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZ750HYFhKO/",
+        "title": "Stay in the loop! Our What’s New New is refreshed with new drops you need. 🔥🎧 \n\n",
+        "meta": "thedigilogue · 신보 큐레이션 포맷으로 가장 높은 반응(인기 23)을 기록해 이번 주 릴리즈 트렌드의 흐름을 한눈에 파악할 수 있다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "오늘은 DIY 아날로그 신스 제작과 빈티지 하드웨어 재발견 게시물이 최상위를 차지하며 하드웨어 중심의 열기가 뚜렷했다.",
+        "80년대 브리티시 신스팝(The The, Tears For Fears, Book of Love)이 커뮤니티 전반에 고르게 공유되며 복고 감성이 저류처럼 흘렀다.",
+        "EDM 씬에서는 deadmau5 공식 리믹스 성공담과 코드 새추레이션의 과학적 분석이 나란히 올라오며 기술적 깊이에 대한 수요가 함께 확인됐다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1u954m8/i_measured_why_chords_turn_to_mud_when_you/",
+        "title": "I measured why chords turn to mud when you saturate them (and the old fix most p",
+        "meta": "r/edmproduction · 코드에 새추레이션을 걸 때 왜 뭉개지는지 실측 데이터로 증명한 이 글은 모든 프로듀서가 겪는 문제를 정면 돌파한다."
+      }
+    }
   }
 }
