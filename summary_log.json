@@ -670,5 +670,43 @@
         "meta": "r/edmproduction · 코드에 새추레이션을 걸 때 왜 뭉개지는지 실측 데이터로 증명한 이 글은 모든 프로듀서가 겪는 문제를 정면 돌파한다."
       }
     }
+  },
+  "2026-06-25": {
+    "tiktok": {
+      "lines": [
+        "오늘 틱톡 음악 씬은 비트 제작 교육 콘텐츠가 상위권을 휩쓸며 프로듀서 대상 튜토리얼이 압도적인 조회수를 기록했다.",
+        "K-팝 사운드 재현(aespa LEMONADE 신스)과 보컬 믹싱(Tate McRae 스타일) 등 장르 특정 제작 기법에 대한 수요가 뚜렷하게 부상했다.",
+        "신곡 홍보 게시물들은 대부분 조회수 500 이하에 머물러, 단순 릴리즈 알림보다 인사이트·튜토리얼형 콘텐츠의 도달률이 압도적으로 높았다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@stevencymaticsclips/video/7653770957953191184",
+        "title": "Follow @stevencymatics\n\nYou're judging your beats wrong. Context changes everyth",
+        "meta": "Steven Cymatics Clips · 비트를 '맥락'으로 판단해야 한다는 관점 전환 메시지가 77만 뷰를 돌파하며 프로듀서들의 공감을 폭발적으로 이끌어냈다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "이번 주 금요일을 중심으로 복수의 아티스트가 동시에 신곡·EP를 예고하며 릴리스 러시 패턴이 뚜렷하게 나타났다.",
+        "스튜디오 모니터·신디사이저 라이브러리·오디오 인터페이스 등 홈스튜디오 장비 홍보가 인기 게시물 상위권과 함께 꾸준히 노출되었다.",
+        "EQ 활용법·음악 이론·영화 음악 작업 경험 등 교육성 콘텐츠는 인기 지표와 무관하게 지속적으로 업로드되는 저변 흐름을 형성하고 있다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DZ-wArlgQIf/",
+        "title": "#GoodTimeBoy 🌧️ video out now! Shout out my brother @tomasaksamit for bringing m",
+        "meta": "gats813 · 인기 76으로 오늘 피드에서 압도적인 반응을 얻은 #GoodTimeBoy 뮤직비디오는 협업 크로스 프로모션이 발매 당일 확산력에 얼마나 직결되는지를 보여주는 실증 사례다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "아날로그 신스 DIY와 빈티지 기어 발굴 게시물이 상위권을 장악하며 하드웨어 중심의 제작 문화가 커뮤니티를 지배하고 있다.",
+        "80년대 신스팝 레전드(The The, Tears For Fears, Pet Shop Boys, Arcadia)가 연달아 소환되며 레트로 사운드에 대한 집단적 향수가 하나의 흐름을 이루고 있다.",
+        "deadmau5 공식 리믹스 성사기, 화음 새추레이션의 과학적 분석 등 실전 제작 노하우와 커리어 전략 콘텐츠가 EDM 섹션에서 두각을 나타냈다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1ubyc1h/how_i_released_an_official_remix_of_deadmau5_not/",
+        "title": "How I released an official remix of deadmau5 \"Not Exactly\"",
+        "meta": "r/edmproduction · 인디 프로듀서가 deadmau5의 공식 리믹스를 실제로 따낸 과정을 공개한 유일무이한 커리어 로드맵이다."
+      }
+    }
   }
 }
