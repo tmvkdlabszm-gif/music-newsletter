@@ -409,8 +409,9 @@ def update_history(history, items):
             history[it["id"]] = it
 
 
-def rank_platform(history, platform, recent_days):
+def rank_platform(history, platform, recent_days, conf=None):
     rows = [dict(r) for r in history.values() if r.get("platform") == platform]
+    rows = filter_quality(rows, conf or {})
     all_time_all = sorted(rows, key=lambda r: r.get("score") or 0, reverse=True)
 
     cutoff = TODAY - datetime.timedelta(days=recent_days)
@@ -1033,7 +1034,7 @@ def main():
                 log_data[today] = entry
                 save_json(SUMMARY_LOG, log_data)
 
-    ranks = {pid: rank_platform(history, pid, recent_days) for pid in PLATFORMS}
+    ranks = {pid: rank_platform(history, pid, recent_days, pf_cfg.get(pid, {})) for pid in PLATFORMS}
     page = render(ranks, summaries, state.get("spent", 0.0), budget, log_data)
     INDEX.write_text(page, encoding="utf-8")
     ARCHIVE.mkdir(exist_ok=True)
