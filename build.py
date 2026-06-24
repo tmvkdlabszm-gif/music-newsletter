@@ -197,6 +197,19 @@ def payload_for(platform, kw, n):
 NORMALIZERS = {"tiktok": norm_tiktok, "instagram": norm_instagram, "reddit": norm_reddit}
 
 
+def filter_quality(items, conf):
+    """min_score 미만(저engagement) 게시물 제외. 단, 남는 게 min_keep 미만이면
+    섹션이 비지 않도록 score 상위 min_keep개는 임계값과 무관하게 보존(폴백)."""
+    min_score = int(conf.get("min_score", 0) or 0)
+    if min_score <= 0:
+        return items
+    kept = [it for it in items if (it.get("score") or 0) >= min_score]
+    min_keep = int(conf.get("min_keep", 0) or 0)
+    if len(kept) < min_keep:
+        kept = sorted(items, key=lambda r: r.get("score") or 0, reverse=True)[:min_keep]
+    return kept
+
+
 def fetch(token, platform, kw, n):
     raw = run_actor(token, PLATFORMS[platform]["actor"], payload_for(platform, kw, n))
     norm = NORMALIZERS[platform]
@@ -396,8 +409,9 @@ def update_history(history, items):
             history[it["id"]] = it
 
 
-def rank_platform(history, platform, recent_days):
+def rank_platform(history, platform, recent_days, conf=None):
     rows = [dict(r) for r in history.values() if r.get("platform") == platform]
+    rows = filter_quality(rows, conf or {})
     all_time_all = sorted(rows, key=lambda r: r.get("score") or 0, reverse=True)
 
     cutoff = TODAY - datetime.timedelta(days=recent_days)
@@ -989,6 +1003,7 @@ def main():
                         break
                     try:
                         items = fetch(token, pid, kw, n)
+                        items = filter_quality(items, conf)
                         update_history(history, items)
                         got = len(items)
                         fetched += got
@@ -1019,7 +1034,7 @@ def main():
                 log_data[today] = entry
                 save_json(SUMMARY_LOG, log_data)
 
-    ranks = {pid: rank_platform(history, pid, recent_days) for pid in PLATFORMS}
+    ranks = {pid: rank_platform(history, pid, recent_days, pf_cfg.get(pid, {})) for pid in PLATFORMS}
     page = render(ranks, summaries, state.get("spent", 0.0), budget, log_data)
     INDEX.write_text(page, encoding="utf-8")
     ARCHIVE.mkdir(exist_ok=True)
