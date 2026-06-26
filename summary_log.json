@@ -708,5 +708,43 @@
         "meta": "r/edmproduction · 인디 프로듀서가 deadmau5의 공식 리믹스를 실제로 따낸 과정을 공개한 유일무이한 커리어 로드맵이다."
       }
     }
+  },
+  "2026-06-27": {
+    "tiktok": {
+      "lines": [
+        "오늘은 브루노 마스의 신보 <The Romantic>이 5,750만 인기로 타임라인을 압도하며 하루 전체 흐름을 혼자 지배했다.",
+        "Zayn·Nora Fatehi 등 메인스트림 아티스트들의 신곡 릴리즈가 중상위권을 채우며 '새 음악 러시' 기조가 이어졌다.",
+        "Ableton·FL Studio 튜토리얼 콘텐츠가 중위권을 안정적으로 차지해 '듣는 음악'과 '만드는 음악'이 동시에 소비되는 하루였다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@brunomars/video/7611578620821163294",
+        "title": "New Video. New Album. New Chapter. #TheRomantic 🌹",
+        "meta": "Bruno Mars · 5,750만 인기로 오늘 트렌드를 단독 견인한 브루노 마스의 신보 챕터 선언은 반드시 확인해야 한다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "이번 주 New Music Friday를 중심으로 인디 아티스트부터 팝·록·랩까지 다양한 신보가 동시에 쏟아졌다.",
+        "Muse의 새 앨범 《The Wow! Signal》 출시가 가장 큰 화제로, 오랜 팬층과 신규 청취자를 함께 겨냥한 커뮤니티 마케팅이 두드러졌다.",
+        "Acustica Audio 세일과 Melodyne 안내 게시물이 동시에 등장하며 프로듀서·믹싱 커뮤니티의 플러그인 관심도도 높게 나타났다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DaEQG36BQkH/",
+        "title": "🎶 Muse’s newest album The Wow! Signal is officially out now! 🚀✨ \n\nWhether you’ve",
+        "meta": "eclecticsoundbox · 대형 밴드의 신보 출시는 장르 팬덤 전반의 반응과 스트리밍 트렌드를 한눈에 읽을 수 있는 바로미터이기 때문이다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "오늘은 DIY 아날로그 신스와 빈티지 하드웨어 열기가 커뮤니티를 압도하며 상위권을 독식했다.",
+        "80년대 신스팝 클래식들이 Pet Shop Boys, The The, Arcadia를 중심으로 동시에 재소환됐다.",
+        "EDM 씬에서는 공식 리믹스 취득기, 라이브 공연 부재에 대한 논쟁, 셀프 릴리즈 홍보 전략이 실전 이슈로 떠올랐다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/edmproduction/comments/1ubyc1h/how_i_released_an_official_remix_of_deadmau5_not/",
+        "title": "How I released an official remix of deadmau5 \"Not Exactly\"",
+        "meta": "r/edmproduction · 독립 프로듀서가 deadmau5의 공식 리믹스를 실제로 따낸 과정을 단계별로 공개한 희귀한 실화다."
+      }
+    }
   }
 }
