@@ -951,6 +951,7 @@ def git_push():
               "commit", "-m", f"newsletter {TODAY.isoformat()}")
         if c.returncode != 0:
             log("git: 변경 없음 → 푸시 생략"); return
+        g("pull", "--rebase", "origin", "main")  # ponytail: 원격 PR 머지 흡수, 충돌 시 아래 push가 실패 로그 남김(현 동작과 동일)
         p = g("push", "origin", "main")
         log("git: 푸시 완료 → GitHub Pages 갱신됨" if p.returncode == 0
             else f"git push 실패: {(p.stderr or p.stdout).strip()[:200]}")
