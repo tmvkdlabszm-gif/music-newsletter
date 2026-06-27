@@ -8,7 +8,6 @@
 
 사용:
   python3 build.py          # 평소 실행 (수집 + 렌더 + 푸시)
-  python3 build.py --once   # 동일 (수동 트리거 명시용)
   python3 build.py --dry    # 수집 없이 기존 history로 렌더만
 
 토큰: ~/.config/music-newsletter/.env 의 APIFY_TOKEN (또는 환경변수).
@@ -26,7 +25,6 @@ LOG = HERE / "build.log"
 SUMMARIES = HERE / "summaries.json"
 SUMMARY_LOG = HERE / "summary_log.json"
 ENV = Path.home() / ".config" / "music-newsletter" / ".env"
-ANTHROPIC_MODEL = "claude-opus-4-8"
 
 TODAY = datetime.date.today()
 DRY = "--dry" in sys.argv
@@ -90,10 +88,6 @@ def _env_value(name):
 
 def get_token():
     return _env_value("APIFY_TOKEN")
-
-
-def get_anthropic_key():
-    return _env_value("ANTHROPIC_API_KEY")
 
 
 def first(d, *keys, default=None):
@@ -318,11 +312,10 @@ def _summarize_heuristic(label, items):
 
 
 def summarize(label, items):
-    """우선순위: claude CLI(구독, $0) → API(크레딧) → 데이터 폴백. 반환 {lines, pick}."""
+    """우선순위: claude CLI(구독, $0) → 데이터 폴백. 반환 {lines, pick}."""
     if not items:
         return None
     return (_summarize_claude_cli(label, items)
-            or _summarize_claude_api(label, items)
             or _summarize_heuristic(label, items))
 
 
@@ -349,48 +342,6 @@ def _summarize_claude_cli(label, items):
         if attempt == 0:
             time.sleep(2)
     log(f"claude CLI 요약 실패 {label}: {last_err}")
-    return None
-
-
-def _summarize_claude_api(label, items):
-    key = get_anthropic_key()
-    if not key or not items:
-        return None
-    ordered = _ordered(items)
-    body = json.dumps({
-        "model": ANTHROPIC_MODEL,
-        "max_tokens": 500,
-        "system": _SUMMARY_SYSTEM,
-        "messages": [{"role": "user", "content": f"[{label}] 오늘 수집:\n{_summary_listing(ordered)}"}],
-    }).encode("utf-8")
-    req = urllib.request.Request(
-        "https://api.anthropic.com/v1/messages", data=body, method="POST",
-        headers={"content-type": "application/json", "x-api-key": key,
-                 "anthropic-version": "2023-06-01"})
-    last_err = None
-    for attempt in range(2):  # 일시적 실패(400/429/5xx) 시 1회 재시도 → 휴리스틱 폴백 방지
-        try:
-            with urllib.request.urlopen(req, timeout=60) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-            text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
-            res = _parse_summary(text, ordered)
-            if res:
-                return res
-            last_err = "빈 응답/파싱 실패"
-        except urllib.error.HTTPError as e:
-            detail = ""
-            try:
-                detail = e.read().decode("utf-8")[:200]
-            except Exception:
-                pass
-            last_err = f"HTTP {e.code} {e.reason} {detail}".strip()
-            if e.code != 429 and 400 <= e.code < 500:
-                break  # 크레딧 부족·잘못된 요청 등은 재시도해도 안 됨
-        except Exception as e:
-            last_err = str(e)
-        if attempt == 0:
-            time.sleep(2)
-    log(f"API 요약 실패 {label}: {last_err}")
     return None
 
 
@@ -505,7 +456,7 @@ def card_html(r, kind, rank, featured=False):
     </a>"""
 
 
-# ---------- 지난 요약 로그: 날짜별 누적 + archive 복원 ----------
+# ---------- 지난 요약 로그: 날짜별 누적 ----------
 def _pick_meta(pick):
     """summaries.json의 구조화된 pick → 로그용 단일 meta 문자열."""
     if not pick:
@@ -522,45 +473,6 @@ def log_entry_from_summaries(summaries):
         if sm and sm.get("lines"):
             entry[pid] = {"lines": sm["lines"], "pick": _pick_meta(sm.get("pick"))}
     return entry
-
-
-def extract_summaries_from_html(text):
-    """archive HTML 한 장 → {pid:{lines,pick}}. 이 빌더가 만든 구조를 그대로 역파싱."""
-    entry = {}
-    for pid, body in re.findall(
-            r'<section class="platform[^"]*" id="pf-(\w+)">(.*?)</section>', text, re.S):
-        m = re.search(r'<div class="summary"[^>]*>(.*?)(?:<aside class="sidelog"|<h2 class="vhead">)',
-                      body, re.S)
-        if not m:
-            continue
-        block = m.group(1)
-        lines = [html.unescape(x).strip() for x in re.findall(r'<li>(.*?)</li>', block, re.S)]
-        if not lines:
-            continue
-        pick = None
-        href = re.search(r'<a class="picklink" href="([^"]*)"', block)
-        ptitle = re.search(r'<div class="ptitle">(.*?)</div>', block, re.S)
-        if ptitle:
-            pchan = re.search(r'<div class="pchan">(.*?)</div>', block, re.S)
-            pick = {"url": html.unescape(href.group(1)) if href else "",
-                    "title": html.unescape(ptitle.group(1)).strip(),
-                    "meta": html.unescape(pchan.group(1)).strip() if pchan else ""}
-        entry[pid] = {"lines": lines, "pick": pick}
-    return entry
-
-
-def build_log_from_archives():
-    """archive/*.html 전체를 역파싱해 summary_log.json을 재생성한다 (--backfill)."""
-    log_data = {}
-    for f in sorted(ARCHIVE.glob("*.html")):
-        date = f.stem  # YYYY-MM-DD
-        entry = extract_summaries_from_html(f.read_text(encoding="utf-8"))
-        if entry:
-            log_data[date] = entry
-            log(f"복원: {date} ({', '.join(entry)})")
-    save_json(SUMMARY_LOG, log_data)
-    log(f"summary_log.json 재생성 완료: {len(log_data)}일치")
-    return log_data
 
 
 def side_log(pid, log_data, skip_date):
@@ -965,10 +877,6 @@ def main():
     pf_cfg = cfg.get("platforms", {})
     recent_days = int(cfg.get("recent_days", 7))
     budget = float(cfg.get("monthly_budget_usd", 4.5))
-
-    if "--backfill" in sys.argv:
-        build_log_from_archives()
-        return
 
     history = load_json(HISTORY, {})
     state = load_json(STATE, {})
