@@ -822,5 +822,43 @@
         "meta": "r/WeAreTheMusicMakers · 샘플 악기로 멜로디를 쓰면 왜 가짜처럼 들리는지는 거의 모든 작곡가가 겪는 핵심 고민이라 가장 실질적이다."
       }
     }
+  },
+  "2026-06-30": {
+    "tiktok": {
+      "lines": [
+        "오늘은 메이저 아티스트의 신곡 발표(Zayn, Laufey, Harry Styles)가 상위권을 점령하며 '신곡 티저·미공개 음원' 흐름이 강했다.",
+        "동시에 col3man, Seids, King 80 등 음악 제작 튜토리얼 콘텐츠가 중상위권에 폭넓게 포진해 '배우는 콘텐츠' 수요가 꾸준했다.",
+        "싱어송라이터의 '이 곡 낼까요?' 식 발매 전 반응 떠보기(Kara Holt, Bailey Zimmerman)도 참여를 끌어내는 공식으로 자리 잡았다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@col3manmusic/video/7215639558849842478",
+        "title": "Song From Scratch in Ableton ep.4 #musicproductiontutorial #musicproducers #song",
+        "meta": "col3man · 곡을 처음부터 만드는 과정을 단계별로 보여줘 실제 작업에 바로 적용 가능한 인기 제작 시리즈다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "오늘은 EQ·스네어 주파수·아마추어와 프로 믹스 차이 같은 '믹싱 기술 교육' 게시물이 흐름을 주도했다.",
+        "cosmicacademy의 EQ 치트시트가 인기 170으로 압도적이며, 저장형 레퍼런스 콘텐츠가 강세를 보였다.",
+        "한편 \"끝내고 릴리즈하라\" 같은 마인드셋·작업 습관 메시지도 조용히 한 축을 이뤘다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DaLPvytDq9e/",
+        "title": "Be honest…do you know when to use these different EQ’s?\n\nSave this cheat sheet!\n",
+        "meta": "cosmicacademy · EQ 종류별 사용 시점을 한 장으로 정리한 저장용 치트시트로, 오늘 가장 실용적이고 반응도 압도적이다."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "PICK 형식 출력에 스킬은 필요 없다. 바로 분석한다.",
+        "오늘은 신스 입문·앰비언트 셋업 사진글이 r/synthesizers 상단을 점령했고, 시퀀서를 기타로 트리거하는 등 '연주 방식 실험'이 가장 큰 호응을 얻었다.",
+        "r/synthpop에서는 The The, Pet Shop Boys, New Order 같은 80년대 신스팝 고전과 라이브 공연 글이 꾸준히 소비되며 레트로 무드가 이어졌다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1ud9tjn/stepping_the_sequencer_with_a_guitar/",
+        "title": "Stepping the sequencer with a guitar",
+        "meta": "r/synthesizers · 기타로 시퀀서를 스텝 진행시키는 발상은 익숙한 장비에서 새 연주법을 끌어내는 가장 실용적인 영감이라서다."
+      }
+    }
   }
 }
