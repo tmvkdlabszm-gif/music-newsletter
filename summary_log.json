@@ -936,5 +936,43 @@
         "meta": "r/WeAreTheMusicMakers · 샘플 악기로 멜로디를 쓰면 가짜처럼 들리는 이유는 거의 모든 작업자가 겪는 핵심 병목이라서."
       }
     }
+  },
+  "2026-07-03": {
+    "tiktok": {
+      "lines": [
+        "오늘은 메이저 아티스트의 신곡 발표(Zayn, Laufey, Harry Styles)가 상위권을 점령하며 '신곡 티저·미공개 음원' 흐름이 강했다.",
+        "동시에 col3man, Seids, King 80 등 음악 제작 튜토리얼 콘텐츠가 중상위권에 폭넓게 포진해 '배우는 콘텐츠' 수요가 꾸준했다.",
+        "싱어송라이터의 '이 곡 낼까요?' 식 발매 전 반응 떠보기(Kara Holt, Bailey Zimmerman)도 참여를 끌어내는 공식으로 자리 잡았다."
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@col3manmusic/video/7215639558849842478",
+        "title": "Song From Scratch in Ableton ep.4 #musicproductiontutorial #musicproducers #song",
+        "meta": "col3man · 곡을 처음부터 만드는 과정을 단계별로 보여줘 실제 작업에 바로 적용 가능한 인기 제작 시리즈다."
+      }
+    },
+    "instagram": {
+      "lines": [
+        "그날은 마인드셋(쉼과 푸시의 균형, 덜어내기의 미학)과 실전 기술(새추레이터 운용, 스튜디오 셋업)이 나란히 올라온 차분한 흐름이었다.",
+        "화제성은 cosmicacademy의 마인드셋 글(271)이 압도적으로 끌어올렸지만, 정작 작업에 바로 쓸 알맹이는 장비·플러그인 계정들이 채웠다.",
+        "전반적으로 \"무엇을 더하느냐보다 무엇을 빼고 어떻게 다루느냐\"가 오늘의 공통된 결입이다."
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DaN0ia9jDW_/",
+        "title": "With the Wizard Valve Saturator, the Feed parameter shouldn’t be thought of as a",
+        "meta": "gainlabaudio · Feed 파라미터를 dry/wet이 아니라 '구동량'으로 다시 이해시켜 새추레이션을 제대로 쓰게 해주는 실전 팁이라서."
+      }
+    },
+    "reddit": {
+      "lines": [
+        "오늘은 신디사이저 입문 인증글(1·3·4번)이 상위권을 도배하며 '장비 입문 러시'가 흐름을 주도했다.",
+        "신스팝 진영에서는 New Order·Pet Shop Boys 고전과 Radio City 라이브(5·7·8·9번)로 레트로 향수가 뚜렷했다.",
+        "제작 게시판은 리즈 베이스·룸 어쿠스틱·샘플 리얼리티(11·13·16번) 같은 실전 사운드 고민이 꾸준히 올라왔다."
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/WeAreTheMusicMakers/comments/1uemwrd/why_do_sampled_instruments_sound_fake_when_i/",
+        "title": "Why do sampled instruments sound fake when I write melodies with them?",
+        "meta": "r/WeAreTheMusicMakers · 샘플 악기로 멜로디를 쓰면 가짜처럼 들리는 이유는 거의 모든 작업자가 겪는 핵심 병목이라서."
+      }
+    }
   }
 }
