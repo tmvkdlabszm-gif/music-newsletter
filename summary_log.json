@@ -1164,5 +1164,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 3,475"
       }
     }
+  },
+  "2026-07-09": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: '🔥 Ariana Grande's Pro Tools quick tip 📷 @arianag' — Avid Pro Tools (재생 299,800)",
+        "오늘 16건 수집 · 평균 재생 49,051 · 최고 299,800",
+        "자주 등장: musicproduction, newmusic, flstudio, link"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@avid.protools/video/7558881971376590113",
+        "title": "🔥 Ariana Grande's Pro Tools quick tip 📷 @arianagrande ▶️ avid.com/pro-tools\n\n#ar",
+        "meta": "Avid Pro Tools · 오늘 가장 높은 재생 299,800"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Need help finishing music?\n\nSave this for the ne' — cosmicacademy (좋아요 295)",
+        "오늘 9건 수집 · 평균 좋아요 52 · 최고 295",
+        "자주 등장: musicproducer, will, can, one"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DaicBrNFCet/",
+        "title": "Need help finishing music?\n\nSave this for the next time you’re stuck so you can ",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 295"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'My husband loves the digital drums of the 80s, s' — r/synthesizers (업보트 966)",
+        "오늘 20건 수집 · 평균 업보트 175 · 최고 966",
+        "자주 등장: stand, they, indie, friend"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1uq1aio/my_husband_loves_the_digital_drums_of_the_80s_so/",
+        "title": "My husband loves the digital drums of the 80s, so I painted him this.",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 966"
+      }
+    }
   }
 }
