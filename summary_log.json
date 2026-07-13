@@ -1354,5 +1354,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,110"
       }
     }
+  },
+  "2026-07-14": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: '[FULL ViDEO] #musictheory #musicproduction #musi' — delusionalpath (재생 777,500)",
+        "오늘 16건 수집 · 평균 재생 227,901 · 최고 777,500",
+        "자주 등장: newmusic, musicproducer, electronicmusic, producer"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@delusionalpath/video/7580263484907162893",
+        "title": "[FULL ViDEO] #musictheory #musicproduction #musiccoach ",
+        "meta": "delusionalpath · 오늘 가장 높은 재생 777,500"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Nobody talks about this part of making music.\n\nT' — cosmicacademy (좋아요 1,432)",
+        "오늘 9건 수집 · 평균 좋아요 213 · 최고 1,432",
+        "자주 등장: production, producer, these, non"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Dastjp0jl3d/",
+        "title": "Nobody talks about this part of making music.\n\nThe doubt. The silence. The rejec",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 1,432"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'My husband loves the digital drums of the 80s, s' — r/synthesizers (업보트 1,112)",
+        "오늘 20건 수집 · 평균 업보트 208 · 최고 1,112",
+        "자주 등장: folk, mixing, number, sent"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1uq1aio/my_husband_loves_the_digital_drums_of_the_80s_so/",
+        "title": "My husband loves the digital drums of the 80s, so I painted him this.",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,112"
+      }
+    }
   }
 }
