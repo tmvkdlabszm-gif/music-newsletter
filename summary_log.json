@@ -1468,5 +1468,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,173"
       }
     }
+  },
+  "2026-07-18": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'American Folklore EP Is Live On All Major Platfo' — PhaseSyndicate (재생 1,000,000)",
+        "오늘 16건 수집 · 평균 재생 186,289 · 최고 1,000,000",
+        "자주 등장: newmusic, flstudio, fyp, newmusicfriday"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@phasesyndicate/video/7660898929751362847",
+        "title": "American Folklore EP Is Live On All Major Platforms🤘🏻. Full Music Video On YouTu",
+        "meta": "PhaseSyndicate · 오늘 가장 높은 재생 1,000,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Do you know what a clipper is actually doing?\n\nT' — cosmicacademy (좋아요 993)",
+        "오늘 9건 수집 · 평균 좋아요 143 · 최고 993",
+        "자주 등장: more, bus, producer, can"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Da3F7SgFH8N/",
+        "title": "Do you know what a clipper is actually doing?\n\nThe more you understand your tool",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 993"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'perhaps the rarest sample in the world, the Linn' — r/synthesizers (업보트 1,344)",
+        "오늘 20건 수집 · 평균 업보트 261 · 최고 1,344",
+        "자주 등장: punk, rock, work, anyone"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1uxq78f/perhaps_the_rarest_sample_in_the_world_the/",
+        "title": "perhaps the rarest sample in the world, the LinnDrum Midistudio. one of six ever",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,344"
+      }
+    }
   }
 }
