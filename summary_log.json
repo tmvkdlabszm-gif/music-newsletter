@@ -1506,5 +1506,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,344"
       }
     }
+  },
+  "2026-07-19": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'but my mind gets in the way #indiemusic #band #f' — Temper City (재생 10,000,000)",
+        "오늘 16건 수집 · 평균 재생 1,033,105 · 최고 10,000,000",
+        "자주 등장: newmusic, produce, more, production"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@temper.city/video/7610897192114588958",
+        "title": "but my mind gets in the way #indiemusic #band #fyp #tiktokpremium #newmusic ",
+        "meta": "Temper City · 오늘 가장 높은 재생 10,000,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Do you know what a clipper is actually doing?\n\nT' — cosmicacademy (좋아요 1,354)",
+        "오늘 9건 수집 · 평균 좋아요 235 · 최고 1,354",
+        "자주 등장: lufs, more, producer, musicproducer"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Da3F7SgFH8N/",
+        "title": "Do you know what a clipper is actually doing?\n\nThe more you understand your tool",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 1,354"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'How do I get about the same size without using a' — r/synthesizers (업보트 1,510)",
+        "오늘 20건 수집 · 평균 업보트 278 · 최고 1,510",
+        "자주 등장: work, anyone, else, one"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1uye6j8/how_do_i_get_about_the_same_size_without_using_a/",
+        "title": "How do I get about the same size without using a Korg?",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,510"
+      }
+    }
   }
 }
