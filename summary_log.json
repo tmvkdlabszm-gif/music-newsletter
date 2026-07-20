@@ -1582,5 +1582,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,559"
       }
     }
+  },
+  "2026-07-21": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Can’t stop listening to this one 🥺 @Marinoalt #n' — guywithabagg (재생 4,600,000)",
+        "오늘 16건 수집 · 평균 재생 1,286,114 · 최고 4,600,000",
+        "자주 등장: newmusic, proxie, first, musicproduction"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@guywithabagg/video/7656149479317392670",
+        "title": "Can’t stop listening to this one 🥺 @Marinoalt #newmusic #newartist #independenta",
+        "meta": "guywithabagg · 오늘 가장 높은 재생 4,600,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Do you know what The God Particle is actually do' — cosmicacademy (좋아요 582)",
+        "오늘 9건 수집 · 평균 좋아요 73 · 최고 582",
+        "자주 등장: sound, every, more, musicproducer"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DbBVhCKjuEF/",
+        "title": "Do you know what The God Particle is actually doing?\n\nThe more you understand yo",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 582"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'How do I get about the same size without using a' — r/synthesizers (업보트 1,588)",
+        "오늘 20건 수집 · 평균 업보트 327 · 최고 1,588",
+        "자주 등장: work, life, anyone, else"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1uye6j8/how_do_i_get_about_the_same_size_without_using_a/",
+        "title": "How do I get about the same size without using a Korg?",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,588"
+      }
+    }
   }
 }
