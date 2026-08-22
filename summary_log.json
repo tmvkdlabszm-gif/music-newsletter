@@ -2684,5 +2684,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 924"
       }
     }
+  },
+  "2026-08-23": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'New music this Friday 🔥' — Mr.Drew (재생 552,500)",
+        "오늘 16건 수집 · 평균 재생 102,073 · 최고 552,500",
+        "자주 등장: musicproduction, newmusic, musicproducer, album"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@mrdrewofficial/video/7675044731730070792",
+        "title": "New music this Friday 🔥",
+        "meta": "Mr.Drew · 오늘 가장 높은 재생 552,500"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Finish the track checklist. Save this one, you w' — audionodestudio (좋아요 303)",
+        "오늘 9건 수집 · 평균 좋아요 72 · 최고 303",
+        "자주 등장: mixing, production, musicproducer, more"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DcQSuY1Fgzq/",
+        "title": "Finish the track checklist. Save this one, you will use it every Friday.\n\n1. Sou",
+        "meta": "audionodestudio · 오늘 가장 높은 좋아요 303"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Made a groovebox from scratch because I couldn't' — r/synthesizers (업보트 1,111)",
+        "오늘 20건 수집 · 평균 업보트 228 · 최고 1,111",
+        "자주 등장: rock, their, without, does"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1vu4dq5/made_a_groovebox_from_scratch_because_i_couldnt/",
+        "title": "Made a groovebox from scratch because I couldn't afford any on the market",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,111"
+      }
+    }
   }
 }
