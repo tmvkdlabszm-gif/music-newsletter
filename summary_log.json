@@ -2722,5 +2722,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,111"
       }
     }
+  },
+  "2026-08-24": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Song From Scratch in Ableton ep.4 #musicproducti' — col3man (재생 2,500,000)",
+        "오늘 16건 수집 · 평균 재생 247,893 · 최고 2,500,000",
+        "자주 등장: newmusic, musicproducer, musicproduction, coming"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@col3manmusic/video/7215639558849842478",
+        "title": "Song From Scratch in Ableton ep.4 #musicproductiontutorial #musicproducers #song",
+        "meta": "col3man · 오늘 가장 높은 재생 2,500,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Which of these habits are you guilty of?\n\nHere’s' — cosmicacademy (좋아요 341)",
+        "오늘 9건 수집 · 평균 좋아요 164 · 최고 341",
+        "자주 등장: production, producer, musicproducer, sound"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DcY3xyMtFPg/",
+        "title": "Which of these habits are you guilty of?\n\nHere’s 6 habits to avoid in your first",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 341"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Made a groovebox from scratch because I couldn't' — r/synthesizers (업보트 1,132)",
+        "오늘 20건 수집 · 평균 업보트 228 · 최고 1,132",
+        "자주 등장: rock, their, tips, does"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1vu4dq5/made_a_groovebox_from_scratch_because_i_couldnt/",
+        "title": "Made a groovebox from scratch because I couldn't afford any on the market",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,132"
+      }
+    }
   }
 }
