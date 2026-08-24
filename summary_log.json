@@ -2760,5 +2760,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,132"
       }
     }
+  },
+  "2026-08-25": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Going on a bender who’s coming #newmusic #yellow' — whatthefckisupsahl (재생 331,200)",
+        "오늘 16건 수집 · 평균 재생 103,973 · 최고 331,200",
+        "자주 등장: newmusic, musicproduction, musicproducer, producer"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@whatthefckisupsahl/video/7675467075640429854",
+        "title": "Going on a bender who’s coming #newmusic #yellowfont #songwriter ",
+        "meta": "whatthefckisupsahl · 오늘 가장 높은 재생 331,200"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Don’t confuse frustration with failure\n\nThe prod' — cosmicacademy (좋아요 735)",
+        "오늘 9건 수집 · 평균 좋아요 184 · 최고 735",
+        "자주 등장: musicproducer, production, producer, follow"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DcboIbJFDFa/",
+        "title": "Don’t confuse frustration with failure\n\nThe producers you look up to had nights ",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 735"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Made a groovebox from scratch because I couldn't' — r/synthesizers (업보트 1,165)",
+        "오늘 20건 수집 · 평균 업보트 216 · 최고 1,165",
+        "자주 등장: their, does, guys, months"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1vu4dq5/made_a_groovebox_from_scratch_because_i_couldnt/",
+        "title": "Made a groovebox from scratch because I couldn't afford any on the market",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,165"
+      }
+    }
   }
 }
