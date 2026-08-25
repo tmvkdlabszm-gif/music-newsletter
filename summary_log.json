@@ -2798,5 +2798,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,165"
       }
     }
+  },
+  "2026-08-26": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'I like this a lot #independentartist #newmusic #' — Blythe Davis (재생 2,000,000)",
+        "오늘 16건 수집 · 평균 재생 339,117 · 최고 2,000,000",
+        "자주 등장: newmusic, musicproducer, musicproduction, one"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@itsblythedavis/video/7677401635265645838",
+        "title": "I like this a lot #independentartist #newmusic #singersongwriter #blythling #ori",
+        "meta": "Blythe Davis · 오늘 가장 높은 재생 2,000,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Talking about midrange and all that it entails. ' — wheeliemix (좋아요 163)",
+        "오늘 9건 수집 · 평균 좋아요 28 · 최고 163",
+        "자주 등장: sewer, sewergod, need, musicproducer"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DceAx9cjMNG/",
+        "title": "Talking about midrange and all that it entails. Everything is in the post. Nothi",
+        "meta": "wheeliemix · 오늘 가장 높은 좋아요 163"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Made a groovebox from scratch because I couldn't' — r/synthesizers (업보트 1,187)",
+        "오늘 20건 수집 · 평균 업보트 227 · 최고 1,187",
+        "자주 등장: any, months, their, guys"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1vu4dq5/made_a_groovebox_from_scratch_because_i_couldnt/",
+        "title": "Made a groovebox from scratch because I couldn't afford any on the market",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,187"
+      }
+    }
   }
 }
