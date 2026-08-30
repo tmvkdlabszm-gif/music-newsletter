@@ -2988,5 +2988,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,195"
       }
     }
+  },
+  "2026-08-31": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'new music new music ' — Ness (재생 2,200,000)",
+        "오늘 16건 수집 · 평균 재생 361,190 · 최고 2,200,000",
+        "자주 등장: newmusic, musicproducer, musicproduction, sadsong"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@nessaabarrett/video/7661413513797045535",
+        "title": "new music new music ",
+        "meta": "Ness · 오늘 가장 높은 재생 2,200,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'You don’t need the perfect setup, the perfect so' — cosmicacademy (좋아요 275)",
+        "오늘 8건 수집 · 평균 좋아요 98 · 최고 275",
+        "자주 등장: khz, musicproducer, boost, cut"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DcrB3ZHlP86/",
+        "title": "You don’t need the perfect setup, the perfect song, or the perfect plan…\n\nYou ne",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 275"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Init to infinity in 50 seconds 🪐' — r/synthesizers (업보트 1,201)",
+        "오늘 20건 수집 · 평균 업보트 259 · 최고 1,201",
+        "자주 등장: rock, electronic, pet, shop"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1vxdowc/init_to_infinity_in_50_seconds/",
+        "title": "Init to infinity in 50 seconds 🪐",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,201"
+      }
+    }
   }
 }
