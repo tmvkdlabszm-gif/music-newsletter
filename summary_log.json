@@ -3064,5 +3064,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,209"
       }
     }
+  },
+  "2026-09-02": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'it took an egregious amount of time for such a s' — Sylphy (재생 55,900)",
+        "오늘 16건 수집 · 평균 재생 14,908 · 최고 55,900",
+        "자주 등장: musicproduction, newmusic, drop, time"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@sylphinwonderland/video/7678198847641849102",
+        "title": "it took an egregious amount of time for such a short clip of this new song but a",
+        "meta": "Sylphy · 오늘 가장 높은 재생 55,900"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Comment “Trippie” for the Trippie redd vocal cha' — baileyofficial___ (좋아요 187)",
+        "오늘 9건 수집 · 평균 좋아요 53 · 최고 187",
+        "자주 등장: mixing, musicproducer, noise, vocal"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DcvaekWiZ_z/",
+        "title": "Comment “Trippie” for the Trippie redd vocal chain!\n\nTrippie Redd’s Vocal Chain ",
+        "meta": "baileyofficial___ · 오늘 가장 높은 좋아요 187"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'I’m building an open-source cheap chord synth in' — r/synthesizers (업보트 1,245)",
+        "오늘 20건 수집 · 평균 업보트 253 · 최고 1,245",
+        "자주 등장: electronic, hop, pet, shop"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1w0xcgn/im_building_an_opensource_cheap_chord_synth_in/",
+        "title": "I’m building an open-source cheap chord synth in Argentina — meet Tolhuin",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,245"
+      }
+    }
   }
 }
