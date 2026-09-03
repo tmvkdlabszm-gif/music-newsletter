@@ -3140,5 +3140,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,253"
       }
     }
+  },
+  "2026-09-04": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Song From Scratch in Ableton ep.4 #musicproducti' — col3man (재생 2,500,000)",
+        "오늘 16건 수집 · 평균 재생 196,162 · 최고 2,500,000",
+        "자주 등장: newmusic, musicproduction, beat, musicproducer"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@col3manmusic/video/7215639558849842478",
+        "title": "Song From Scratch in Ableton ep.4 #musicproductiontutorial #musicproducers #song",
+        "meta": "col3man · 오늘 가장 높은 재생 2,500,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'You can go ‘all in’ but also don’t have to take ' — cosmicacademy (좋아요 192)",
+        "오늘 9건 수집 · 평균 좋아요 33 · 최고 192",
+        "자주 등장: can, musicproducer, more, track"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DczWQmkNOLY/",
+        "title": "You can go ‘all in’ but also don’t have to take this music thing too seriously. ",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 192"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'I’m building an open-source cheap chord synth in' — r/synthesizers (업보트 1,264)",
+        "오늘 20건 수집 · 평균 업보트 273 · 최고 1,264",
+        "자주 등장: their, anyone, producing, more"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1w0xcgn/im_building_an_opensource_cheap_chord_synth_in/",
+        "title": "I’m building an open-source cheap chord synth in Argentina — meet Tolhuin",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,264"
+      }
+    }
   }
 }
