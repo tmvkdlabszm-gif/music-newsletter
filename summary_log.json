@@ -3178,5 +3178,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,264"
       }
     }
+  },
+  "2026-09-05": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Song From Scratch in Ableton ep.4 #musicproducti' — col3man (재생 2,500,000)",
+        "오늘 16건 수집 · 평균 재생 196,162 · 최고 2,500,000",
+        "자주 등장: newmusic, musicproduction, beat, musicproducer"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@col3manmusic/video/7215639558849842478",
+        "title": "Song From Scratch in Ableton ep.4 #musicproductiontutorial #musicproducers #song",
+        "meta": "col3man · 오늘 가장 높은 재생 2,500,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Make it slap harder is not a production plan. Au' — audionodestudio (좋아요 275)",
+        "오늘 9건 수집 · 평균 좋아요 66 · 최고 275",
+        "자주 등장: stereo, mixing, production, producers"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Dc4TXC4lpjo/",
+        "title": "Make it slap harder is not a production plan. AudioNode turns your vague idea in",
+        "meta": "audionodestudio · 오늘 가장 높은 좋아요 275"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Depeche Mode - Just Can't Get Enough (1981)' — r/synthpop (업보트 1,214)",
+        "오늘 20건 수집 · 평균 업보트 247 · 최고 1,214",
+        "자주 등장: their, own, rock, which"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthpop/comments/1w20e0b/depeche_mode_just_cant_get_enough_1981/",
+        "title": "Depeche Mode - Just Can't Get Enough (1981)",
+        "meta": "r/synthpop · 오늘 가장 높은 업보트 1,214"
+      }
+    }
   }
 }
