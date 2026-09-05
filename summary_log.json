@@ -3216,5 +3216,43 @@
         "meta": "r/synthpop · 오늘 가장 높은 업보트 1,214"
       }
     }
+  },
+  "2026-09-06": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Name a better melody 😍 #beautiful #melody #live ' — DOMA (재생 24,600,000)",
+        "오늘 16건 수집 · 평균 재생 2,437,376 · 최고 24,600,000",
+        "자주 등장: newmusic, musicproduction, track, fyp"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@doma.wav/video/7506994059135814935",
+        "title": "Name a better melody 😍 #beautiful #melody #live #lauv #ilikemebetter #producer #",
+        "meta": "DOMA · 오늘 가장 높은 재생 24,600,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Plugin order matters more than most producers re' — cosmicacademy (좋아요 290)",
+        "오늘 9건 수집 · 평균 좋아요 139 · 최고 290",
+        "자주 등장: production, musicproducer, comment, audionode"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Dc32laXEewY/",
+        "title": "Plugin order matters more than most producers realize…\n\nThe same plugin chain ca",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 290"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'I built a drum machine' — r/synthesizers (업보트 654)",
+        "오늘 20건 수집 · 평균 업보트 192 · 최고 654",
+        "자주 등장: their, own, which, actually"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1w77sp0/i_built_a_drum_machine/",
+        "title": "I built a drum machine",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 654"
+      }
+    }
   }
 }
