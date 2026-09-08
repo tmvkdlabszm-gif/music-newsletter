@@ -3330,5 +3330,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 738"
       }
     }
+  },
+  "2026-09-09": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'this one hits tomorrow 🙏 thank you @EXTISI 🫶 #da' — Deep Garage (재생 1,100,000)",
+        "오늘 16건 수집 · 평균 재생 238,946 · 최고 1,100,000",
+        "자주 등장: musicproduction, newmusic, musicproducer, one"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@deep.garage.music/video/7681224964804168982",
+        "title": "this one hits tomorrow 🙏 thank you @EXTISI 🫶 #dance #newmusic #dj #deephouse #pa",
+        "meta": "Deep Garage · 오늘 가장 높은 재생 1,100,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Which reminder did you need today? \n\nSave this i' — cosmicacademy (좋아요 715)",
+        "오늘 9건 수집 · 평균 좋아요 116 · 최고 715",
+        "자주 등장: musicproducer, one, production, producer"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Dc_lk9wFDFf/",
+        "title": "Which reminder did you need today? \n\nSave this if you need help with your low en",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 715"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'I built a drum machine' — r/synthesizers (업보트 747)",
+        "오늘 20건 수집 · 평균 업보트 217 · 최고 747",
+        "자주 등장: live, rock, tutorial, feel"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1w77sp0/i_built_a_drum_machine/",
+        "title": "I built a drum machine",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 747"
+      }
+    }
   }
 }
