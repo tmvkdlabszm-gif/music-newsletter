@@ -3368,5 +3368,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 747"
       }
     }
+  },
+  "2026-09-10": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Scott Storch in the Studio Playing Xzibit & Emin' — Above The Cloudz (재생 3,000,000)",
+        "오늘 16건 수집 · 평균 재생 484,048 · 최고 3,000,000",
+        "자주 등장: now, musicproduction, newmusic, launch"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@abovethecloudz.yt/video/7556653104205171990",
+        "title": "Scott Storch in the Studio Playing Xzibit & Eminem Vibes 🎹🔥\nWatch Scott Storch c",
+        "meta": "Above The Cloudz · 오늘 가장 높은 재생 3,000,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Did you know about this Ableton feature? 🤔\n\nThe ' — cosmicacademy (좋아요 212)",
+        "오늘 9건 수집 · 평균 좋아요 27 · 최고 212",
+        "자주 등장: while, most, angeles, know"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DdEuUeKlHt3/",
+        "title": "Did you know about this Ableton feature? 🤔\n\nThe more you know about your tools, ",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 212"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Yazoo - Don't Go (Top of the Pops, 1982)' — r/synthpop (업보트 768)",
+        "오늘 20건 수집 · 평균 업보트 228 · 최고 768",
+        "자주 등장: pop, alt, rock, their"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthpop/comments/1w614oz/yazoo_dont_go_top_of_the_pops_1982/",
+        "title": "Yazoo - Don't Go (Top of the Pops, 1982)",
+        "meta": "r/synthpop · 오늘 가장 높은 업보트 768"
+      }
+    }
   }
 }
