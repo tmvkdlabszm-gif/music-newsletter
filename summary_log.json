@@ -3406,5 +3406,43 @@
         "meta": "r/synthpop · 오늘 가장 높은 업보트 768"
       }
     }
+  },
+  "2026-09-11": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Scott Storch in the Studio Playing Xzibit & Emin' — Above The Cloudz (재생 3,000,000)",
+        "오늘 16건 수집 · 평균 재생 484,048 · 최고 3,000,000",
+        "자주 등장: now, musicproduction, newmusic, launch"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@abovethecloudz.yt/video/7556653104205171990",
+        "title": "Scott Storch in the Studio Playing Xzibit & Eminem Vibes 🎹🔥\nWatch Scott Storch c",
+        "meta": "Above The Cloudz · 오늘 가장 높은 재생 3,000,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'A reminder for every producer who’s gotten a lit' — cosmicacademy (좋아요 178)",
+        "오늘 9건 수집 · 평균 좋아요 25 · 최고 178",
+        "자주 등장: musicproducer, musicproduction, mixingtips, producer"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DdFZFw2kQuG/",
+        "title": "A reminder for every producer who’s gotten a little too serious…\n\nYou can want t",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 178"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'I built a drum machine' — r/synthesizers (업보트 762)",
+        "오늘 20건 수집 · 평균 업보트 213 · 최고 762",
+        "자주 등장: their, first, pop, alt"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1w77sp0/i_built_a_drum_machine/",
+        "title": "I built a drum machine",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 762"
+      }
+    }
   }
 }
