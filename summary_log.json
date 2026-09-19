@@ -3748,5 +3748,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 749"
       }
     }
+  },
+  "2026-09-20": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Disney string automation! Is it worth the extra ' — Charlie Fisher Music (재생 441,000)",
+        "오늘 16건 수집 · 평균 재생 96,556 · 최고 441,000",
+        "자주 등장: newmusic, musicproduction, fyp, can"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@charliefishermusic/video/7487296925956427030",
+        "title": "Disney string automation! Is it worth the extra effort? #composer #musicproducer",
+        "meta": "Charlie Fisher Music · 오늘 가장 높은 재생 441,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Want that Juice WRLD inspired vocal sound? 🎙️\n\nI' — prodbylax (좋아요 404)",
+        "오늘 9건 수집 · 평균 좋아요 107 · 최고 404",
+        "자주 등장: producer, musicproducer, more, production"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DdeRj-YmVKJ/",
+        "title": "Want that Juice WRLD inspired vocal sound? 🎙️\n\nIt’s not about throwing 20 plugin",
+        "meta": "prodbylax · 오늘 가장 높은 좋아요 404"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'New Synth Day (1983 Yamaha DX7)' — r/synthesizers (업보트 1,015)",
+        "오늘 20건 수집 · 평균 업보트 152 · 최고 1,015",
+        "자주 등장: synth, free, plugin, sound"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1wjin74/new_synth_day_1983_yamaha_dx7/",
+        "title": "New Synth Day (1983 Yamaha DX7)",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,015"
+      }
+    }
   }
 }
