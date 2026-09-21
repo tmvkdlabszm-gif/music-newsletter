@@ -3824,5 +3824,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,086"
       }
     }
+  },
+  "2026-09-22": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Song From Scratch in Ableton ep.4 #musicproducti' — col3man (재생 2,500,000)",
+        "오늘 16건 수집 · 평균 재생 475,783 · 최고 2,500,000",
+        "자주 등장: producer, fyp, more, newmusic"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@col3manmusic/video/7215639558849842478",
+        "title": "Song From Scratch in Ableton ep.4 #musicproductiontutorial #musicproducers #song",
+        "meta": "col3man · 오늘 가장 높은 재생 2,500,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: '🔥 Comment \"Circus\" and we'll send you the full Y' — productionmusiclive (좋아요 572)",
+        "오늘 10건 수집 · 평균 좋아요 194 · 최고 572",
+        "자주 등장: musicproducer, producer, production, producers"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Ddgic-qFvmd/",
+        "title": "🔥 Comment \"Circus\" and we'll send you the full YouTube tutorial.\nCheck out Indie",
+        "meta": "productionmusiclive · 오늘 가장 높은 좋아요 572"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'New Synth Day (1983 Yamaha DX7)' — r/synthesizers (업보트 1,109)",
+        "오늘 20건 수집 · 평균 업보트 168 · 최고 1,109",
+        "자주 등장: synth, people, sound, indie"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1wjin74/new_synth_day_1983_yamaha_dx7/",
+        "title": "New Synth Day (1983 Yamaha DX7)",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,109"
+      }
+    }
   }
 }
