@@ -4584,5 +4584,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 676"
       }
     }
+  },
+  "2026-10-15": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'How I made Bad in 1 minute #michaeljackson #flst' — ProvoKind (재생 9,700,000)",
+        "오늘 16건 수집 · 평균 재생 1,456,137 · 최고 9,700,000",
+        "자주 등장: musicproduction, newmusic, pop, english"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@provokind/video/7634264208380546326",
+        "title": "How I made Bad in 1 minute #michaeljackson #flstudio #musicproducer #beatmaker #",
+        "meta": "ProvoKind · 오늘 가장 높은 재생 9,700,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: '¿Tu voz suena \"seca\" pero cuando le ponés reverb' — ochorecords (좋아요 50)",
+        "오늘 9건 수집 · 평균 좋아요 8 · 최고 50",
+        "자주 등장: angeles, long, beach, mastering"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DefLYZ7Ft3p/",
+        "title": "¿Tu voz suena \"seca\" pero cuando le ponés reverb se embarra todo? 🤦‍♂️🔊\n\nEl secr",
+        "meta": "ochorecords · 오늘 가장 높은 좋아요 50"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Traded my Grandmother for a Korg EMX-1' — r/synthesizers (업보트 872)",
+        "오늘 20건 수집 · 평균 업보트 212 · 최고 872",
+        "자주 등장: can, synth, zero, right"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1x4h6zk/traded_my_grandmother_for_a_korg_emx1/",
+        "title": "Traded my Grandmother for a Korg EMX-1",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 872"
+      }
+    }
   }
 }
