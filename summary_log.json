@@ -4736,5 +4736,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 967"
       }
     }
+  },
+  "2026-10-19": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'Song From Scratch in Ableton ep.4 #musicproducti' — col3man (재생 2,500,000)",
+        "오늘 16건 수집 · 평균 재생 334,293 · 최고 2,500,000",
+        "자주 등장: newmusic, musicproduction, love, their"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@col3manmusic/video/7215639558849842478",
+        "title": "Song From Scratch in Ableton ep.4 #musicproductiontutorial #musicproducers #song",
+        "meta": "col3man · 오늘 가장 높은 재생 2,500,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'Your music career won't change by playing it saf' — cosmicacademy (좋아요 1,051)",
+        "오늘 9건 수집 · 평균 좋아요 143 · 최고 1,051",
+        "자주 등장: producer, production, workflow, kick"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DenPVSqFDVw/",
+        "title": "Your music career won't change by playing it safe.\n\nRelease the music. Take the ",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 1,051"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Traded my Grandmother for a Korg EMX-1' — r/synthesizers (업보트 995)",
+        "오늘 20건 수집 · 평균 업보트 220 · 최고 995",
+        "자주 등장: folk, before, did, open"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1x4h6zk/traded_my_grandmother_for_a_korg_emx1/",
+        "title": "Traded my Grandmother for a Korg EMX-1",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 995"
+      }
+    }
   }
 }
