@@ -4850,5 +4850,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,750"
       }
     }
+  },
+  "2026-10-22": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'It's a vibe 💜 (Song: Cinek - Floating)\n#acoustic' — Cinek (재생 4,900,000)",
+        "오늘 16건 수집 · 평균 재생 756,005 · 최고 4,900,000",
+        "자주 등장: newmusic, musicproduction, musicproducer, ableton"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@noahcinek/video/7693138702104677654",
+        "title": "It's a vibe 💜 (Song: Cinek - Floating)\n#acoustic #floating #acousticcovers #newm",
+        "meta": "Cinek · 오늘 가장 높은 재생 4,900,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'You don’t need another plugin, another tutorial,' — cosmicacademy (좋아요 299)",
+        "오늘 9건 수집 · 평균 좋아요 37 · 최고 299",
+        "자주 등장: reverb, delay, more, can"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DewybBrlJyr/",
+        "title": "You don’t need another plugin, another tutorial, or another excuse.\n\nYou need to",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 299"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Got this on FB for $500' — r/synthesizers (업보트 1,854)",
+        "오늘 20건 수집 · 평균 업보트 212 · 최고 1,854",
+        "자주 등장: don, first, boys, art"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1x9hsah/got_this_on_fb_for_500/",
+        "title": "Got this on FB for $500",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,854"
+      }
+    }
   }
 }
