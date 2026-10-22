@@ -4888,5 +4888,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,854"
       }
     }
+  },
+  "2026-10-23": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: 'How I made Bad in 1 minute #michaeljackson #flst' — ProvoKind (재생 9,700,000)",
+        "오늘 16건 수집 · 평균 재생 1,728,172 · 최고 9,700,000",
+        "자주 등장: newmusic, musicproduction, musicproducer, pop"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@provokind/video/7634264208380546326",
+        "title": "How I made Bad in 1 minute #michaeljackson #flstudio #musicproducer #beatmaker #",
+        "meta": "ProvoKind · 오늘 가장 높은 재생 9,700,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'You don’t need another plugin, another tutorial,' — cosmicacademy (좋아요 512)",
+        "오늘 9건 수집 · 평균 좋아요 136 · 최고 512",
+        "자주 등장: kick, every, one, producer"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/DewybBrlJyr/",
+        "title": "You don’t need another plugin, another tutorial, or another excuse.\n\nYou need to",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 512"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'Got this on FB for $500' — r/synthesizers (업보트 1,935)",
+        "오늘 20건 수집 · 평균 업보트 223 · 최고 1,935",
+        "자주 등장: don, first, boys, art"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1x9hsah/got_this_on_fb_for_500/",
+        "title": "Got this on FB for $500",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 1,935"
+      }
+    }
   }
 }
