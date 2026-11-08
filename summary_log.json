@@ -5496,5 +5496,43 @@
         "meta": "r/synthesizers · 오늘 가장 높은 업보트 888"
       }
     }
+  },
+  "2026-11-09": {
+    "tiktok": {
+      "lines": [
+        "가장 화제: '#CharliePuth makes it look so easy! 🎵 #musicprod' — Warner Music Nederland (재생 26,000,000)",
+        "오늘 16건 수집 · 평균 재생 3,408,412 · 최고 26,000,000",
+        "자주 등장: remix, musicproduction, viral, trending"
+      ],
+      "pick": {
+        "url": "https://www.tiktok.com/@warnermusic.nl/video/7155832107900685573",
+        "title": "#CharliePuth makes it look so easy! 🎵 #musicproducer #musicproduction ",
+        "meta": "Warner Music Nederland · 오늘 가장 높은 재생 26,000,000"
+      }
+    },
+    "instagram": {
+      "lines": [
+        "가장 화제: 'The biggest thing holding you back might be how ' — cosmicacademy (좋아요 1,131)",
+        "오늘 10건 수집 · 평균 좋아요 191 · 최고 1,131",
+        "자주 등장: producer, production, more, industry"
+      ],
+      "pick": {
+        "url": "https://www.instagram.com/p/Dfa2HDXFP_H/",
+        "title": "The biggest thing holding you back might be how long you're waiting to take acti",
+        "meta": "cosmicacademy · 오늘 가장 높은 좋아요 1,131"
+      }
+    },
+    "reddit": {
+      "lines": [
+        "가장 화제: 'For the music for The Shining, Stanley Kubrick, ' — r/synthesizers (업보트 901)",
+        "오늘 20건 수집 · 평균 업보트 199 · 최고 901",
+        "자주 등장: rock, electronic, talk, writing"
+      ],
+      "pick": {
+        "url": "https://www.reddit.com/r/synthesizers/comments/1xltrjk/for_the_music_for_the_shining_stanley_kubrick/",
+        "title": "For the music for The Shining, Stanley Kubrick, Wendy Carlos, working with Rache",
+        "meta": "r/synthesizers · 오늘 가장 높은 업보트 901"
+      }
+    }
   }
 }
